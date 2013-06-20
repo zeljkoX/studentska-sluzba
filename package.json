@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "studentska-sluzba",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "passport": "~0.1.17",
-    "ejs": "~0.8.4",
     "passport-local": "~0.1.6",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "mongoose": "~3.6.11"
   }
 }

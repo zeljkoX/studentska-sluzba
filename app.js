@@ -7,7 +7,24 @@ var express = require('express'),
     administracija = require('./administracija/app'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
+    mongoose = require('mongoose');
 
+    mongoose.connect('mongodb://localhost/test');
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function callback () {
+    console.log('>Uspjesna konekcija na mognodb');
+    });
+
+    var KorisnikSchema = mongoose.Schema({
+    name: String, password: String
+    });
+
+    var Korisnik = mongoose.model('Korisnik', KorisnikSchema)
+
+    var korisnik = new Korisnik({ name: 'zeljkoX', password: 'sido47sido' });
+
+    korisnik.save();
 
     var users = [
     { id: 1, username: 'zeljkoX', password: 'sido47sido', email: 'bob@example.com' },

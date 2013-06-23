@@ -1,14 +1,25 @@
 
-/**
- * Module dependencies.
- */
-
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , path = require('path');
+var express = require('express'),
+  path = require('path'),
+  mongoose = require('mongoose'),
+  baza = 'mongodb://localhost/studentska-sluzba';
 
 var app = module.exports = express();
+
+var modeli = {
+  studenti: require('./modeli/student')(mongoose),
+  profesori: require('./modeli/profesor')(mongoose),
+  predmeti: require('./modeli/predmet')(mongoose),
+  ispiti: require('./modeli/ispit')(mongoose),
+  fakultet: require('./modeli/fakultet')(mongoose)
+};
+
+mongoose.connect(baza, function onMongooseError(err) {
+  if (err) {
+    throw err;
+    console.console.log('>Neuspjesna konekcija na mongodb');
+  }
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -26,7 +37,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+//app.get('/', routes.index);
+//app.get('/users', user.list);
 
-
+require('./routes/ispiti')(app, modeli.ispiti);
+require('./routes/studenti')(app, modeli.studenti);

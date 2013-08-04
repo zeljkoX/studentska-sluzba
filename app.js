@@ -16,7 +16,10 @@ app.get('mongoClient').open(function(err, mongoClient) {
   console.log('>Uspjesna konekcija na mongodb');
   mongoClient.close();
 });
-
+users = {
+username: 'zeljkoX',
+password: 'sido47sido'
+};
 function findById(id, fn) {
   var idx = id - 1;
   if (users[idx]) {

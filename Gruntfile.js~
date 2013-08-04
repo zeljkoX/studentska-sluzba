@@ -1,0 +1,26 @@
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+    hogan: {
+      publish: {
+        options: {
+	amdWrapper: true,
+          prettify: true,
+          defaultName: function(file) {
+            return file.toUpperCase();
+          }
+        },
+        files:{
+          "public/scripts/views/templates/compiled.js": ["public/scripts/views/templates/*.js"]
+        }
+      }
+    }
+});
+
+  grunt.loadNpmTasks('grunt-contrib-hogan');
+
+
+
+  grunt.registerTask('default', ['hogan']);
+
+};

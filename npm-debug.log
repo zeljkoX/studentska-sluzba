@@ -1,0 +1,36 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'search', 'hogan' ]
+2 info using npm@1.2.30
+3 info using node@v0.10.11
+4 verbose url raw /-/all/since?stale=update_after&startkey=1372180562267
+5 verbose url resolving [ 'https://registry.npmjs.org/',
+5 verbose url resolving   './-/all/since?stale=update_after&startkey=1372180562267' ]
+6 verbose url resolved https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1372180562267
+7 info trying registry request attempt 1 at 18:11:36
+8 http GET https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1372180562267
+9 http 404 https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1372180562267
+10 verbose bad json Host not found: registry.npmjs.org
+11 error registry error parsing json
+12 error SyntaxError: Unexpected token H
+12 error Host not found: registry.npmjs.org
+12 error     at Object.parse (native)
+12 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:238:23)
+12 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/index.js:148:22)
+12 error     at Request.EventEmitter.emit (events.js:98:17)
+12 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/index.js:876:14)
+12 error     at Request.EventEmitter.emit (events.js:117:20)
+12 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/index.js:827:12)
+12 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+12 error     at _stream_readable.js:910:16
+12 error     at process._tickCallback (node.js:415:13)
+13 error If you need help, you may report this log at:
+13 error     <http://github.com/isaacs/npm/issues>
+13 error or email it to:
+13 error     <npm-@googlegroups.com>
+14 error System Linux 3.2.0-4-amd64
+15 error command "/usr/local/bin/node" "/usr/local/bin/npm" "search" "hogan"
+16 error cwd /home/jahrastaffaraj/Desktop/diplomski
+17 error node -v v0.10.11
+18 error npm -v 1.2.30
+19 error type unexpected_token
+20 verbose exit [ 1, true ]

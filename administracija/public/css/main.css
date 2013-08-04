@@ -1,0 +1,155 @@
+
+
+body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+.container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+
+.search-main {
+    padding-top: 150px;
+    text-align: center;
+    padding-bottom: 100px;
+    font-size: 2.5em;
+
+}
+
+.span4 .btn {
+    height: 100px;
+    text-align: center;
+    padding-top: 40px;
+    }
+.span4 + .span4 {
+    margin-bottom: 20px;
+}
+
+.statistika {
+   display: table;
+   width: 100%;
+}
+.statistika p {
+    display:table-cell; 
+    vertical-align: middle;
+}
+
+
+
+.breadcrumb-nav > ul {
+ display: inline;   
+}
+.breadcrumb-nav > button {
+ margin-left: 2em;
+ display: inline;
+}
+
+.tabbable {
+    margin-top: 2em;
+}
+
+.tabbable > ul{
+ width :11em ;
+}
+.tabbable > ul > li{
+ margin-left: -1px;
+}
+
+.tabs-right > .nav-tabs {
+    margin-left: 0px;
+}
+
+.tab-pane  {
+border-left: 1px solid #DDDDDD;
+border-top: 1px solid #DDDDDD;
+border-bottom: 1px solid #DDDDDD;
+-webkit-border-radius: 5px;
+-webkit-border-top-right-radius: 0;
+-moz-border-radius: 5px;
+-moz-border-radius-topright: 0;
+border-radius: 5px;
+border-top-right-radius: 0;
+border-right: 1px solid #DDDDDD;
+}
+
+.sadrzajPodaci {
+    margin: 2em;  
+    padding:1em;  
+}
+/*
+.informacije label {
+    float:left;
+    width: 30%;
+    text-align: right;
+    clear: left;
+}
+
+.informacije p {
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+
+.informacije button {
+    clear:left;
+    float:left;
+    margin-left: 14em;
+}
+
+.informacije p, .informacije label  {
+    margin:1em;
+}
+
+*/
+.informacije p {
+   display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  vertical-align: bottom;
+  *zoom: 1;
+}
+
+.informacije .red {
+  margin-bottom: 20px;
+  *zoom: 1;
+}
+
+.informacije .red:before,
+.informacije .red:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.informacije .red:after {
+  clear: both;
+}
+
+.informacije label {
+  float: left;
+  width: 260px;
+  padding-top: 5px;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.informacije p {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 10px;
+  *margin-left: 0;
+  text-align: left;
+    padding-top: 5px;
+}
+
+
+
+.informacije button {
+  margin-left: 230px;
+}
+
+.breadcrumb li:last-of-type a{
+  color: #999999;
+}

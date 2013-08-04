@@ -23,21 +23,32 @@ mongoose.connect(baza, function onMongooseError(err) {
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('views', __dirname + '/public');
+app.set('view engine', 'hjs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(app.router);
+
+
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+app.set('ime', 'ZM');
 
-//app.get('/', routes.index);
+app.get('/', function(req, res){
+  res.render('index', {'ime':'Zeljko Markovic1' });
+});
+/*
+app.get(/[^\/]/,function(req, res){
+  res.location('sdfsdf');
+
+});
+*/
 //app.get('/users', user.list);
 
 require('./routes/ispiti')(app, modeli.ispiti);

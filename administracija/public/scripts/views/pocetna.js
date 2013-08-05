@@ -1,4 +1,4 @@
-define(['backbone', 'text!templates/pocetna.html'], function(Backbone, Templates) {
+define(['backbone', 'text!sabloni/pocetna.html'], function(Backbone, Templates) {
 	var IndexView = Backbone.View.extend({
 		el: $('.stranica'),
 		template: Templates,

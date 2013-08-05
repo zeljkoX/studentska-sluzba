@@ -1,4 +1,4 @@
-define(['backbone'], function(Backbone) {
+define(['backbone','fakultetiM/fakulteti'], function(Backbone, FakultetModel) {
     var StudentiRuter = Backbone.Router.extend({
         routes: {
             //'studenti/': 'index'
@@ -6,7 +6,8 @@ define(['backbone'], function(Backbone) {
         },
 
         initialize: function() {
-            Backbone.trigger('naslov', ['Studenti']);
+        Backbone.trigger('naslov', ['Fakulteti']);
+        new FakultetModel();
         },
         changeView: function(view) {
             if (null != this.currentView) {

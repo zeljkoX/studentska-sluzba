@@ -13,14 +13,15 @@ module.exports = function(mongoose) {
 		naziv: {
 			type: String,
 			unique: true,
-			index: true
+			//index: true
 		},
 		godineStudija: Number,
 		planPoGodini: [PlanPoGodiniSchema]
 	});
 
 	var FakultetSchema = new mongoose.Schema({
-		id: ObjectId,
+		//id: ObjectId,
+		_id: String,
 		naziv: {
 			type: String,
 			required: true
@@ -28,14 +29,16 @@ module.exports = function(mongoose) {
 		skracenica: {
 			type: String
 		},
-		dekan: {
+		/*dekan: {
 			id: ObjectId,
 			ime: {
 				type: String
 			}
-		},
-		studijskiProgrami: [ProgramSchema],
-		arhiva: [Mixed]
+		},*/
+		dekan: String,
+		opis: String
+		//studijskiProgrami: [ProgramSchema],
+		//arhiva: [Mixed]
 	});
 
 	return {

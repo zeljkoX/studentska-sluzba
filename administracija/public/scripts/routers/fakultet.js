@@ -1,13 +1,14 @@
-define(['backbone','fakultetiM/fakulteti'], function(Backbone, FakultetModel) {
+define(['backbone','fakultetiM/fakulteti','fakultetiV/fakulteti','fakultetiM/dodaj-fakultet', 'fakultetiV/dodaj-fakultet','fakultetiM/fakultet-info', 'fakultetiV/fakultet-info'], 
+    function(Backbone, FakultetiModel, FakultetiView, DodajFakultetModel, DodajFakultetView, FakultetInfoModel, FakultetInfoView) {
     var StudentiRuter = Backbone.Router.extend({
         routes: {
-            //'studenti/': 'index'
-            'studenti/jedan/': 'jedan'
+            'fakulteti/dodaj-fakultet/': 'dodajFakultet',
+            'fakulteti/:fakultet/': 'prikaziFakultet'
+            //'fakulteti/' : 'fakulteti'
         },
 
         initialize: function() {
-        Backbone.trigger('naslov', ['Fakulteti']);
-        new FakultetModel();
+        this.changeView(new FakultetiView({model: new FakultetiModel()}));
         },
         changeView: function(view) {
             if (null != this.currentView) {
@@ -15,15 +16,17 @@ define(['backbone','fakultetiM/fakulteti'], function(Backbone, FakultetModel) {
             }
             this.currentView = view;
             this.currentView.delegateEvents();
-            this.currentView.render();
+            $('.sadrzajPodaci').empty().append(this.currentView.render().el);
         },
 
-        jedan: function() {
-            console.log('jedan');
+        dodajFakultet: function() {
+            this.changeView(new DodajFakultetView({ model: new DodajFakultetModel()})); 
         },
-        index: function() {
-            Backbone.trigger('naslov', ['Studenti']);
+        prikaziFakultet: function(fakultet){
+            var lokacija = '/administracija/fakulteti/' + fakultet + '/';
+           this.changeView( new FakultetInfoView({model: new FakultetInfoModel({urlRoot: lokacija})}));
         }
+
 
     });
     return StudentiRuter;

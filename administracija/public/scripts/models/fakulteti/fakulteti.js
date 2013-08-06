@@ -1,12 +1,17 @@
 define(['backbone'], function(Backbone) {
 
 	var FakultetiModel = Backbone.Model.extend({
-		urlRoot: 'dfsdf/',
+		urlRoot: '/administracija/fakulteti/',
 		defaults: {
 			naziv: 'Fakulteti'
 		},
 		initialize: function(){
              this.fetch();
+		},
+		parse: function(response){
+			//this.set({fakulteti:[response]});
+			response = {fakulteti: response};
+			return response;
 		}
 
 	});

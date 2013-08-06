@@ -72,7 +72,7 @@ define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/student
                 trigger: true
             });  
         },
-        //pomocna funkcija za dobijanje adrese tj. ostatka adrese posle administratorskog sluga
+        //pomocna funkcija za dobijanje adrese tj. ostatka adrese posle administratorskog slugaa
         adresa: function(){
         	return (location.href).replace(/.*administracija\//g, '');
         }

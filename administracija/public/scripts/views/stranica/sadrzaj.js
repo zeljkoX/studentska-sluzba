@@ -1,11 +1,13 @@
-define(['backbone', 'stranicaM/sadrzaj', 'hogan', 'text!sabloni/sadrzaj.html'], function(Backbone, SadrzajModel, Hogan, Template) {
+define(['backbone','hogan', 'text!sabloni/sadrzaj.html'], function(Backbone, Hogan, Template) {
 	var SadrzajView = Backbone.View.extend({
-		model: SadrzajModel,
-
 		template: Template,
 		initialize: function() {
 			this.template = Hogan.compile(this.template);
-			this.model.on('change', this.render);
+			this.listenTo(this.model,'change', this.render);
+			Backbone.on('meni',function(options){
+                //console.log(options);
+			    this.model.set({meni: options});
+			},this);
 			//this.ruter = this.options.ruter;
 		},
 		events: {

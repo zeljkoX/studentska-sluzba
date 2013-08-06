@@ -4,7 +4,8 @@ define(['backbone'], function(Backbone) {
             vrijednosti: {
                 klasa: 'btn btn-success',
                 ikona: 'icon-plus-sign icon-white',
-                tekst: 'Dodaj'
+                tekst: 'Dodaj',
+                lokacija: '/'
             }
         },
         initialize: function() {

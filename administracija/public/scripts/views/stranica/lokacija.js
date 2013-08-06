@@ -12,7 +12,7 @@ define(['backbone', 'text!sabloni/lokacija.html', 'hogan'], function(Backbone, T
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
-			console.log('renderovanje');
+			this.dugme.delegateEvents();
 			this.$el.find('.breadcrumb-nav').append(this.dugme.el);
 			return this;
 		},

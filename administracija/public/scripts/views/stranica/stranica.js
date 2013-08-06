@@ -4,7 +4,6 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 		template: Template,
 		views: {},
 		initialize: function() {
-			this.ruter = this.options.ruter;
 			//this.views.naslov = NaslovView();
 			//this.statistika = new StatistikaView();
 			//this.lokacija = new LokacijaView();
@@ -35,8 +34,7 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 				dugme: this.views.dugme
 			});
 			this.views.sadrzaj = new SadrzajView({
-				model: sadrzajModel,
-				ruter: this.ruter
+				model: sadrzajModel
 			});
 			this.$el.find('.naslov').html(this.views.naslov.render().el);
 			this.$el.find('.statistika').html(this.views.statistika.render().el);

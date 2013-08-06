@@ -1,0 +1,17 @@
+ <table class="table table-striped">
+  <caption>Fakulteti:</caption>
+  <thead>
+    <tr>
+      <th>Naziv Fakulteta</th>
+      <th>Skracenica</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#fakulteti}}
+    <tr>
+      <td><a href="#" data-lokacija="{{skracenica}}/">{{naziv}}</a></td>
+      <td>{{skracenica}}</td>
+    </tr>
+    {{/fakulteti}}
+  </tbody>
+</table>

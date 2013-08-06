@@ -1,16 +1,19 @@
 define(['backbone'], function(Backbone) {
-	var SadrzajView = Backbone.Model.extend({
+	var SadrzajModel = Backbone.Model.extend({
+		initialize: function(){
+			
+		},
 		defaults: {
 			meni: [{
-				'naziv': 'Osnovne Informacije',
-				'link': 'osnovne/',
+				'tekst': 'Osnovne Informacije',
+				'lokacija': 'osnovne/',
+				'aktivan' : true
 			}, {
-				'naziv': 'Dodatne Informacije',
-				'link': 'dodatne/',
-				'aktivan': 'true'
+				'tekst': 'Dodatne Informacije',
+				'lokacija': 'dodatne/'
 			}]
 		}
 
 	});
-	return SadrzajView;
+	return SadrzajModel;
 });

@@ -1,0 +1,40 @@
+
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="redniBroj">Redni broj semestra</label>
+    <div class="controls">
+      <input  type="text" class="input-mini" id="redniBroj" placeholder="npr. 3" value="{{_id}}">
+    </div>
+  </div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+      <th>Sifra Predmeta</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#predmeti}}
+    <tr>
+      <td><a href="#">{{naziv}}</a></td>
+      <td>{{sifra}}</td>
+      <td><i class="icon-remove"></td>
+    </tr>
+    {{/predmeti}}
+    {{^predmeti}}
+    <tr>
+      <td>Lista Predmeta je prazna</td>
+     <td></td>
+    </tr>
+    {{/predmeti}}
+  </tbody>
+</table>
+<button class="btn btn-success dodaj">Dodaj Predmet</button>
+ 
+ <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+      <button class="btn btn-danger odustani"><i class="icon-remove-circle icon-white"></i>Odustani</button>
+    </div>
+  </div>
+</form>

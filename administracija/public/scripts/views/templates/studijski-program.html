@@ -1,0 +1,20 @@
+{{#semestri}}
+<table class="table table-bordered">
+  <caption><h4>{{_id}} Semestar</h4>  <a class="uredi" data-lokacija="{{_id}}/"href="#">Uredi</a></caption>
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+      <th>Sifra Predmeta</th>
+    </tr>
+  </thead>
+  <tbody>
+{{#predmeti}}
+    <tr>
+      <td><a data-lokacija="predmeti/{{sifra}}/" href="#">{{naziv}}</a></td>
+      <td>{{sifra}}</td>
+    </tr>
+{{/predmeti}}
+
+  </tbody>
+</table>
+{{/semestri}}

@@ -1,0 +1,96 @@
+ <form class="form-horizontal">
+                <div class="control-group">
+                  <label class="control-label" for="nazivFakulteta">Naziv Predmeta</label>
+                  <div class="controls">
+                    <input type="text" id="nazivPredmeta" placeholder="Naziv Predmeta" required autofocus value="{{naziv}}">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="sifraPredmeta">Sifra Predmeta</label>
+                  <div class="controls">
+                    <input type="text" id="sifraPredmeta" placeholder="Sifra Predmeta(bez razmaka)" required value="{{sifra}}">
+                  </div>
+                </div>
+
+
+                <div class="control-group">
+                  <label class="control-label" for="statusPredmeta" id="statusPredmeta">Status Predmeta</label>
+                  <div class="controls">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsRadios" id="status" value="obavezan" checked>
+                        Obavezan
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsRadios" id="status" value="izborni">
+                        Izborni
+                      </label>
+                    </div>
+                  </div> 
+                </div>
+
+
+                  <div class="control-group">
+                    <label class="control-label" for="brojBodova">Broj Bodova</label>
+                    <div class="controls">
+                      <input type="text" class="input-mini" id="brojBodova" placeholder="npr. 8" required value="{{bodovi}}">
+                    </div>
+                  </div>
+
+
+                 <div class="control-group">
+                  <label class="control-label" for="profesor">Profesor</label>
+                  <div class="controls">
+                    <input type="text" id="profesor" placeholder="Klikni za Odabir" value="{{profesor}}">
+                  </div>
+                </div>
+               <div class="control-group">
+                  <label class="control-label" for="asistent">Asistent</label>
+                  <div class="controls">
+                    <input type="text" id="asistent" placeholder="Klikni za Odabir" value="{{asistent}}">
+                  </div>
+                </div>
+
+
+                  <div class="control-group">
+                    <label class="control-label" for="fakultet">Fakultet</label>
+                    <div class="controls">
+                      <select class="form-control" id="fakultet" data-value="{{fakultet.naziv}}">
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="studijskiProgram">Studijski Program</label>
+                    <div class="controls">
+                      <select class="form-control" id="studijskiProgram" disabled data-value="{{fakultet.studijskiProgram}}">
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                  <label class="control-label" for="casovi">Casovi sedmicno</label>
+                  <div class="controls">
+                    Teorija: <input type="text" class="input-mini" id="teorija" placeholder="npr. 4" value="{{casovi.predavanja}}"> Vjezbe: <input type="text" class="input-mini" id="vjezbe" placeholder="npr. 4" value="{{casovi.vjezbe}}">
+                  </div>
+                </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="opis">Opis</label>
+                    <div class="controls">
+                      <textarea id="opis" rows="3">
+                        {{opis}}
+                      </textarea>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+                      <button class="btn btn-danger odustani"><i class="icon-remove-circle icon-white"></i>Odustani</button>
+                    </div>
+                  </div>
+                </form>

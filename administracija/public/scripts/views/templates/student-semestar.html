@@ -1,0 +1,31 @@
+{{#semestri}}
+<table class="table table-bordered">
+  <caption><h4>{{_id}} Semestar</h4></caption>
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+      <th>Sifra Predmeta</th>
+      <th>Ocjena</th>
+    </tr>
+  </thead>
+  <tbody>
+{{#predmeti}}
+    <tr>
+      <td><a data-lokacija="predmeti/{{sifra}}/" href="#">{{naziv}}</a></td>
+      <td>{{sifra}}</td>
+      {{#ocjena}}
+         ocjena 
+      {{/ocjena}}
+      {{^ocjena}}
+      <td><button class="btn btn-mini"><i class="icon-plus-sign"></i>  Ocjena</button</td>
+      {{/ocjena}}
+    </tr>
+{{/predmeti}}
+
+  </tbody>
+</table>
+{{/semestri}}
+
+{{^semestri}}
+Nema Aktiviranih semestara. Da bi aktivirali semestar kliknite na dugme iznad.
+{{/semestri}}

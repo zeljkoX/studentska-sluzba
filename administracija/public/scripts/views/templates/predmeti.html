@@ -1,0 +1,20 @@
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+      <th>Sifra</th>
+       <th>Fakultet</th>
+      <th>SP</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#predmeti}}
+    <tr>
+      <td><a href="#" data-lokacija="{{sifra}}/">{{naziv}}</a></td>
+      <td>{{sifra}}</td>
+      <td>{{fakultetNaziv}}</td>
+      <td>{{studijskiProgram}}</td>
+    </tr>
+    {{/predmeti}}
+  </tbody>
+</table>

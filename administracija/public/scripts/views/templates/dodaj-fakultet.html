@@ -2,31 +2,33 @@
   <div class="control-group">
     <label class="control-label" for="nazivFakulteta">Naziv Fakulteta</label>
     <div class="controls">
-      <input type="text" id="inputNazivFakulteta" placeholder="Naziv Fakulteta" required autofocus>
+      <input type="text" id="inputNazivFakulteta" placeholder="Naziv Fakulteta" value="{{naziv}}" required autofocus>
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="skraceniNazivFakulteta">Naziv Fakulteta(skracenica)</label>
     <div class="controls">
-      <input  type="text" id="inputSkraceniNazivFakulteta" placeholder="Naziv Fakulteta(skracenica)" required>
+      <input  type="text" id="inputSkraceniNazivFakulteta" value="{{skracenica}}" placeholder="Naziv Fakulteta(skracenica)" required>
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="dekan">Dekan</label>
     <div class="controls">
-      <input  type="text" id="dekan" placeholder="Ime i Prezime">
+      <input  type="text" id="dekan" value="{{dekan}}" placeholder="Ime i Prezime">
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="opis">Opis</label>
     <div class="controls">
       <textarea id="inputOpis" rows="3" >
+      {{opis}}
       </textarea>
     </div>
   </div>
   <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+      <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+      <button class="btn btn-danger odustani"><i class="icon-remove-circle icon-white"></i>Odustani</button>
     </div>
   </div>
 </form>

@@ -3,20 +3,18 @@ module.exports = function(mongoose) {
 	var ObjectId = mongoose.Schema.Types.ObjectId,
 		Mixed = mongoose.Schema.Types.Mixed;
 
-	var PlanPoGodiniSchema = new mongoose.Schema({
-		zimskiSemestar: [Mixed], //PredmetMiniSchema   
-		ljetniSemestar: [Mixed]
+	var SemestarSchema = new mongoose.Schema({
+		_id: Number,
+		predmeti: [Mixed], //PredmetMiniSchema   
 	});
-
-	var ProgramSchema = new mongoose.Schema({
-		id: ObjectId,
+	//Studijski Program Sema
+	var SPSchema = new mongoose.Schema({
+		_id: String,
 		naziv: {
-			type: String,
-			unique: true,
+			type: String
 			//index: true
 		},
-		godineStudija: Number,
-		planPoGodini: [PlanPoGodiniSchema]
+		semestri: [SemestarSchema]
 	});
 
 	var FakultetSchema = new mongoose.Schema({
@@ -29,6 +27,10 @@ module.exports = function(mongoose) {
 		skracenica: {
 			type: String
 		},
+		aktivan: {
+			type: String,
+			default: 'da'
+		},
 		/*dekan: {
 			id: ObjectId,
 			ime: {
@@ -36,14 +38,14 @@ module.exports = function(mongoose) {
 			}
 		},*/
 		dekan: String,
-		opis: String
-		//studijskiProgrami: [ProgramSchema],
+		opis: String,
+		studijskiProgrami: [SPSchema],
 		//arhiva: [Mixed]
 	});
 
 	return {
 		Fakultet: mongoose.model('Fakultet', FakultetSchema, 'fakulteti'),
-		Program: mongoose.model('Program', ProgramSchema),
-		PlanPoGodini: mongoose.model('PlanPoGodini', PlanPoGodiniSchema)
+		Program: mongoose.model('Program', SPSchema),
+		Semestar: mongoose.model('Semestar', SemestarSchema)
 	}
 };

@@ -9,7 +9,7 @@ module.exports = function(mongoose) {
 	});
 
 	var PredmetSchema = new mongoose.Schema({
-		id: {
+		_id: {
 			type: ObjectId,
 			index: true
 		},
@@ -18,9 +18,14 @@ module.exports = function(mongoose) {
 			unique: true,
 			index: true
 		},
+		aktivan: {
+			type: String,
+			default: 'da'
+		},
 		sifra: {
 			type: String,
-			unique: true
+			unique: true,
+			index: true
 		},
 		status: {
 			type: String
@@ -30,24 +35,24 @@ module.exports = function(mongoose) {
 		},
 		kadar: {
 			profesor: {
-				id: ObjectId,
+				_id: ObjectId,
 				ime: {
 					type: String
 				}
 			},
 			asistent: {
-				id: ObjectId,
+				_id: ObjectId,
 				ime: {
 					type: String
 				}
 			}
 		},
 		fakultet: {
-			id: ObjectId,
+			_id: String,
 			naziv: {
 				type: String
 			},
-			studijskiProgram: [Mixed] //ObjectId referenca na fakultet
+			studijskiProgram: String //ObjectId referenca na fakultet
 		},
 		opis: {
 			type: String

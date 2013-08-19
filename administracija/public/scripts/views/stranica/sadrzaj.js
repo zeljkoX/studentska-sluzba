@@ -1,6 +1,8 @@
 define(['backbone','hogan', 'text!sabloni/sadrzaj.html'], function(Backbone, Hogan, Template) {
 	var SadrzajView = Backbone.View.extend({
 		template: Template,
+		tagName: 'ul',
+		className: 'nav nav-tabs',
 		initialize: function() {
 			this.template = Hogan.compile(this.template);
 			this.listenTo(this.model,'change', this.render);
@@ -8,6 +10,7 @@ define(['backbone','hogan', 'text!sabloni/sadrzaj.html'], function(Backbone, Hog
                 //console.log(options);
 			    this.model.set({meni: options});
 			},this);
+			this.setElement(this.el);
 			//this.ruter = this.options.ruter;
 		},
 		events: {
@@ -24,7 +27,7 @@ define(['backbone','hogan', 'text!sabloni/sadrzaj.html'], function(Backbone, Hog
 			    if(aktivanTab != klikTab){
 			    	aktivanTab.removeClass('active');
 			    	klikTab.addClass('active');
-			    	Backbone.trigger('ruta:sadrzaj',[klikTab.children().data('lokacija')]);
+			    	Backbone.trigger('ruta:lokacija',[klikTab.children().data('lokacija')]);
 			    	//this.ruter.ruta(klikTab.children().data('lokacija'));
 			    }
 		}

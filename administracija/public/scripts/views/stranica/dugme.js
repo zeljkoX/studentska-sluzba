@@ -1,7 +1,7 @@
 define(['backbone', 'text!sabloni/dugme.html', 'hogan'], function(Backbone, Templates, Hogan) {
 	var DugmeView = Backbone.View.extend({
-		tagName: 'button', 
 		template: Templates,
+		className: 'inlineDiv',
 		events: {
 			'click' : 'klik'
 		},
@@ -11,11 +11,15 @@ define(['backbone', 'text!sabloni/dugme.html', 'hogan'], function(Backbone, Temp
 			this.listenTo(this.model, 'change', this.render);
 		},
 		render: function() {
-			this.$el.html(this.template.render(this.model.toJSON())).removeClass().addClass(this.model.get('vrijednosti').klasa);
+			this.$el.html(this.template.render(this.model.toJSON()));
 			return this;
 		},
-		klik: function(){
-			Backbone.trigger('ruta:lokacija', [this.model.get('vrijednosti').lokacija]);
+		klik: function(e){
+
+			e.stopPropagation();
+			var i = $(e.target).index();
+			Backbone.trigger('ruta:lokacija', [this.model.get('vrijednosti')[i].lokacija]);
+			Backbone.trigger('dugme:klik');
 		}
 
 	});

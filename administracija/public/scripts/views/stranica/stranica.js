@@ -39,7 +39,7 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 			this.$el.find('.naslov').html(this.views.naslov.render().el);
 			this.$el.find('.statistika').html(this.views.statistika.render().el);
 			this.$el.find('.lokacija').html(this.views.lokacija.render().el);
-			this.$el.find('.sadrzaj').html(this.views.sadrzaj.render().el);
+			this.$el.find('.tabovi').prepend(this.views.sadrzaj.render().el);
 
 
 

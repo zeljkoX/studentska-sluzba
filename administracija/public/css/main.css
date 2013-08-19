@@ -153,3 +153,89 @@ border-right: 1px solid #DDDDDD;
 .breadcrumb li:last-of-type a{
   color: #999999;
 }
+.inlineDiv {
+  display: inline;
+}
+.inlineDiv button {
+  margin-left: 10px;
+}
+#myModal {
+  width: 90%; /* desired relative width */
+  left: 5%; /* (100%-width)/2 */
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
+},
+.dataTables_filter{
+  float: right;
+}
+
+div.dataTables_length label {
+    width: 460px;
+    float: left;
+    text-align: left;
+}
+ 
+div.dataTables_length select {
+    width: 75px;
+}
+ 
+div.dataTables_filter label {
+    float: right;
+    width: 16em;
+    display: inline;
+}
+div.dataTables_filter label input{
+  
+    width: 11em;
+
+}
+*/ 
+ div.dataTables_filter p{
+  display: inline,
+  height: 60px;
+  /*padding-top: 20px;*/
+ }
+
+div.dataTables_info {
+    padding-top: 8px;
+}
+ 
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+ 
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+.filter {
+  display: inline;
+  float: left;
+}
+.filter select {
+  width: 10em;
+}
+.trazi {
+  float: right;
+}
+
+.filter-mini{
+  display: inline;
+  float: left;
+}
+.filter-mini select {
+  width: 8em;
+}
+
+.filter-mini + div input{
+  width: 156px;
+}
+.uredi{
+  display: inline;
+}
+.uredi a {
+  padding-left: 20px;
+}

@@ -1,13 +1,21 @@
-define(['backbone', 'text!sabloni/fakultet-info.html','text!sabloni/dodaj-fakultet.html','hogan'], function(Backbone, Templates,TemplateIzmjena, Hogan) {
+define(['backbone', 'text!sabloni/fakultet-info.html','fakultetiV/fakultet-info-uredi','hogan'],
+ function(Backbone, Templates,TemplateIzmjena, Hogan) {
 	var FakultetInfoView = Backbone.View.extend({
 		template: Templates,
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
 			this.template = Hogan.compile(this.template);
-			console.log(this.model.attributes);
-			Backbone.trigger('naslov', [this.model.get('naslov')]);
-			Backbone.trigger('dugme', [{tekst: 'Dodaj Studijski Program', lokacija: 'fakulteti/'+ this.model.get('skracenica') +'/dodaj-fakultet/', klasa: 'btn btn-success', ikona: 'icon-plus-sign icon-white'}]);
-			Backbone.trigger('meni',[{tekst: 'Osnovne Informacije', lokacija:'dodaj-fakultet/', aktivan:'true'}]);
+			Backbone.on('dugme:klik', function(){
+				console.log('dugme klik');
+			});
+			Backbone.trigger('dugme', [
+				{tekst: 'Dodaj Studijski Program', lokacija: this.lokacija() + 'dodaj-sp/', klasa: 'btn btn-success', ikona: 'icon-plus-sign icon-white'},
+				{tekst: 'Obrisi Fakultet', lokacija: this.lokacija() +'obrisi/', klasa: 'btn btn-danger', ikona: 'icon-remove-circle icon-white'}
+				]);
+            this.model.on('sync', function(){
+            	Backbone.trigger('naslov', [this.model.get('naziv')]);
+            	Backbone.trigger('meni',[{tekst: 'Osnovne Informacije', lokacija: this.lokacija(), aktivan:true}].concat(this.model.get('studijskiProgrami')));
+            },this);
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
@@ -17,11 +25,10 @@ define(['backbone', 'text!sabloni/fakultet-info.html','text!sabloni/dodaj-fakult
 			'submit' : 'sacuvaj',
 			'click button': 'uredi'
 		},
-		uredi: function(e){
+		uredi: function(e) {
+			var that= this;
 			e.preventDefault();
-			var template2 = Hogan.compile(TemplateIzmjena);
-			this.$el.html(template2.render(this.model.toJSON()));
-
+            this.changeView(new TemplateIzmjena({model: that.model}));
 		},
 		sacuvaj: function(e){
 			e.preventDefault();
@@ -33,9 +40,19 @@ define(['backbone', 'text!sabloni/fakultet-info.html','text!sabloni/dodaj-fakult
 				dekan: skr.find('#dekan').val(),
 				opis: skr.find('#inputOpis').val()
 			};
+			console.log(model);
 			this.model.set(model);
             this.model.save();
-		}
+		},
+		changeView: function(view) {
+            if (null != this.currentView) {
+                this.currentView.undelegateEvents();
+                this.currentView = null;
+            }
+            this.currentView = view;
+            this.currentView.delegateEvents();
+            this.$el.empty().append(this.currentView.render().el);
+        },
 		
 	});
 	return FakultetInfoView;

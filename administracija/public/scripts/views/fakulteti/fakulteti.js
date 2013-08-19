@@ -2,12 +2,12 @@ define(['backbone', 'text!sabloni/fakulteti.html','hogan'], function(Backbone, T
 	var FakultetiView = Backbone.View.extend({
 		template: Templates,
 		initialize: function() {
-
 			this.listenTo(this.model, 'change', this.render);
 			this.template = Hogan.compile(this.template);
+			console.log(this);
 			Backbone.trigger('naslov', ['Fakulteti']);
 			Backbone.trigger('dugme', [{tekst: 'Dodaj Fakultet', lokacija: 'fakulteti/dodaj-fakultet/', klasa: 'btn btn-success', ikona: 'icon-plus-sign icon-white'}]);
-			Backbone.trigger('meni',[{tekst: 'Lista Fakulteta', lokacija:'', aktivan:'true'}]);
+			Backbone.trigger('meni',[{tekst: 'Lista Fakulteta', lokacija: this.lokacija(), aktivan:'true'}]);
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
@@ -20,7 +20,7 @@ define(['backbone', 'text!sabloni/fakulteti.html','hogan'], function(Backbone, T
              e.preventDefault();
              var element = $(e.target).data('lokacija');
              if(element)
-             Backbone.trigger('ruta:sadrzaj',[element]);
+             Backbone.trigger('ruta:lokacija',['fakulteti/' +element]);
 
 		}
 		

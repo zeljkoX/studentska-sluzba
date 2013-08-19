@@ -5,68 +5,68 @@ module.exports = function(mongoose) {
 
 
 	var Semestar = new mongoose.Schema({
-		id: ObjectId,
-		redniBroj: Number,
+		_id: Number,
 		predmeti: [Mixed] //Koristiti PredmetMini dokument
 	});
 
 	var StudentSchema = new mongoose.Schema({
-		id: {
-			type: ObjectId,
+		_id: {
+			type: String,
 			index: true
 		},
-		index: {
-			type: String,
-			unique: true
-		},
-		password: {
+		fakultet: {
 			type: String
 		},
-
-		fakultet: {
-			naziv: {
-				type: String
-			},
-			smjer: {
-				type: String
-			},
-			godinaStudija: {
-				type: Number,
-				min: 1,
-				max: 5
-			},
-			aktivanSemestar: {
-				type: Number
-			}
+		studijskiProgram: {
+			type: String
 		},
-		licniPodaci: {
-			ime: {
-				type: String
-			},
-			prezime: {
-				type: String
-			},
-			imeRoditelja: {
-				type: String
-			},
-			jmbg: {
-				type: String
-			},
-			godina: {
-				type: Date
-			}
+		sifra: {
+			type: String
 		},
-		kontaktInformacije: {
-			brTel: {
-				type: String
-			},
-			email: {
-				type: String,
-				unique: true
-			},
-			adresa: {
-				type: String
-			}
+		godinaStudija: {
+			type: Number,
+			min: 1,
+			max: 5,
+			default: 1
+		},
+		aktivanSemestar: {
+			type: Number,
+			default: 0
+		},
+		status: {
+			type: String,
+			default: 'redovan'
+		},
+		aktivan: {
+			type: String,
+			default: 'da'
+		},
+		godina: {
+			type: Number
+		},
+		ime: {
+			type: String
+		},
+		prezime: {
+			type: String
+		},
+		imeRoditelja: {
+			type: String
+		},
+		jmbg: {
+			type: String
+		},
+		telefon: {
+			type: String
+		},
+		email: {
+			type: String,
+		},
+		ulica: {
+			type: String
+		},
+		mjesto: {
+			type: String
 		},
 		semestri: [Semestar],
 		skolarina: {
@@ -77,15 +77,12 @@ module.exports = function(mongoose) {
 			uplaceno: {
 				type: Number,
 				default: 0
-			},
-			popust: {
-				type: String
 			}
 		}
 	});
 
 	return {
 		Student: mongoose.model('Student', StudentSchema, 'studenti'),
-		Semestar: mongoose.model('Semestar', Semestar)
+		Semestar: mongoose.model('Semestar1', Semestar)
 	}
 };

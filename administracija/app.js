@@ -51,6 +51,7 @@ app.get(/[^\/]/,function(req, res){
 */
 //app.get('/users', user.list);
 
-//require('./routes/ispiti')(app, modeli.ispiti);
-//require('./routes/studenti')(app, modeli.studenti);
+require('./routes/ispiti')(app, modeli.ispiti);
+require('./routes/studenti')(app, modeli);
 require('./routes/fakulteti')(app, modeli.fakultet);
+require('./routes/predmeti')(app, modeli.predmeti);

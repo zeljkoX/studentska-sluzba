@@ -1,4 +1,4 @@
-define(['backbone', 'text!sabloni/student-semestar.html','hogan'],
+define(['backbone', 'text!sabloni/student-semestar.html', 'hogan'],
 	function(Backbone, Templates, Hogan) {
 		var StudentSemestarView = Backbone.View.extend({
 			template: Templates,
@@ -10,7 +10,7 @@ define(['backbone', 'text!sabloni/student-semestar.html','hogan'],
 				Backbone.trigger('naslov', ['Semestri']);
 				Backbone.trigger('dugme', [{
 					tekst: 'Aktiviraj Semestar',
-					lokacija: Backbone.lokacija()+ 'aktiviraj/',
+					lokacija: Backbone.lokacija() + 'aktiviraj/',
 					klasa: 'btn btn-success',
 					ikona: 'icon-plus-sign icon-white'
 				}]);
@@ -25,9 +25,15 @@ define(['backbone', 'text!sabloni/student-semestar.html','hogan'],
 				return this;
 			},
 			events: {
-				
+				'click .ocjena': 'upisOcjene'
 			},
-			
+			upisOcjene: function(e) {
+				e.preventDefault();
+				var element = $(e.target).data('lokacija');
+				if (element)
+					Backbone.trigger('ruta:lokacija', [this.lokacija() + element + '/']);
+			}
+
 		});
 		return StudentSemestarView;
 

@@ -1,0 +1,162 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Informacioni sistem studentske sluzbe - </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/studenti/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#"> Slobomir P Univerzitet - IS</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav nav-pills">
+                <li><a href="/studenti/{{_id}}/">Semestri</a></li>
+                <li class="active"><a href="/studenti/{{_id}}/info/">Licne Informacije</a></li>
+              </ul>
+              <p class="navbar-text pull-right">
+              <strong><a href="#" class="navbar-link"><i class="icon-user"></i>{{ime}} {{prezime}}</a></strong>
+              <a href="/logout/" class="navbar-link">Logout</a>
+              </p>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <span class="korisnik">{{ime}} {{prezime}} {{fakultet}} {{_id}}</span>
+            <div class="well">
+              <div class="sadrzaj">
+ <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label" for="ime">Ime</label>
+                <div class="controls">
+                  <input type="text" id="ime"  value="{{ime}}"  autofocus required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="prezime">Prezime</label>
+                <div class="controls">
+                  <input type="text" id="prezime"   value="{{prezime}}"  autofocus required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="imeRoditelja">Ime Roditelja</label>
+                <div class="controls">
+                  <input type="text" id="imeRoditelja"  value="{{imeRoditelja}}" required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="jmbg">Maticni Broj</label>
+                <div class="controls">
+                  <input type="text" id="jmbg"  value="{{jmbg}}" pattern="^\d{13}$" required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="mjesto">Mjesto Stanovanja</label>
+                <div class="controls">
+                  <input type="text" id="mjesto"  value="{{mjesto}}" disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="ulica">Ulica</label>
+                <div class="controls">
+                  <input type="text" id="ulica"  value="{{ulica}}" disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="telefon">Broj Telefona</label>
+                <div class="controls">
+                  <input type="text" id="telefon"  value="{{telefon}}" disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="email">Email Adresa</label>
+                <div class="controls">
+                  <input type="text" id="email"  value="{{email}}" disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="index">Index</label>
+                <div class="controls">
+                  <input type="text" id="index"  value="{{_id}}" required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="fakultet">Fakultet</label>
+                <div class="controls">
+             <input type="text" id="fakultet"  value="{{fakultet}}" required disabled>
+                </div>
+              </div>
+              
+              
+              <div class="control-group">
+                <label class="control-label" for="studijskiProgram">Studijski Program</label>
+                <div class="controls">
+                   <input type="text" id="studijskiProgram"  value="{{studijskiProgram}}" required disabled>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls dugme">
+                  <button class="btn btn-primary uredi"><i class="icon-ok icon-white"></i>Uredi</button>
+                </div>
+              </div>
+            </form>
+            <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="/components/jquery/jquery.min.js"></script>
+      <script>
+      window.onload = function() {
+  var elementi = [{id: 'mjesto', val:$('#mjesto')},{id: 'ulica', val:$('#ulica')},{id: 'telefon', val:$('#telefon')},{id: 'email', val:$('#email')}];
+  
+  $('form button').on('click',function(e){
+    e.preventDefault();
+    var dugme = $(this);
+    if(dugme.hasClass('uredi')){
+      elementi.forEach(function(item){
+        item.val.removeAttr('disabled');
+        dugme.removeClass('uredi');
+        dugme.text('Sacuvaj');
+      });
+    }
+    else{
+      var model = {
+        mjesto: $('#mjesto').val(),
+        ulica: $('#ulica').val(),
+        telefon:$('#telefon').val(),
+        email:$('#email').val()
+      };
+      $.ajax({
+        type: "POST",
+        url: location.href,
+        data: model,
+        success: function(response) {
+          window.location.reload(true);
+        },
+         error: function (request, status, error) {
+        alert('Neuspjelo slanje. Molimo pokusajte opet.');
+    }
+      });
+    }
+    
+    
+  });
+};
+      </script>
+    </body>
+  </html>

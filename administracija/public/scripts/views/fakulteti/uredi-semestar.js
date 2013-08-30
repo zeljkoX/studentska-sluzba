@@ -1,4 +1,4 @@
-define(['backbone', 'text!sabloni/semestar.html','hogan','models/modal', 'views/modal2'],
+define(['backbone', 'text!sabloni/semestar.html','hogan','fakultetiM/modal', 'fakultetiV/modal'],
  function(Backbone, Templates, Hogan, ModalModel, ModalView) {
 	var UrediSemestarView = Backbone.View.extend({
 		template: Templates,

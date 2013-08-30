@@ -1,10 +1,12 @@
-define(['backbone', 'text!sabloni/semestar.html','hogan','models/modal', 'views/modal2'],
+define(['backbone', 'text!sabloni/semestar.html','hogan','fakultetiM/modal', 'fakultetiV/modal'],
  function(Backbone, Templates, Hogan, ModalModel, ModalView) {
 	var DodajSemestarView = Backbone.View.extend({
 		template: Templates,
 		initialize: function() {
 			Backbone.on('rezultat', function(options){
 				var p = this.model.get('predmeti');
+				console.log(p);
+				console.log(this.model);
                 p.push(options[0]);
                 this.model.set({predmeti: p});
 			},this);
@@ -18,6 +20,7 @@ define(['backbone', 'text!sabloni/semestar.html','hogan','models/modal', 'views/
 			Backbone.trigger('meni',[{tekst: 'Dodavanje Semestra', lokacija: this.lokacija(), aktivan:'true'}]);
 		},
 		render: function() {
+			console.log('render dodaj');
 			this.$el.html(this.template.render(this.model.toJSON()));
 			return this;
 		},

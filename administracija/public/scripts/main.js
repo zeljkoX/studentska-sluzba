@@ -15,11 +15,19 @@ require.config({
 		'studentiM': 'models/studenti/',
 		'predmetiV': 'views/predmeti/',
 		'predmetiM': 'models/predmeti/',
+		'profesoriV': 'views/profesori/',
+		'profesoriM': 'models/profesori/',
+		'ispitiV': 'views/ispiti/',
+		'ispitiM': 'models/ispiti/',
 		'sabloni': 'views/templates/',
-		'modal' : 'modal'
+		'modal' : 'modal',
+		'typeahead':'typeahead'
 	},
 	backbone: {
 		deps: ['jquery', 'underscore']
+	},
+	typeahead:{
+		deps: ['jquery']
 	}
 });
 require(['routers/main', 'backbone'], function(AppRouter, Backbone) {

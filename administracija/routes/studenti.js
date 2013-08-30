@@ -1,5 +1,33 @@
 module.exports = function(app, model) {
-    async = require('async');
+    var upis = require('../upis');
+
+    var arhiva = function() {
+        model.studenti.Student.find({
+            aktivan: 'da'
+        }, {
+            ime: true,
+            prezime: true,
+            _id: true,
+            fakultet: true
+        }, function(err, doc) {
+            var objekat = doc.map(function(item) {
+                return {
+                    name: item.ime + ' ' + item.prezime + ' - ' + item._id,
+                    value: item.ime + ' ' + item.prezime + ' - ' + item._id,
+                    kategorija: 'Studenti',
+                    lokacija: '/studenti/' + item._id + '/',
+                    tokens: [item.ime, item.prezime, item._id]
+                }
+
+            });
+            console.log(objekat);
+
+            upis.upisiFajl({
+                data: JSON.stringify(objekat),
+                datoteka: 'studenti.json'
+            });
+        });
+    };
     app.get('/studenti/', function(req, res) {
         model.studenti.Student.find({}, {}, function(err, fak) {
             console.log(JSON.stringify(fak));
@@ -27,6 +55,7 @@ module.exports = function(app, model) {
         console.log(a);
         a.save(function(err) {
             if (err) return res.end('500');
+            arhiva();
             res.end('200');
         });
 
@@ -52,15 +81,21 @@ module.exports = function(app, model) {
             }
         }, {}, function(err, doc) {
             res.end('200');
+            arhiva();
         });
     });
-    
+
     app.get('/studenti/:id/semestri/', function(req, res) {
         console.log('semestri');
-        model.studenti.Student.findOne({_id: req.params.id} ,{semestri: true, _id: false}, function(err, doc){
-           if (err) return res.end('500');
+        model.studenti.Student.findOne({
+            _id: req.params.id
+        }, {
+            semestri: true,
+            _id: false
+        }, function(err, doc) {
+            if (err) return res.end('500');
             res.end(JSON.stringify(doc));
-        }); 
+        });
     });
 
 
@@ -102,7 +137,7 @@ module.exports = function(app, model) {
                     doc.semestri.push(semestar);
                     doc.aktivanSemestar = aktivan;
                     doc.save(function(err) {
-                        if (err) console.log('greska');
+                        if (err) return res.end('500');
                         res.end('200');
                     });
                 });
@@ -113,5 +148,46 @@ module.exports = function(app, model) {
         });
 
         //res.end('200');
+    });
+
+
+    app.get('/studenti/:id/semestri/:predmet/', function(req, res) {
+        model.predmeti.Predmet.find({
+            sifra: req.params.predmet
+        }, {
+            naziv: true,
+            sifra: true
+        }, function(err, doc) {
+            console.log(doc);
+            res.end(JSON.stringify(doc));
+
+        });
+    });
+    app.post('/studenti/:id/semestri/:predmet/', function(req, res) {
+        model.studenti.Student.findOne({
+            _id: req.params.id
+        }, function(err, doc) {
+            delete req.body.url;
+            doc.semestri = doc.semestri.map(function(item) {
+                var p = item.predmeti.map(function(stavka) {
+                    if (stavka.sifra == req.params.predmet) {
+                        stavka.ocjena = req.body;
+                    }
+                    return stavka;
+                });
+                item.predmeti = p;
+                return item;
+            });
+
+            console.log(JSON.stringify(doc));
+            model.studenti.Student.update({
+                _id: req.params.id
+            }, {
+                semestri: doc.semestri
+            }, function(err, numAffected) {
+                if (err) return res.end('500');
+                res.end('200');
+            });
+        });
     });
 }

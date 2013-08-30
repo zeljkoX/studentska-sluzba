@@ -1,5 +1,5 @@
-define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-student', 'studentiV/dodaj-student','studentiM/student-info', 'studentiV/student-info','studentiM/semestar', 'studentiV/semestar','studentiM/skolarina', 'studentiV/skolarina'], 
-    function(Backbone, StudentiModel, StudentiView, DodajStudentModel, DodajStudentView, StudentInfoModel, StudentInfoView, StudentSemestarModel, StudentSemestarView, SkolarinaModel, SkolarinaView) {
+define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-student', 'studentiV/dodaj-student','studentiM/student-info', 'studentiV/student-info','studentiM/semestar', 'studentiV/semestar','studentiM/skolarina', 'studentiV/skolarina','studentiM/upis-ocjene', 'studentiV/upis-ocjene'], 
+    function(Backbone, StudentiModel, StudentiView, DodajStudentModel, DodajStudentView, StudentInfoModel, StudentInfoView, StudentSemestarModel, StudentSemestarView, SkolarinaModel, SkolarinaView, UpisOcjeneModel, UpisOcjeneView) {
     var StudentiRuter = Backbone.Router.extend({
         routes: {
             'studenti/dodaj-student/': 'dodaj',
@@ -7,6 +7,7 @@ define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-st
             'studenti/:student/obrisi/': 'obrisi',
             'studenti/:student/semestri/': 'semestar',
             'studenti/:student/semestri/aktiviraj/': 'aktiviraj',
+            'studenti/:student/semestri/:predmet/': 'upisOcjene',
             'studenti/:student/skolarina/': 'skolarina'
         },
 
@@ -42,6 +43,9 @@ define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-st
         },
         semestar: function(){
             this.changeView( new StudentSemestarView({model: new StudentSemestarModel({url: '/administracija/' + Backbone.lokacija()})}));
+        },
+        upisOcjene: function(){
+            this.changeView( new UpisOcjeneView({model: new UpisOcjeneModel({url: '/administracija/' + Backbone.lokacija()})}));
         },
         aktiviraj: function(){
             if(confirm('Potvrdnim odgovorom izvrsiti ce se aktivacija narednog semestra.')){

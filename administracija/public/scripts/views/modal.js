@@ -12,12 +12,14 @@ define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backb
 					"bProcessing": true,
                     "aaData": this.model.get('podaci'),
                     "aoColumns": [
-            { "mData": "naziv" },
-            { "mData": "skracenica" }],
+            { "mData": "ime" },
+            { "mData": "prezime" },
+            { "mData": "fakultet" }],
             "bPaginate": false
                 });
+                var a = ['Ime', 'Prezime', 'Fakultet']
                 $('#tabela thead tr th').each(function(index){
-                	$(this).html(that.model.attributes.kolone[index]);
+                	$(this).html(a[index]);
                 });
 				Backbone.trigger('modal');
 
@@ -44,7 +46,7 @@ define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backb
         	this.model.get('kolone').forEach(function(kolona, index){
                 objekat[kolona] =  element.eq(index).text();      
         	});
-        	this.element.val(objekat.naziv)
+        	this.element.val(objekat.ime + ' '+ objekat.prezime)
         	$('#myModal').modal('hide');
         	//$('#myModal').remove();
 

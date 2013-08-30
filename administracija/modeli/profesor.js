@@ -6,64 +6,45 @@ module.exports = function(mongoose) {
 
 
 	var ProfesorSchema = new mongoose.Schema({
-		id: {
+		_id: {
 			type: ObjectId,
 			index: true
 		},
-		tip: {
-			type: String
-		}, //profesor ili asistent
 		fakultet: {
-			naziv: {
-				type: String
-			},
-			smjer: {
-				type: String
-			},
-			godinaStudija: {
-				type: Number,
-				min: 1,
-				max: 5
-			},
-			aktivanSemestar: {
-				type: Number
-			}
+			type: String
 		},
-		licniPodaci: {
-			ime: {
-				type: String
-			},
-			prezime: {
-				type: String
-			},
-			imeRoditelja: {
-				type: String
-			},
-			jmbg: {
-				type: String
-			},
-			godina: {
-				type: Date
-			},
-			titula: {
-				tupe: String
-			}
+		ime: {
+			type: String
 		},
-		kontaktInformacije: {
-			brTel: {
-				type: String
-			},
-			email: {
-				type: String,
-				unique: true
-			},
-			adresa: {
-				type: String
-			}
+		prezime: {
+			type: String
 		},
-		predmeti: [Mixed],
+		jmbg: {
+			type: String,
+			index: true
+		},
+		titula: {
+			type: String
+		},
+		telefon: {
+			type: String
+		},
+		email: {
+			type: String
+		},
+		ulica: {
+			type: String
+		},
+		mjesto: {
+			type: String
+		},
+		aktivan: {
+			type: String,
+			default: 'da'
+		}
 	});
 
-	return Profesor = mongoose.model('Profesor', ProfesorSchema, 'profesori');
-
+	return {
+		Profesor : mongoose.model('Profesor', ProfesorSchema, 'profesori')
+    }
 };

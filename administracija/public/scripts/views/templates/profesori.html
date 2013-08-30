@@ -1,0 +1,16 @@
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Ime i Prezime</th>
+       <th>Fakultet</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#profesori}}
+    <tr>
+      <td><a href="#" data-lokacija="{{jmbg}}/">{{imeIprezime}}</a></td>
+      <td>{{fakultet}}</td>
+    </tr>
+    {{/profesori}}
+  </tbody>
+</table>

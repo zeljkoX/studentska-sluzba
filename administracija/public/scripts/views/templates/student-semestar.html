@@ -14,10 +14,10 @@
       <td><a data-lokacija="predmeti/{{sifra}}/" href="#">{{naziv}}</a></td>
       <td>{{sifra}}</td>
       {{#ocjena}}
-         ocjena 
+         <td><span class="badge badge-success ">{{ocjena}}</span></td> 
       {{/ocjena}}
       {{^ocjena}}
-      <td><button class="btn btn-mini"><i class="icon-plus-sign"></i>  Ocjena</button</td>
+      <td><button class="btn btn-mini ocjena" data-lokacija="{{sifra}}"><i class="icon-plus-sign"></i>  Ocjena</button</td>
       {{/ocjena}}
     </tr>
 {{/predmeti}}

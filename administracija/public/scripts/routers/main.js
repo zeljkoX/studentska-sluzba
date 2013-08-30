@@ -1,5 +1,5 @@
-define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/studenti', 'routers/fakultet','routers/predmeti', 'jquery.dataTables'], 
-	function(Backbone, IndexView, StranicaView, StudentiRuter, FakultetiRuter, PredmetiRuter) {
+define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/studenti', 'routers/fakultet','routers/predmeti', 'routers/ispiti', 'routers/profesori','jquery.dataTables'], 
+	function(Backbone, IndexView, StranicaView, StudentiRuter, FakultetiRuter, PredmetiRuter, IspitiRuter, ProfesoriRuter) {
 	var Router = Backbone.Router.extend({
 
 		initialize: function() {
@@ -44,7 +44,7 @@ define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/student
 		index: function() {
 			this.changeView(new IndexView());
 			this.lokacija = '/';
-			//this.navigate('studenti/',{trigger: true});
+			// this.navigate('studenti/',{trigger: true});
 		},
 		studenti: function() {
 			this.changeView(new StranicaView());
@@ -54,7 +54,6 @@ define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/student
 
 		},
 		fakulteti: function() {
-			console.log('str fak');
 			this.changeView(new StranicaView());
 			//Backbone.history.fragment = null;
 			//Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
@@ -66,6 +65,16 @@ define(['backbone', 'views/pocetna', 'views/stranica/stranica', 'routers/student
             this.changeView(new StranicaView());
 			this.lokacija += 'predmeti/'; 
 			new PredmetiRuter();
+		},
+		ispiti: function(){
+			this.changeView(new StranicaView());
+			this.lokacija += 'ispiti/'; 
+			new IspitiRuter();
+		},
+		profesori: function(){
+            this.changeView(new StranicaView());
+			this.lokacija += 'profesori/'; 
+			new ProfesoriRuter();
 		},
 
 		//Mjenjanje adrese na osnovu djela linka

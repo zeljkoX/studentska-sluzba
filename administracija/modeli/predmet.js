@@ -33,19 +33,11 @@ module.exports = function(mongoose) {
 		bodovi: {
 			type: Number
 		},
-		kadar: {
-			profesor: {
-				_id: ObjectId,
-				ime: {
-					type: String
-				}
-			},
-			asistent: {
-				_id: ObjectId,
-				ime: {
-					type: String
-				}
-			}
+		profesor: {
+			type: String
+		},
+		asistent: {
+			type: String
 		},
 		fakultet: {
 			_id: String,

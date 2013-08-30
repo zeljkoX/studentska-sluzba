@@ -1,4 +1,4 @@
-define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan','models/modal', 'views/modal'],
+define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan','predmetiM/modal', 'predmetiV/modal'],
  function(Backbone, Templates, Hogan, ModalModel, ModalView) {
 	var PredmetInfoView = Backbone.View.extend({
 		template: Templates,
@@ -142,7 +142,7 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan','models/modal', '
 				a = new ModalView({
 					element: element,
 					model: new ModalModel({
-						url: '/administracija/fakulteti/',
+						url: '/administracija/profesori/lista/',
 						naziv: 'Odabir Profesora'
 					})
 				});
@@ -161,7 +161,7 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan','models/modal', '
 				a = new ModalView({
 					element: element,
 					model: new ModalModel({
-						url: '/administracija/fakulteti/',
+						url: '/administracija/profesori/lista/',
 						naziv: 'Odabir Asistenta'
 					})
 				});

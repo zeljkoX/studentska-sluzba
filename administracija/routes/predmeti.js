@@ -1,4 +1,30 @@
 module.exports = function(app, model) {
+     var upis = require('../upis');
+
+    var arhiva = function() {
+        model.Predmet.find({
+            aktivan: 'da'
+        }, {
+            naziv: true,
+            sifra: true,
+            fakultet: true
+        }, function(err, doc) {
+            var objekat = doc.map(function(item){
+                return {
+                name : item.naziv + ' - '+item.fakultet._id,
+                value: item.naziv + ' - '+item.fakultet._id,
+                kategorija :'Predmeti',
+                lokacija  : '/predmeti/'+ item.sifra +'/',
+                tokens : [item.naziv, item.sifra]
+                }
+            });
+
+            upis.upisiFajl({
+                data: JSON.stringify(objekat),
+                datoteka: 'profesori.json'
+            });
+        });
+    };
 
     app.get('/predmeti/', function(req, res) {
         model.Predmet.find({aktivan: 'da'}, {
@@ -19,6 +45,8 @@ module.exports = function(app, model) {
             sifra: req.body.sifra,
             status: req.body.status,
             bodovi: req.body.bodovi,
+            profesor: req.body.profesor,
+            asistent: req.body.asistent,
             fakultet: {
                 naziv: req.body.fakultet.naziv,
                 _id: req.body.fakultet._id,
@@ -34,6 +62,7 @@ module.exports = function(app, model) {
         a.save(function(err) {
             if (err) return res.end('500');
             res.end('200');
+            arhiva();
         });
 
     });
@@ -63,6 +92,7 @@ module.exports = function(app, model) {
   app.get('/predmeti/:id/obrisi/', function(req, res) {
         model.Predmet.update({sifra: req.params.id}, {$set:{aktivan: 'ne'}}, {},function(err, doc){
             res.end('200');
+            arhiva();
         });
     });
 }

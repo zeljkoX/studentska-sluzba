@@ -86,6 +86,7 @@ define(['backbone', 'text!sabloni/dodaj-student.html','hogan'],
 
 			},
 			sp: function() {
+				console.log('sp');
 				var fak = $(this.el).find('#fakultet').val().toString(),
 					temp = '',
 					html = '',

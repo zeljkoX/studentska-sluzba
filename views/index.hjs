@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Informacioni sistem studentske sluzbe - Login</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container login">
+			<div class="row ">
+				<div class="center span4 well">
+					<legend>Login Forma</legend>
+					<div class="alert alert-error">
+						<a class="close" data-dismiss="alert" href="#">×</a>Netacni podaci! Pokusajte opet!
+					</div>
+					<form method="POST" action="login/" accept-charset="UTF-8">
+						
+						<input type="text" id="username" class="span4" name="username" placeholder="Korisnicko Ime" />
+					    <input type="password" id="password" class="span4" name="password" placeholder="Sifra" />
+						<label class="checkbox">
+							<input type="checkbox" name="remember" value="1" /> Remember Me
+						</label>
+						<button type="submit" name="submit" class="btn btn-primary btn-block">Autorizuj</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="components/jquery/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="ime">Ime</label>
+    <div class="controls">
+      <input type="text" id="ime" placeholder="npr. Marko"  value="{{ime}}"  autofocus required> 
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="prezime">Prezime</label>
+    <div class="controls">
+      <input type="text" id="prezime" placeholder="npr. Markovic" value="{{prezime}}" required>
+    </div>
+  </div>
+    <div class="control-group">
+    <label class="control-label" for="titula">Titula</label>
+    <div class="controls">
+      <input type="text" id="titula" placeholder="npr. dr." value="{{titula}}" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="jmbg">Maticni Broj</label>
+    <div class="controls">
+      <input type="text" id="jmbg" placeholder="npr. 2409989302118" value="{{jmbg}}" pattern="^\d{13}$" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="mjesto">Mjesto Stanovanja</label>
+    <div class="controls">
+      <input type="text" id="mjesto" placeholder="npr. Brod" value="{{mjesto}}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="ulica">Ulica</label>
+    <div class="controls">
+      <input type="text" id="ulica" placeholder="npr. Svetog Save 112" value="{{ulica}}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="telefon">Broj Telefona</label>
+    <div class="controls">
+      <input type="text" id="telefon" placeholder="npr. 066 633 633" value="{{telefon}}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="email">Email Adresa</label>
+    <div class="controls">
+      <input type="text" id="email" placeholder="npr. primjer@gmail.com" value="{{email}}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="fakultet">Fakultet</label>
+    <div class="controls">
+      <select id="fakultet" data-podatak="{{fakultet}}" required>
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+      <button class="btn btn-danger odustani"><i class="icon-remove-circle icon-white"></i>Odustani</button>
+    </div>
+  </div>
+</form>

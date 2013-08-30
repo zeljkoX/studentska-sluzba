@@ -1,0 +1,50 @@
+ <form class="form-horizontal">
+                    <div class="control-group">
+                      <label class="control-label" for="naziv">Naziv Ispitnog Roka</label>
+                      <div class="controls">
+                        <input type="text" id="naziv" value="{{naziv}}" placeholder="npr. Aprilski" required autofocus>
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <label class="control-label" for="sifra">Sifra (bez razmaka)</label>
+                      <div class="controls">
+                        <input type="text" id="sifra" value="{{_id}}" placeholder="npr. aprilski2013" required>
+                      </div>
+                    </div>
+
+                   <div class="control-group">
+                      <label class="control-label" for="ispitniOd">Ispitni Rok: Pocetak</label>
+                      <div class="controls">
+                        <input type="text" value="{{ispitniOd}}" class="input-medium datum" id="ispitniOd" placeholder="" >
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <label class="control-label" for="ispitniDo">Ispitni Rok: Kraj</label>
+                      <div class="controls">
+                        <input type="text" value="{{ispitniDo}}" class="input-medium datum" id="ispitniDo" placeholder="" >
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <label class="control-label" for="prijavaOd">Prijava Ispita: Pocetak</label>
+                      <div class="controls">
+                        <input type="text" value="{{prijavaOd}}" class="input-medium datum" id="prijavaOd" placeholder="" >
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <label class="control-label" for="prijavaDo">Prijava Ispita: Kraj</label>
+                      <div class="controls">
+                        <input type="text" value="{{prijavaDo}}" class="input-medium datum" id="prijavaDo" placeholder="" >
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <div class="controls">
+                        <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+                        <button class="btn btn-danger odustani"><i class="icon-remove-circle icon-white"></i>Odustani</button>
+                      </div>
+                    </div>
+                  </form>

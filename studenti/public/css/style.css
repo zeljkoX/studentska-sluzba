@@ -1,0 +1,166 @@
+.well{
+  margin-top: 2em;
+  max-width: 60em;
+  margin: 0 auto;
+  background-color: #ffffff;
+  }
+  .korisnik{
+  font-size: 3em;
+  margin-top: 0.8em;
+  margin-bottom: 1em;
+  display: block;
+  color: rgba(90, 86, 86, 0.44)
+  }
+  .sadrzaj{
+  padding: 1em 1.5em;
+  margin: 0em 0em;
+  }
+  .sadrzaj table{
+  float: left;
+  width: 47%;
+  margin: 0.5em 0.5em;
+  }
+  table th{
+  background-color: rgba(240, 240, 240, 0.43);
+  }
+  table caption{
+  font-weight: bold;
+  }
+  table th:first-child{
+  width:80%;
+  }
+  .sadrzaj .row{
+  margin-left: 0px;
+  }
+  .alert button{
+  margin-top: 0.5em;
+  }
+  .ocjena {
+  padding-left: 1.4em !important;
+  }
+  #piechart {
+  float: left;
+  width: 50%;
+  height: 12em;
+  }
+  .sadrzaj table:nth-of-type(1){
+  clear: both;
+  }
+  #broj{
+  float:left;
+  width: 50%;
+  height: 90%;
+  }
+  #broj h2{
+  margin: 45px auto;
+  font-size: 8em;
+  color: rgb(253, 127, 10);
+  }
+  #broj h2:hover{
+  font-size: 9em;
+  }
+  #broj p{
+  font-size: 1.4em;
+  margin: auto auto;
+  }
+  .prosjek{
+  height:12em;
+  }
+  #statistika{
+  display: none;
+  }
+  .form-horizontal .controls {
+    width: 50%;
+    float:left;
+    margin-left:1em;
+  }
+  .form-horizontal .control-label{
+    float: left;
+    width:40%;
+  }
+  .controls button{
+    float:right;
+  }
+  button[data-rok] {
+   clear: both;
+   display: block;
+   margin: 0 auto;
+}
+
+  @media (min-width: 979px) {
+  .korisnik{
+  padding-top: 1.2em;
+  padding-left: 3.7em;
+  }
+  }
+
+  @media (min-width: 480px) and (max-width: 550px) {
+  .prosjek{
+  display: none;
+  }
+  #statistika{
+  display: table !important;
+  }
+  .korisnik{
+  font-size: 1.5em;
+  }
+  .sadrzaj{
+  padding: 0em 0em;
+  margin: 0em 0em;
+  }
+  .sadrzaj table{
+  float: left;
+  width: 100%;
+  margin: 0.5em 0.5em;
+  }
+  }
+
+  @media (max-width: 480px) {
+   .form-horizontal .controls {
+    clear: both;
+  } 
+  .prosjek{
+  display: none;
+  }
+  #statistika{
+  display: table !important;
+  }
+  .korisnik{
+  font-size: 1em;
+  font-weight: bold;
+  }
+  .sadrzaj{
+  font-size: 12px;
+  padding: 0em 0em;
+  margin: 0em 0em;
+  }
+  .sadrzaj table{
+  width: 100%;
+  }
+  }
+
+.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: #000; color: #FFF; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+  
+  /* Uncomment for shadow */
+  /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
+  
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
+  
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+  
+  .tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }

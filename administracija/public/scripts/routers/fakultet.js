@@ -7,10 +7,8 @@ define(['backbone','fakultetiM/fakulteti','fakultetiV/fakulteti','fakultetiM/dod
             'fakulteti/:fakultet/dodaj-sp/': 'dodajStudijskiProgram',
             'fakulteti/:fakultet/obrisi/': 'obrisi',
             'fakulteti/:fakultet/:sp/': 'sp',
-            'fakulteti/:fakultet/:sp/:semestar/': 'urediSemestar',
-            'fakulteti/:fakultet/:sp/dodaj-semestar/': 'dodajSemestar'
-            //'fakulteti/': 'index',
-
+            'fakulteti/:fakultet/:sp/dodaj-semestar/': 'dodajSemestar',
+            'fakulteti/:fakultet/:sp/:semestar/': 'urediSemestar'
         },
 
         initialize: function() {

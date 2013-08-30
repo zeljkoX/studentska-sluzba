@@ -1,0 +1,22 @@
+<ul class="nav nav-pills fakFilter prijave">
+  {{#fakulteti}}
+  <li><a href="#">{{.}}</a></li>
+  {{/fakulteti}}
+</ul>
+<table class="table table-striped ">
+  <caption>Prijave:</caption>
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#aktivno}}
+    {{#predmeti}}
+    <tr>
+      <td><a data-lokacija="{{sifra}}/">{{naziv}}</a></td>
+    </tr>
+    {{/predmeti}}
+    {{/aktivno}}
+  </tbody>
+</table>

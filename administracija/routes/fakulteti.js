@@ -1,6 +1,29 @@
 module.exports = function(app, model) {
+     var upis = require('../upis');
 
-
+    var arhiva = function() {
+        model.Fakultet.find({
+            aktivan: 'da'
+        }, {
+            naziv: true,
+            skracenica: true
+        }, function(err, doc) {
+            
+           var objekat = doc.map(function(item){
+                return {
+                name : item.naziv + ' - '+ item.skracenica,
+                value  : item.naziv + ' - '+ item.skracenica,
+                kategorija : 'Fakulteti',
+                lokacija: '/fakulteti/'+ item.skracenica +'/',
+                tokens : [item.naziv, item.skracenica]
+                }
+            });
+            upis.upisiFajl({
+                data: JSON.stringify(objekat),
+                datoteka: 'fakulteti.json'
+            });
+        });
+    };
 
     app.get('/fakulteti/', function(req, res) {
         model.Fakultet.find({
@@ -9,7 +32,9 @@ module.exports = function(app, model) {
             naziv: true,
             skracenica: true,
             _id: false
-        }, function(err, fak) {
+        }, {
+            sort: { naziv: 1}
+        },function(err, fak) {
             console.log(JSON.stringify(fak));
             res.end(JSON.stringify(fak));
         });
@@ -27,6 +52,7 @@ module.exports = function(app, model) {
         a.save(function(err) {
             if (err) return res.end('500');
             res.end('200');
+            arhiva();
         });
 
     });
@@ -53,7 +79,9 @@ module.exports = function(app, model) {
             _id: true,
             naziv: true,
             studijskiProgrami: true
-        }, function(err, doc) {
+        }, {
+            sort: { _id: 1}
+        },function(err, doc) {
             doc.forEach(function(fakultet) {
                 fakultet.studijskiProgrami.forEach(function(sp) {
                     sp.semestri = undefined;
@@ -104,6 +132,7 @@ module.exports = function(app, model) {
             }
         }, {}, function(err, doc) {
             res.end('200');
+            arhiva();
         });
     });
 

@@ -1,0 +1,20 @@
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Naziv Ispitnog Roka</th>
+      <th>Godina</th>
+      <th>Prijava</th>
+      <th>Trajanje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#ispiti}}
+    <tr>
+      <td><a href="#" data-lokacija="{{_id}}/">{{naziv}}</a></td>
+      <td>{{godina}}</td>
+      <td>{{prijavaOd}} : {{prijavaDo}}</td>
+      <td>{{ispitniOd}} : {{ispitniDo}}</td>
+    </tr>
+    {{/ispiti}}
+  </tbody>
+</table>

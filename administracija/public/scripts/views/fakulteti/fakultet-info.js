@@ -18,6 +18,7 @@ define(['backbone', 'text!sabloni/fakultet-info.html','fakultetiV/fakultet-info-
             },this);
 		},
 		render: function() {
+			
 			this.$el.html(this.template.render(this.model.toJSON()));
 			return this;
 		},

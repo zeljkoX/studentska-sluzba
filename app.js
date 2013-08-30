@@ -4,78 +4,16 @@ var express = require('express'),
   path = require('path'),
   studenti = require('./studenti/app'),
   administracija = require('./administracija/app'),
-  passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy,
-  MongoClient = require('mongodb').MongoClient,
-  Server = require('mongodb').Server;
+  mongoose = require('mongoose'),
+  model = mongoose.models.Student;
+
 var app = express();
-app.set('mongoClient', new MongoClient(new Server('localhost', 27017)));
-//var mongoClient = new MongoClient(new Server('localhost', 27017));
 
-app.get('mongoClient').open(function(err, mongoClient) {
-  console.log('>Uspjesna konekcija na mongodb');
-  mongoClient.close();
-});
+
 users = {
-username: 'zeljkoX',
-password: 'sido47sido'
+  username: 'admin',
+  password: 'admin'
 };
-function findById(id, fn) {
-  var idx = id - 1;
-  if (users[idx]) {
-    fn(null, users[idx]);
-  } else {
-    fn(new Error('User ' + id + ' does not exist'));
-  }
-}
-
-function findByUsername(username, fn) {
-  for (var i = 0, len = users.length; i < len; i++) {
-    var user = users[i];
-    if (user.username === username) {
-      return fn(null, user);
-    }
-  }
-  return fn(null, null);
-}
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-passport.use(new LocalStrategy(function(username, password, done) {
-  // asynchronous verification, for effect...
-  process.nextTick(function() {
-
-    // Find the user by username.  If there is no user with the given
-    // username, or the password is not correct, set the user to `false` to
-    // indicate failure and set a flash message.  Otherwise, return the
-    // authenticated `user`.
-    findByUsername(username, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, {
-          message: 'Unknown user ' + username
-        });
-      }
-      if (user.password != password) {
-        return done(null, false, {
-          message: 'Invalid password'
-        });
-      }
-      return done(null, user);
-    })
-  });
-}));
-
 
 
 var app = express();
@@ -83,17 +21,17 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'hjs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.methodOverride());
 app.use(express.session({
-  secret: 'studentska-sluzba'
+  secret: 'studentska-sluzba',
+  key: 'express.sid',
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/studenti', studenti);
@@ -107,14 +45,48 @@ if ('development' == app.get('env')) {
 
 
 app.get('/', function(req, res) {
-  res.redirect('index.html');
+  res.render('index.hjs');
 });
-app.post('/login',
-  passport.authenticate('local', {
-  failureRedirect: 'index.html'
-}), function(req, res) {
-  res.redirect('studenti/');
+
+app.post('/login', function(req, res) {
+  var username = req.param('username', null);
+  var password = req.param('password', null);
+
+  if (null == username || username.length < 1 || null == password || password.length < 1) {
+    res.send(400);
+    return;
+  }
+  if (username.search(/^[0-9]*$/g) != -1) {
+
+    model.findOne({
+      aktivan: 'da',
+      _id: username
+    }, function(err, doc) {
+      if (doc.sifra == password) {
+        req.session.loggedIn = true;
+        req.session.tip = 'student';
+        req.session._id = doc._id;
+        res.end('studenti/' +doc._id+ '/');
+      } else res.send(401);
+    });
+  } else {
+    if (username == users.username && password == users.password) {
+      req.session.loggedIn = true;
+      req.session.tip = 'administrator';
+      req.session._id = username;
+      res.end('administracija/');
+    } else res.send(401);
+  }
+
 });
+
+app.get('/logout/', function(req, res) {
+  req.session.loggedIn = false;
+  req.session.tip = '';
+  req.session._id = '';
+  res.redirect('/');
+});
+
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));

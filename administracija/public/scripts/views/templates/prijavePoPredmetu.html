@@ -1,0 +1,16 @@
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Ime </th>
+      <th>Index</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#studenti}}
+    <tr>
+      <td><a href="#" data-lokacija="{{_id}}/">{{naziv}}</a></td>
+      <td>{{_id}}</td>
+    </tr>
+    {{/studenti}}
+  </tbody>
+</table>

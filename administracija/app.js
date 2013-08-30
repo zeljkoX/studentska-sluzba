@@ -22,6 +22,13 @@ mongoose.connect(baza, function onMongooseError(err) {
 });
 
 // all environments
+/*app.use(function(req ,res ,next){
+  if(req.session && req.session.loggedIn && req.session.tip =='administrator'){
+    next();
+}else{
+  res.redirect('/');
+}
+});*/
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/public');
 app.set('view engine', 'hjs');
@@ -38,7 +45,7 @@ app.use(app.router);
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.set('ime', 'ZM');
+app.set('ime', 'administrator');
 
 app.get('/', function(req, res){
   res.render('index', {'ime':'Zeljko Markovic1' });
@@ -51,7 +58,8 @@ app.get(/[^\/]/,function(req, res){
 */
 //app.get('/users', user.list);
 
-require('./routes/ispiti')(app, modeli.ispiti);
+require('./routes/ispiti')(app, modeli);
 require('./routes/studenti')(app, modeli);
 require('./routes/fakulteti')(app, modeli.fakultet);
 require('./routes/predmeti')(app, modeli.predmeti);
+require('./routes/profesori')(app, modeli.profesori);

@@ -1,0 +1,45 @@
+<ul class="nav nav-pills fakFilter">
+  {{#fakulteti}}
+  <li><a href="#">{{.}}</a></li>
+  {{/fakulteti}}
+</ul>
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th>Naziv Predmeta</th>
+      <th>Sifra</th>
+      <th>Fakultet</th>
+      <th>Datum</th>
+      <th>Vrijeme</th>
+      <th>Lokacija</th>
+    </tr>
+  </thead>
+  <tbody id="save">
+    {{#aktivno}}
+    <tr>
+      <td>{{naziv}}</td>
+      <td>{{sifra}}</td>
+      <td>{{fakultet}}</td>
+      <td>
+        <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+          <input class="input-small datum" size="16" type="text" value="{{datum}}">
+          <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+      </td>
+      <td>
+        <div class="input-append bootstrap-timepicker">
+          <input type="text" class="input-small time" value="{{vrijeme}}">
+          <span class="add-on"><i class="icon-time"></i></span>
+        </div>
+      </td>
+      
+      <td>  <input type="text" class="input-mini ucionica" value="{{lokacija}}"> </td>
+    </tr>
+    {{/aktivno}}
+  </tbody>
+</table>
+<div class="control-group">
+  <div class="controls">
+    <button type="submit" class="btn btn-primary sacuvaj"><i class="icon-ok icon-white"></i>Sacuvaj</button>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Informacioni sistem studentske sluzbe - </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/studenti/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#"> Slobomir P Univerzitet - IS</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav nav-pills">
+                <li class="active">
+                  <a href="/studenti/{{_id}}/">Semestri</a>
+                </li>
+                <li><a href="info/">Licne Informacije</a></li>
+              </ul>
+              <p class="navbar-text pull-right">
+              <strong><a href="#" class="navbar-link"><i class="icon-user"></i>{{ime}} {{prezime}}</a></strong>
+              <a href="/logout/" class="navbar-link">Logout</a>
+              </p>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <span class="korisnik">{{ime}} {{prezime}} {{fakultet}} {{_id}}</span>
+            <div class="well">
+              <div class="sadrzaj">
+                 {{#ispit}}
+                <div class="alert alert-block">
+                  <h4>Prijava ispita je u toku!</h4>
+                  <a href="ispiti/"><button class="btn btn-warning">Prijavi Ispite</button></a>
+                </div>
+                {{/ispit}}
+                <table id="statistika" class="table table-bordered">
+                  <caption>STATISTIKA</caption>
+                  <thead>
+                    <tr>
+                      <th>Vrijednost</th>
+                      <th>#</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Ispiti polozeno</td><td class="ocjena"><span id="polozeno" data-val="{{polozeno}}" class="badge badge-inverse">{{polozeno}}</span></td>
+                    </tr>
+                    <tr>
+                      <td>Ispiti nepolozeno</td><td class="ocjena"><span id="nepolozeno" data-val="{{nepolozeno}}" class="badge badge-inverse">{{nepolozeno}}</span></td>
+                    </tr>
+                    <tr>
+                      <td>Prosjek</td><td class="ocjena"><span id="prosjek" data-val="{{prosjek}}" class="badge badge-inverse">{{prosjek}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="prosjek">
+                  <div id="piechart">
+                  </div>
+                  <div id="broj">
+                    <p>PROSJEK</p>
+                    <h2>{{prosjek}}</h2>
+                  </div>
+                </div>
+                {{#semestri}}
+                <table class="table table-bordered">
+                  <caption>Semestar: {{_id}}</caption>
+                  <thead>
+                    <tr>
+                      <th>Predmet</th>
+                      <th>Ocjena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#predmeti}}
+                    <tr>
+                      <td>{{naziv}}</td>
+                      <td class="ocjena"><a href="" title="+Bodovi<br>-Predavanja: <b>{{ocjena.predavanja}}</b> <br>-Vjezbe: <b>{{ocjena.vjezbe}}</b> <br>-Dodatni: <b>{{ocjena.dodatni}}</b> <br>"><span class="badge badge-warning">
+                      {{#ocjena}}{{ocjena}}{{/ocjena}} {{^ocjena}}-{{/ocjena}}</span></a></td>
+                    </tr>
+                    {{/predmeti}}
+                  </tbody>
+                </table>
+                {{/semestri}}
+
+                
+                
+                
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="/components/jquery/jquery.min.js"></script>
+      <script src="/studenti/js/bootstrap.min.js"></script>
+      <script src="/studenti/js/tipsy.js"></script>
+      <script src="/studenti/js/raphael-min.js"></script>
+      <script src="/studenti/js/g.raphael.js"></script>
+      <script src="/studenti/js/g.pie.js"></script>
+      <script src="/studenti/js/main.js"></script>
+      
+    </body>
+  </html>

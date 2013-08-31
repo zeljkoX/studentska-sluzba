@@ -32,7 +32,7 @@
         <a class="brand" href="#">SPU - Informacioni sistem studentske sluzbe</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="#"><i class="icon-home"></i>Pocetna</a></li>
+            <li><a href="/administracija/"><i class="icon-home"></i>Pocetna</a></li>
           </ul>
           <p class="navbar-text pull-right">
           <strong><a href="#" class="navbar-link"><i class="icon-user"></i>{{settings.ime}}</a></strong>

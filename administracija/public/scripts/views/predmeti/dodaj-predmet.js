@@ -18,9 +18,11 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'predmetiM/modal', 'predm
 					lokacija: 'dodaj-predmet/',
 					aktivan: 'true'
 				}]);
+				this.render();
 			},
 			render: function() {
 				this.$el.html(this.template.render());
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
 			events: {
@@ -34,36 +36,36 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'predmetiM/modal', 'predm
 				e.preventDefault();
 				console.log('submit');
 				var skr = this.$el,
-				    that = this,
-				    model = {
-					naziv: $.trim(skr.find('#nazivPredmeta').val()),
-					sifra: $.trim(skr.find('#sifraPredmeta').val().toLowerCase()),
-					status: $.trim(skr.find('input[name=optionsRadios]:checked').val()),
-					bodovi: $.trim(skr.find('#brojBodova').val()),
-					profesor: skr.find('#profesor').val(),
-					asistent: skr.find('#asistent').val(),
-					fakultet: {
-						_id: skr.find('#fakultet').val(),
-						naziv: skr.find('#fakultet option:selected').text()
-					},
-					studijskiProgram: skr.find('#studijskiProgram option:selected').text(),
-					casovi: {
-						predavanja: $.trim(skr.find('#teorija').val()),
-						vjezbe: $.trim(skr.find('#vjezbe').val())
-					},
-					opis: $.trim(skr.find('#opis').val())
-				};
+					that = this,
+					model = {
+						naziv: $.trim(skr.find('#nazivPredmeta').val()),
+						sifra: $.trim(skr.find('#sifraPredmeta').val().toLowerCase()),
+						status: $.trim(skr.find('input[name=optionsRadios]:checked').val()),
+						bodovi: $.trim(skr.find('#brojBodova').val()),
+						profesor: skr.find('#profesor').val(),
+						asistent: skr.find('#asistent').val(),
+						fakultet: {
+							_id: skr.find('#fakultet').val(),
+							naziv: skr.find('#fakultet option:selected').text()
+						},
+						studijskiProgram: skr.find('#studijskiProgram option:selected').text(),
+						casovi: {
+							predavanja: $.trim(skr.find('#teorija').val()),
+							vjezbe: $.trim(skr.find('#vjezbe').val())
+						},
+						opis: $.trim(skr.find('#opis').val())
+					};
 				console.log(model);
 				this.model.set(model);
-				this.model.save({},{
+				this.model.save({}, {
 					success: function(model1, response) {
 						console.log(model1);
-						Backbone.trigger('ruta:lokacija',[Backbone.lokacija(1) + that.model.attributes.sifra + '/'])
+						Backbone.trigger('ruta:lokacija', [Backbone.lokacija(1) + that.model.attributes.sifra + '/'])
 					},
 					error: function() {
 						alert('Operacija nije uspjesno zavrsena. Molimo probajte opet.');
-					}}
-				);
+					}
+				});
 			},
 			azuriraj: function(options) {
 				this.podaci = options[0];

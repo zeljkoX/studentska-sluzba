@@ -21,6 +21,7 @@ define(['backbone', 'text!sabloni/semestar.html','hogan','fakultetiM/modal', 'fa
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
+			$('.sadrzajPodaci').append(this.el);
 			return this;
 		},
 		events: {

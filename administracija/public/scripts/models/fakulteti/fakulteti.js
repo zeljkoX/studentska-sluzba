@@ -7,6 +7,9 @@ define(['backbone'], function(Backbone) {
 		},
 		initialize: function(){
              this.fetch();
+              Backbone.on('att', function() {
+				console.log(this.attributes);
+			}, this);
 		},
 		parse: function(response){
 			//this.set({fakulteti:[response]});

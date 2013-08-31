@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/dodaj-student.html','hogan'],
+define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 	function(Backbone, Templates, Hogan) {
 		var DodajStudentView = Backbone.View.extend({
 			template: Templates,
 			initialize: function() {
-				console.log('dodaj student');
 				this.podaci = '';
 				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'lista', this.azuriraj);
@@ -19,9 +18,11 @@ define(['backbone', 'text!sabloni/dodaj-student.html','hogan'],
 					lokacija: 'dodaj-student/',
 					aktivan: 'true'
 				}]);
+				this.render();
 			},
 			render: function() {
 				this.$el.html(this.template.render());
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
 			events: {
@@ -35,33 +36,33 @@ define(['backbone', 'text!sabloni/dodaj-student.html','hogan'],
 				e.preventDefault();
 				console.log('submit');
 				var skr = this.$el,
-				    that = this,
-				    model = {
-					ime: $.trim(skr.find('#ime').val()),
-					prezime: $.trim(skr.find('#prezime').val()),
-					imeRoditelja: $.trim(skr.find('#imeRoditelja').val()),
-					jmbg: $.trim(skr.find('#jmbg').val()),
-					mjesto: $.trim(skr.find('#mjesto').val()),
-					ulica: $.trim(skr.find('#ulica').val()),
-					telefon: $.trim(skr.find('#telefon').val()),
-					email: $.trim(skr.find('#email').val()),
-					fakultet: $.trim(skr.find('#fakultet').val()),
-                    studijskiProgram: $.trim(skr.find('#studijskiProgram').val()),
-                    _id: $.trim(skr.find('#index').val()),
-                    godina: (new Date()).getFullYear(),
-                    sifra: $.trim(skr.find('#jmbg').val()).toString().slice(7)
-				};
+					that = this,
+					model = {
+						ime: $.trim(skr.find('#ime').val()),
+						prezime: $.trim(skr.find('#prezime').val()),
+						imeRoditelja: $.trim(skr.find('#imeRoditelja').val()),
+						jmbg: $.trim(skr.find('#jmbg').val()),
+						mjesto: $.trim(skr.find('#mjesto').val()),
+						ulica: $.trim(skr.find('#ulica').val()),
+						telefon: $.trim(skr.find('#telefon').val()),
+						email: $.trim(skr.find('#email').val()),
+						fakultet: $.trim(skr.find('#fakultet').val()),
+						studijskiProgram: $.trim(skr.find('#studijskiProgram').val()),
+						_id: $.trim(skr.find('#index').val()),
+						godina: (new Date()).getFullYear(),
+						sifra: $.trim(skr.find('#jmbg').val()).toString().slice(7)
+					};
 				console.log(model);
 				this.model.set(model);
-				this.model.save({},{
+				this.model.save({}, {
 					success: function(model1, response) {
 						console.log(model1);
-						Backbone.trigger('ruta:lokacija',[Backbone.lokacija(1) + that.model.attributes._id + '/'])
+						Backbone.trigger('ruta:lokacija', [Backbone.lokacija(1) + that.model.attributes._id + '/'])
 					},
 					error: function() {
 						alert('Operacija nije uspjesno zavrsena. Molimo probajte opet.');
-					}}
-				);
+					}
+				});
 			},
 			azuriraj: function(options) {
 				this.podaci = options[0];

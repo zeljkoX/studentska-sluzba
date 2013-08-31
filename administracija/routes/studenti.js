@@ -29,7 +29,7 @@ module.exports = function(app, model) {
         });
     };
     app.get('/studenti/', function(req, res) {
-        model.studenti.Student.find({}, {}, function(err, fak) {
+        model.studenti.Student.find({aktivan: 'da'}, {}, function(err, fak) {
             console.log(JSON.stringify(fak));
             res.end(JSON.stringify(fak));
         });

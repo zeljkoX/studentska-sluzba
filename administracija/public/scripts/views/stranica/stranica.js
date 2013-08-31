@@ -4,6 +4,7 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 		template: Template,
 		views: {},
 		initialize: function() {
+			this.render();
 			//this.views.naslov = NaslovView();
 			//this.statistika = new StatistikaView();
 			//this.lokacija = new LokacijaView();

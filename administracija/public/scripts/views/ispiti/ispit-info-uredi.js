@@ -17,11 +17,17 @@ define(['backbone', 'text!sabloni/dodaj-ispit.html', 'hogan'],
 				lokacija: this.lokacija(),
 				aktivan: true
 			}]);
+			this.render();
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
+			$('.sadrzajPodaci').append(this.el);
 			this.$el.find('.datum').datepicker();
 			this.$el.find('#sifra').attr('disabled', true);
+			$('.inlineDiv button').click(function(e) {
+					Backbone.history.fragment = null;
+					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
+				});
 			return this;
 		},
 		events: {

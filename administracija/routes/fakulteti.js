@@ -26,6 +26,7 @@ module.exports = function(app, model) {
     };
 
     app.get('/fakulteti/', function(req, res) {
+
         model.Fakultet.find({
             aktivan: 'da'
         }, {

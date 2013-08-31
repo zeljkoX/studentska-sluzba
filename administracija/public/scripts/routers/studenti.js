@@ -2,6 +2,7 @@ define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-st
     function(Backbone, StudentiModel, StudentiView, DodajStudentModel, DodajStudentView, StudentInfoModel, StudentInfoView, StudentSemestarModel, StudentSemestarView, SkolarinaModel, SkolarinaView, UpisOcjeneModel, UpisOcjeneView) {
     var StudentiRuter = Backbone.Router.extend({
         routes: {
+            'studenti/': 'studenti',
             'studenti/dodaj-student/': 'dodaj',
             'studenti/:student/': 'prikazi',
             'studenti/:student/obrisi/': 'obrisi',
@@ -10,27 +11,32 @@ define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-st
             'studenti/:student/semestri/:predmet/': 'upisOcjene',
             'studenti/:student/skolarina/': 'skolarina'
         },
-
         initialize: function() {
-            this.lokacija = '/administracija/studenti/';
-        this.changeView(new StudentiView({model: new StudentiModel()}));
+            
         },
         changeView: function(view) {
             if (null != this.currentView) {
                 this.currentView.undelegateEvents();
-                this.currentView.remove();
+               delete this.currentView.model;
+               this.currentView.remove();
                 this.currentView = null;
             }
+            window.pogled = view;
             this.currentView = view;
-            this.currentView.delegateEvents();
-            $('.sadrzajPodaci').empty().append(this.currentView.render().el);
+            //this.currentView.setElement($('.sadrzajPodaci')).render();
+           // var html = this.currentView.render().el;
+            //$('.sadrzajPodaci').append();
+            //this.currentView.render();
+            //$('.sadrzajPodaci').append(this.currentView.el);
         },
-
+        studenti: function(){
+            this.changeView(new StudentiView({model: new StudentiModel()}));
+        },
         dodaj: function() {
             this.changeView(new DodajStudentView({ model: new DodajStudentModel()})); 
         },
         prikazi: function(student){
-           this.changeView( new StudentInfoView({model: new StudentInfoModel({urlRoot: this.lokacija + student + '/'})}));
+           this.changeView( new StudentInfoView({model: new StudentInfoModel({urlRoot:'/administracija/' + Backbone.lokacija()})}));
         },
         obrisi: function() {
             if(confirm('Da li ste sigurni da zelite obrisati?')){

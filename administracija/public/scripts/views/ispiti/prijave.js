@@ -19,8 +19,8 @@ define(['backbone', 'text!sabloni/prijave.html', 'hogan'],
 				}]);
 			},
 			render: function() {
-				console.log('render');
 				this.$el.html(this.template.render(this.model.toJSON()));
+				$('.sadrzajPodaci').append(this.el);
 				var naziv = this.model.get('aktivnoNaziv');
 				this.$el.find('.fakFilter li').each(function(item) {
 					if ($(this).text() == naziv)
@@ -49,7 +49,7 @@ define(['backbone', 'text!sabloni/prijave.html', 'hogan'],
 				e.preventDefault();
 				var element = $(e.target).data('lokacija');
 				if (element)
-					Backbone.trigger('ruta:dodaj', [naziv + '-' +element]);
+					Backbone.trigger('ruta:dodaj', [naziv + '-' + element]);
 
 			},
 			prikazi: function(e) {

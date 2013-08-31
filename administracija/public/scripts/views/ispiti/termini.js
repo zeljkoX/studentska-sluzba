@@ -19,12 +19,12 @@ define(['backbone', 'text!sabloni/termini.html', 'hogan', 'bootstrap-timepicker.
 				}]);
 			},
 			render: function() {
-				console.log('render');
 				this.$el.html(this.template.render(this.model.toJSON()));
+				$('.sadrzajPodaci').append(this.el);
 				var naziv = this.model.get('aktivnoNaziv');
-				this.$el.find('.fakFilter li').each(function(item){
-                if($(this).text() == naziv)
-                	$(this).addClass('active');
+				this.$el.find('.fakFilter li').each(function(item) {
+					if ($(this).text() == naziv)
+						$(this).addClass('active');
 				});
 				this.$el.find('.datum').datepicker();
 				this.$el.find('.time').timepicker({
@@ -35,7 +35,7 @@ define(['backbone', 'text!sabloni/termini.html', 'hogan', 'bootstrap-timepicker.
 				return this;
 			},
 			events: {
-			    'click .fakFilter>li': 'prikazi',
+				'click .fakFilter>li': 'prikazi',
 				'click .sacuvaj': 'sacuvaj',
 				'click .odustani': 'odustani'
 			},
@@ -43,43 +43,49 @@ define(['backbone', 'text!sabloni/termini.html', 'hogan', 'bootstrap-timepicker.
 				e.preventDefault();
 				console.log(e.currentTarget);
 				var skr = this.$el,
-				podaci = this.model.get('termini');
-                this.model.set({aktivnoNaziv: skr.find(e.target).text()});
-				this.model.set({aktivno: podaci[this.$el.find('.active').text()]});
+					podaci = this.model.get('termini');
+				this.model.set({
+					aktivnoNaziv: skr.find(e.target).text()
+				});
+				this.model.set({
+					aktivno: podaci[this.$el.find('.active').text()]
+				});
 
 			},
 			odustani: function(e) {
 				e.preventDefault();
 				Backbone.trigger('ruta:lokacija', [Backbone.lokacija(1)]);
 			},
-			sacuvaj: function(){
-                 var niz = this.model.get('aktivno'),
-                 naziv = this.model.get('aktivnoNaziv'),
-                 termini = this.model.get('termini'),
-                 datum = this.$el.find('.datum'),
-                 vrijeme = this.$el.find('.time'),
-                 lokacija = this.$el.find('.ucionica');
+			sacuvaj: function() {
+				var niz = this.model.get('aktivno'),
+					naziv = this.model.get('aktivnoNaziv'),
+					termini = this.model.get('termini'),
+					datum = this.$el.find('.datum'),
+					vrijeme = this.$el.find('.time'),
+					lokacija = this.$el.find('.ucionica');
 
 
-                niz.forEach(function(item, index){
-                    console.log(item);
-                    item.datum = datum.eq(index).val();
-                    item.vrijeme = vrijeme.eq(index).val();
-                    item.lokacija = lokacija.eq(index).val();
-                    console.log(item);
-                });
-                termini[naziv] = niz;
-                this.model.set({termini: termini});
+				niz.forEach(function(item, index) {
+					console.log(item);
+					item.datum = datum.eq(index).val();
+					item.vrijeme = vrijeme.eq(index).val();
+					item.lokacija = lokacija.eq(index).val();
+					console.log(item);
+				});
+				termini[naziv] = niz;
+				this.model.set({
+					termini: termini
+				});
 
-                this.model.save({},{
+				this.model.save({}, {
 					success: function(model, response) {
 						console.log('da');
-						
+
 					},
 					error: function() {
 						alert('Operacija nije uspjesno zavrsena. Molimo probajte opet.');
-					}}
-				);
+					}
+				});
 
 			}
 

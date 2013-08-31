@@ -73,19 +73,44 @@ border-radius: 5px;
 border-top-right-radius: 0;
 border-right: 1px solid #DDDDDD;
 }
-
+.sadrzaj{
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+.tab-content{
+  overflow: hidden;
+}
 .sadrzajPodaci {
     margin: 2em;  
     padding:1em;  
 }
-/*
-.informacije label {
-    float:left;
-    width: 30%;
-    text-align: right;
-    clear: left;
+.sadrzajPodaci div{
+  -webkit-animation: moveToLeft .2s ease both;
+  -moz-animation: moveToLeft .2s ease both;
+  animation: moveToLeft .2s ease both;
+
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translateX(100%);
 }
 
+@-webkit-keyframes moveToLeft {
+  to { -webkit-transform: translateX(0%); }
+}
+@-moz-keyframes moveToLeft {
+  to { -moz-transform: translateX(0%); }
+}
+@keyframes moveToLeft {
+  to { transform: translateX(0%); }
+}
+
+
+.informacije label {
+    
+    width: 46% !important;
+}
+/*
 .informacije p {
     width: 50%;
     text-align: left;

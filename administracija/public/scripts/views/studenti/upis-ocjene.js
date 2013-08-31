@@ -18,11 +18,13 @@ define(['backbone', 'text!sabloni/upis-ocjene.html', 'hogan'],
 					aktivan: 'true'
 				}]);
 				this.model.on('sync', function() {
-					Backbone.trigger('naslov', ['Upis ocjene: ' +this.model.get('naziv')]);
+					Backbone.trigger('naslov', ['Upis ocjene: ' + this.model.get('naziv')]);
+					this.render();
 				}, this);
 			},
 			render: function() {
 				this.$el.html(this.template.render());
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
 			events: {
@@ -51,7 +53,7 @@ define(['backbone', 'text!sabloni/upis-ocjene.html', 'hogan'],
 					}
 				});
 			},
-			
+
 
 		});
 		return OcjenaView;

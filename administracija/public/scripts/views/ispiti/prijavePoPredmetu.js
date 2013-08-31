@@ -14,6 +14,7 @@ define(['backbone', 'text!sabloni/prijavePoPredmetu.html','hogan'], function(Bac
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
+			$('.sadrzajPodaci').append(this.el);
 			this.tabela = $(this.el).find('.table').dataTable({
 				/*"aoColumnDefs": [
                         { "bSearchable": true, "bVisible": false, "aTargets": [ 2 ] },

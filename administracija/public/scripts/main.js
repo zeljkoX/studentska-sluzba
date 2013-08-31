@@ -21,12 +21,12 @@ require.config({
 		'ispitiM': 'models/ispiti/',
 		'sabloni': 'views/templates/',
 		'modal' : 'modal',
-		'typeahead':'typeahead'
+		'type':'typeahead'
 	},
 	backbone: {
 		deps: ['jquery', 'underscore']
 	},
-	typeahead:{
+	type:{
 		deps: ['jquery']
 	}
 });

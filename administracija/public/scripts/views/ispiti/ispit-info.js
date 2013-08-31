@@ -30,6 +30,7 @@ define(['backbone', 'text!sabloni/ispiti-info.html', 'ispitiV/ispit-info-uredi',
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
 			events: {

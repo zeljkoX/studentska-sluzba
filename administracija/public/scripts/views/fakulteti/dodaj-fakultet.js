@@ -8,9 +8,11 @@ define(['backbone', 'text!sabloni/dodaj-fakultet.html', 'hogan'], function(Backb
 			Backbone.trigger('naslov', ['Dodavanje Fakulteta']);
 			Backbone.trigger('dugme', [{tekst: 'Odustani', lokacija: Backbone.lokacija(1), klasa: 'btn btn-danger', ikona: 'icon-remove-circle icon-white'}]);
 			Backbone.trigger('meni',[{tekst: 'Dodavanje Fakulteta', lokacija: this.lokacija(), aktivan:'true'}]);
+		    this.render();
 		},
 		render: function() {
-			this.$el.html(this.template.render());
+			this.$el.html(this.template.render(this.model.toJSON()));
+			$('.sadrzajPodaci').append(this.el);
 			return this;
 		},
 		events: {

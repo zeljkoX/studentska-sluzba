@@ -19,9 +19,11 @@ define(['backbone', 'text!sabloni/dodaj-profesor.html','hogan'],
 					lokacija: Backbone.lokacija(),
 					aktivan: 'true'
 				}]);
+				this.render();
 			},
 			render: function() {
 				this.$el.html(this.template.render());
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
 			events: {

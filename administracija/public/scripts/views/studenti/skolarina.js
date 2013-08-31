@@ -1,4 +1,4 @@
-define(['backbone', 'text!sabloni/skolarina.html','hogan'],
+define(['backbone', 'text!sabloni/skolarina.html', 'hogan'],
 	function(Backbone, Templates, Hogan) {
 		var SkolarinaView = Backbone.View.extend({
 			template: Templates,
@@ -10,7 +10,7 @@ define(['backbone', 'text!sabloni/skolarina.html','hogan'],
 				Backbone.trigger('naslov', ['Skolarina']);
 				Backbone.trigger('dugme', [{
 					tekst: 'Uplata rate',
-					lokacija: Backbone.lokacija()+ 'aktiviraj/',
+					lokacija: Backbone.lokacija() + 'aktiviraj/',
 					klasa: 'btn btn-success',
 					ikona: 'icon-plus-sign icon-white'
 				}]);
@@ -22,10 +22,10 @@ define(['backbone', 'text!sabloni/skolarina.html','hogan'],
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
+				$('.sadrzajPodaci').append(this.el);
 				return this;
 			},
-			events: {	
-			},
+			events: {},
 		});
 		return SkolarinaView;
 

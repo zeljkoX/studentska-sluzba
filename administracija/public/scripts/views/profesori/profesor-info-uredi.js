@@ -1,50 +1,57 @@
 define(['backbone', 'text!sabloni/dodaj-profesor.html', 'hogan'],
- function(Backbone, Templates, Hogan) {
-	var ProfesorInfoView = Backbone.View.extend({
-		template: Templates,
-		initialize: function() {
-			var that = this;
-			this.on('lista', this.azuriraj);
-			this.template = Hogan.compile(this.template);
-			Backbone.trigger('dugme', [{
-				tekst: 'Odustani',
-				lokacija: Backbone.lokacija(),
-				klasa: 'btn btn-danger',
-				ikona: 'icon-remove-circle icon-white'
-			}]);
-			Backbone.trigger('naslov', [this.model.get('imeIprezime') + ': uredjivanje']);
-			Backbone.trigger('meni', [{
-				tekst: this.model.get('imeIprezime') + ': uredjivanje',
-				lokacija: this.lokacija(),
-				aktivan: true
-			}]);
-			$.get('/administracija/fakulteti/lista/', function(data) {
-				data = JSON.parse(data);
-				that.azuriraj([data]);
-			}).error(function() {
+	function(Backbone, Templates, Hogan) {
+		var ProfesorInfoView = Backbone.View.extend({
+			template: Templates,
+			initialize: function() {
+				var that = this;
+				this.on('lista', this.azuriraj);
+				this.template = Hogan.compile(this.template);
+				Backbone.trigger('dugme', [{
+					tekst: 'Odustani',
+					lokacija: Backbone.lokacija(),
+					klasa: 'btn btn-danger',
+					ikona: 'icon-remove-circle icon-white'
+				}]);
+				Backbone.trigger('naslov', [this.model.get('imeIprezime') + ': uredjivanje']);
+				Backbone.trigger('meni', [{
+					tekst: this.model.get('imeIprezime') + ': uredjivanje',
+					lokacija: this.lokacija(),
+					aktivan: true
+				}]);
+				$.get('/administracija/fakulteti/lista/', function(data) {
+					data = JSON.parse(data);
+					that.azuriraj([data]);
+				}).error(function() {
 
-			});
-		},
-		render: function() {
-			this.$el.html(this.template.render(this.model.toJSON()));
-			this.$el.find('#jmbg').attr('disabled', true);
-			return this;
-		},
-		events: {
-			'click .sacuvaj': 'sacuvaj',
-			'click .odustani': 'odustani',
-			'change #fakultet': 'sp'
-		},
-		odustani: function(e) {
-			e.preventDefault();
-			Backbone.history.fragment = null;
-			Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
+				});
+				this.render();
+			},
+			render: function() {
+				this.$el.html(this.template.render(this.model.toJSON()));
+				$('.sadrzajPodaci').append(this.el);
+				this.$el.find('#jmbg').attr('disabled', true);
+				$('.inlineDiv button').click(function(e) {
+					console.log('ddddddddd');
+					Backbone.history.fragment = null;
+					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
+				});
+				return this;
+			},
+			events: {
+				'click .sacuvaj': 'sacuvaj',
+				'click .odustani': 'odustani',
+				'change #fakultet': 'sp'
+			},
+			odustani: function(e) {
+				e.preventDefault();
+				Backbone.history.fragment = null;
+				Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 
-		},
-		sacuvaj: function(e) {
-			e.preventDefault();
-			var skr = this.$el;
-		    model = {
+			},
+			sacuvaj: function(e) {
+				e.preventDefault();
+				var skr = this.$el;
+				model = {
 					ime: $.trim(skr.find('#ime').val()),
 					prezime: $.trim(skr.find('#prezime').val()),
 					titula: $.trim(skr.find('#titula').val()),
@@ -54,21 +61,21 @@ define(['backbone', 'text!sabloni/dodaj-profesor.html', 'hogan'],
 					email: $.trim(skr.find('#email').val()),
 					fakultet: $.trim(skr.find('#fakultet').val())
 				};
-			console.log(model);
-			$.ajax({
-				type: "PUT",
-				url: '/administracija/' + this.lokacija(),
-				data: model,
-				success: function(response) {
-					Backbone.history.fragment = null;
-					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
-				}
-			});
+				console.log(model);
+				$.ajax({
+					type: "PUT",
+					url: '/administracija/' + this.lokacija(),
+					data: model,
+					success: function(response) {
+						Backbone.history.fragment = null;
+						Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
+					}
+				});
 
-			//this.model.set(model);
-			//this.model.save();
-		},
-		azuriraj: function(options) {
+				//this.model.set(model);
+				//this.model.save();
+			},
+			azuriraj: function(options) {
 				this.podaci = options[0];
 				var options = options[0],
 					fakulteti = [],
@@ -79,8 +86,8 @@ define(['backbone', 'text!sabloni/dodaj-profesor.html', 'hogan'],
 				console.log(html);
 				$(this.el).find('#fakultet')[0].appendChild(html);
 				$("#fakultet").children().filter(function() {
-				return $(this).val() == that.model.attributes.fakultet;
-			}).attr('selected', true);
+					return $(this).val() == that.model.attributes.fakultet;
+				}).attr('selected', true);
 			},
 			kreirajElement: function(podaci) {
 				var html = document.createDocumentFragment();
@@ -93,7 +100,7 @@ define(['backbone', 'text!sabloni/dodaj-profesor.html', 'hogan'],
 				return html;
 
 			},
-	});
-	return ProfesorInfoView;
+		});
+		return ProfesorInfoView;
 
-});
+	});

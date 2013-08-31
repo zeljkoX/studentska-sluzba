@@ -11,6 +11,11 @@ define(['backbone'], function(Backbone) {
                 var temp = this.attributes.stavke,
                     url = (location.href).replace(/.*administracija\//g, ''),
                     nivo = url.split('/').length - 1;
+                    console.log(nivo);
+                    if(nivo == 0 ){  //prepravka za typeahead
+                        nivo = 1;
+                        url = '/' + options[0].toLowerCase() + '/';
+                    }
                 temp.length = nivo,
                 objekat = {
                     tekst: options[0],

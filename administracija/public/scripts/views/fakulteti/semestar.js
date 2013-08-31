@@ -18,10 +18,11 @@ define(['backbone', 'text!sabloni/semestar.html','hogan','fakultetiM/modal', 'fa
 			Backbone.trigger('naslov', ['Dodavanje Semestra']);
 			Backbone.trigger('dugme', [{tekst: 'Odustani', lokacija: Backbone.lokacija(1), klasa: 'btn btn-danger', ikona: 'icon-plus-sign icon-white'}]);
 			Backbone.trigger('meni',[{tekst: 'Dodavanje Semestra', lokacija: this.lokacija(), aktivan:'true'}]);
+		    this.render();
 		},
 		render: function() {
-			console.log('render dodaj');
 			this.$el.html(this.template.render(this.model.toJSON()));
+			$('.sadrzajPodaci').append(this.el);
 			return this;
 		},
 		events: {

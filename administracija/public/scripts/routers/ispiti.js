@@ -2,6 +2,7 @@ define(['backbone', 'ispitiM/ispiti', 'ispitiV/ispiti', 'ispitiM/dodaj-ispit', '
     function(Backbone, IspitiModel, IspitiView, DodajIspitModel, DodajIspitView, IspitInfoModel, IspitInfoView, TerminiModel, TerminiView, PrijaveModel, PrijaveView, PrijavePoPredmetuModel, PrijavePoPredmetuView) {
         var IspitiRuter = Backbone.Router.extend({
             routes: {
+                'ispiti/': 'ispiti',
                 'ispiti/dodaj-ispit/': 'dodajIspit',
                 'ispiti/:ispit/': 'prikaziIspit',
                 'ispiti/:ispit/obrisi/': 'obrisi',
@@ -11,22 +12,27 @@ define(['backbone', 'ispitiM/ispiti', 'ispitiV/ispiti', 'ispitiM/dodaj-ispit', '
             },
 
             initialize: function() {
-                this.lokacija = '/administracija/ispiti/';
+            },
+            changeView: function(view) {
+            if (null != this.currentView) {
+                this.currentView.undelegateEvents();
+               delete this.currentView.model;
+               this.currentView.remove();
+                this.currentView = null;
+            }
+            window.pogled = view;
+            this.currentView = view;
+            //this.currentView.setElement($('.sadrzajPodaci')).render();
+           // var html = this.currentView.render().el;
+            //$('.sadrzajPodaci').append();
+            //this.currentView.render();
+            //$('.sadrzajPodaci').append(this.currentView.el);
+        },
+           ispiti: function() {
                 this.changeView(new IspitiView({
                     model: new IspitiModel()
                 }));
             },
-            changeView: function(view) {
-                if (null != this.currentView) {
-                    this.currentView.undelegateEvents();
-                    this.currentView.remove();
-                    this.currentView = null;
-                }
-                this.currentView = view;
-                this.currentView.delegateEvents();
-                $('.sadrzajPodaci').empty().append(this.currentView.render().el);
-            },
-
             dodajIspit: function() {
                 this.changeView(new DodajIspitView({
                     model: new DodajIspitModel()
@@ -35,7 +41,7 @@ define(['backbone', 'ispitiM/ispiti', 'ispitiV/ispiti', 'ispitiM/dodaj-ispit', '
             prikaziIspit: function(ispit) {
                 this.changeView(new IspitInfoView({
                     model: new IspitInfoModel({
-                        urlRoot: this.lokacija + ispit + '/'
+                        urlRoot: '/administracija/' + Backbone.lokacija() 
                     })
                 }));
             },

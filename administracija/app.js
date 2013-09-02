@@ -1,4 +1,3 @@
-
 var express = require('express'),
   path = require('path'),
   mongoose = require('mongoose'),
@@ -47,8 +46,8 @@ if ('development' == app.get('env')) {
 }
 app.set('ime', 'administrator');
 
-app.get('/', function(req, res){
-  res.render('index', {'ime':'Zeljko Markovic1' });
+app.get('/', function(req, res) {
+  res.render('index');
 });
 /*
 app.get(/[^\/]/,function(req, res){

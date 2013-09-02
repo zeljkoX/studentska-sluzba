@@ -6,33 +6,39 @@ define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 				var that = this;
 				this.on('lista', this.azuriraj);
 				this.template = Hogan.compile(this.template);
-				this.model.on('sync', function() {
-					Backbone.trigger('dugme', [{
-						tekst: 'Odustani',
-						lokacija: Backbone.lokacija(),
-						klasa: 'btn btn-danger',
-						ikona: 'icon-remove-circle icon-white'
-					}]);
-					Backbone.trigger('naslov', [this.model.get('imeIprezime') + ': uredjivanje']);
-					Backbone.trigger('meni', [{
-						tekst: 'Osnovne Informacije',
-						lokacija: this.lokacija(),
-						aktivan: true
-					}]);
-					this.render();
-				}, this);
+				Backbone.trigger('dugme', [{
+					tekst: 'Odustani',
+					lokacija: Backbone.lokacija(),
+					klasa: 'btn btn-danger',
+					ikona: 'icon-remove-circle icon-white'
+				}]);
+				Backbone.trigger('naslov', [this.model.get('imeIprezime') + ': uredjivanje']);
+				Backbone.trigger('meni', [{
+					tekst: 'Osnovne Informacije',
+					lokacija: this.lokacija(),
+					aktivan: true
+				}]);
+				Backbone.trigger('meni', [{
+					tekst: this.model.get('imeIprezime') + ': uredjivanje',
+					lokacija: this.lokacija(),
+					aktivan: 'true'
+				}]);
 				$.get('/administracija/fakulteti/lista/', function(data) {
 					data = JSON.parse(data);
 					that.azuriraj([data]);
 				}).error(function() {
 
 				});
+				this.render();
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
 				this.$el.find('#jmbg').attr('disabled', true);
 				this.$el.find('#index').attr('disabled', true);
+				this.$el.find('#fakultet').attr('disabled', true);
+				this.$el.find('#studijskiProgram').attr('disabled',true);
+				this.$el.find('#sifra').attr('disabled',false);
 				$('.inlineDiv button').click(function(e) {
 					Backbone.history.fragment = null;
 					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
@@ -66,7 +72,7 @@ define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 					studijskiProgram: $.trim(skr.find('#studijskiProgram option:selected').text()),
 					_id: $.trim(skr.find('#index').val()),
 					godina: (new Date()).getFullYear(),
-					sifra: $.trim(skr.find('#jmbg').val()).toString().slice(7)
+					sifra: $.trim(skr.find('#sifra').val()).toString()
 				};
 				console.log(model);
 				$.ajax({
@@ -132,7 +138,7 @@ define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 				});
 
 				html = this.kreirajElement(temp);
-				sp.empty().removeAttr('disabled')[0].appendChild(html);
+				sp.empty()[0].appendChild(html);
 				$("#studijskiProgram").children().filter(function() {
 					return $(this).text() == that.model.attributes.fakultet.studijskiProgram;
 				}).attr('selected', true);

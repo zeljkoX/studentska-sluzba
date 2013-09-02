@@ -8,14 +8,10 @@ var express = require('express'),
   model = mongoose.models.Student;
 
 var app = express();
-
-
 users = {
   username: 'admin',
   password: 'admin'
 };
-
-
 var app = express();
 
 // all environments
@@ -31,23 +27,17 @@ app.use(express.session({
   secret: 'studentska-sluzba',
   key: 'express.sid',
 }));
-
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/studenti', studenti);
 app.use('/administracija', administracija);
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-
-
 app.get('/', function(req, res) {
   res.render('index.hjs');
 });
-
 app.post('/login', function(req, res) {
   var username = req.param('username', null);
   var password = req.param('password', null);
@@ -79,15 +69,12 @@ app.post('/login', function(req, res) {
   }
 
 });
-
 app.get('/logout/', function(req, res) {
   req.session.loggedIn = false;
   req.session.tip = '';
   req.session._id = '';
   res.redirect('/');
 });
-
-
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });

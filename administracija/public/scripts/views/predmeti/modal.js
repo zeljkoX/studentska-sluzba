@@ -4,7 +4,6 @@ define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backb
 		initialize: function(options) {
 			var that = this;
 			this.element = options.element;
-			this.listenTo(this.model, 'change', this.render);
 			this.template = Hogan.compile(this.template);
 			this.render();
 			this.model.on('sync', function(){
@@ -18,11 +17,12 @@ define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backb
             { "mData": "jmbg" }],
             "bPaginate": false
                 });
-                var a = ['Ime', 'Prezime', 'Fakultet', 'JMBG']
+                var a = ['Ime', 'Prezime', 'Fakultet', 'JMBG'];
                 $('#tabela thead tr th').each(function(index){
                 	$(this).html(a[index]);
                 });
-				Backbone.trigger('modal');
+                 this.render();
+                 Backbone.trigger('modal');
 
 			},this);
 			
@@ -32,6 +32,7 @@ define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backb
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
+            $('.sadrzajPodaci').append(this.el);
 			$('#myModal').on('hidden.bs.modal', function () {
             $(this).remove();
              });

@@ -8,6 +8,9 @@
     </tr>
   </thead>
   <tbody>
+    {{^ispiti}}
+       <h4>Lista Ispitnih Rokova je prazna. Dodajte Ispitni Rok koristeci opciju "Dodaj Ispitni Rok".</h4>
+    {{/ispiti}}
     {{#ispiti}}
     <tr>
       <td><a href="#" data-lokacija="{{_id}}/">{{naziv}}</a></td>

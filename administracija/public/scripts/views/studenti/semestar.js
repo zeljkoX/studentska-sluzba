@@ -1,4 +1,4 @@
-define(['backbone', 'text!sabloni/student-semestar.html', 'hogan'],
+define(['backbone', 'text!sabloni/student-semestar.html', 'hogan', 'tipsy'],
 	function(Backbone, Templates, Hogan) {
 		var StudentSemestarView = Backbone.View.extend({
 			template: Templates,
@@ -23,6 +23,7 @@ define(['backbone', 'text!sabloni/student-semestar.html', 'hogan'],
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
+				$('table td a').tipsy({gravity: 'w',html: true } );
 				return this;
 			},
 			events: {

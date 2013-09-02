@@ -9,23 +9,23 @@
     </tr>
   </thead>
   <tbody>
-{{#predmeti}}
+    {{#predmeti}}
     <tr>
-      <td><a data-lokacija="predmeti/{{sifra}}/" href="#">{{naziv}}</a></td>
+      <td><a data-lokacija="predmeti/{{sifra}}/">{{naziv}}</a></td>
       <td>{{sifra}}</td>
       {{#ocjena}}
-         <td><span class="badge badge-success ">{{ocjena}}</span></td> 
+      <td><a href="" title="+Bodovi<br>-Predavanja: <b>{{predavanja}}</b> <br>-Vjezbe: <b>{{vjezbe}}</b> <br>-Dodatni: <b>{{dodatni}}</b> <br>"><span class="badge badge-success">
+      {{ocjena}}</span></a></td>
       {{/ocjena}}
       {{^ocjena}}
       <td><button class="btn btn-mini ocjena" data-lokacija="{{sifra}}"><i class="icon-plus-sign"></i>  Ocjena</button</td>
       {{/ocjena}}
     </tr>
-{{/predmeti}}
-
+    {{/predmeti}}
   </tbody>
 </table>
 {{/semestri}}
-
 {{^semestri}}
-Nema Aktiviranih semestara. Da bi aktivirali semestar kliknite na dugme iznad.
+<h4>Lista Semestra je prazna. Aktivirajte semestar koristeci opciju "Aktiviraj Semestar".</h4>
+<h4>NAPOMENA: Semestri prethodno moraju biti definisani za svaki fakultet.</h4>
 {{/semestri}}

@@ -31,15 +31,14 @@ define(['backbone', 'text!sabloni/dodaj-ispit.html', 'hogan'],
 			return this;
 		},
 		events: {
-			'click .sacuvaj': 'sacuvaj',
-			'click .odustani': 'odustani'
+			'click .sacuvaj': 'sacuvaj'
+		//	'click .odustani': 'odustani'
 		},
-		odustani: function(e) {
+		/*odustani: function(e) {
 			e.preventDefault();
 			Backbone.history.fragment = null;
 			Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
-
-		},
+		},*/
 		sacuvaj: function(e) {
 			e.preventDefault();
 			var skr = this.$el;

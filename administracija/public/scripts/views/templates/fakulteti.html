@@ -1,5 +1,4 @@
  <table class="table table-striped">
-  <caption>Fakulteti:</caption>
   <thead>
     <tr>
       <th>Naziv Fakulteta</th>
@@ -12,6 +11,9 @@
       <td><a href="#" data-lokacija="{{skracenica}}/">{{naziv}}</a></td>
       <td>{{skracenica}}</td>
     </tr>
+    {{/fakulteti}}
+    {{^fakulteti}}
+    <h4>Lista Fakulteta je prazna. Dodajte fakultete koristeci opciju "Dodaj Fakultet".</h4>
     {{/fakulteti}}
   </tbody>
 </table>

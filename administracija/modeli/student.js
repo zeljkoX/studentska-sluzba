@@ -39,7 +39,8 @@ module.exports = function(mongoose) {
 		},
 		aktivan: {
 			type: String,
-			default: 'da'
+			default: 'da',
+			index: true
 		},
 		godina: {
 			type: Number

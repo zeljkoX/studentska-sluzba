@@ -1,11 +1,14 @@
- <table class="table table-striped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Ime i Prezime</th>
-       <th>Fakultet</th>
+      <th>Fakultet</th>
     </tr>
   </thead>
   <tbody>
+    {{^profesori}}
+    <h4>Lista Profesora je prazna. Dodajte Profesora koristeci opciju "Dodaj Profesora".</h4>
+    {{/profesori}}
     {{#profesori}}
     <tr>
       <td><a href="#" data-lokacija="{{jmbg}}/">{{imeIprezime}}</a></td>

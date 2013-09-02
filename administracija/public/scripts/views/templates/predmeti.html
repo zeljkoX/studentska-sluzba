@@ -8,6 +8,9 @@
     </tr>
   </thead>
   <tbody>
+    {{^predmeti}}
+        <h4>Lista Predmeta je prazna. Dodajte predmet koristeci opciju "Dodaj Predmet".</h4>
+    {{/predmeti}}
     {{#predmeti}}
     <tr>
       <td><a href="#" data-lokacija="{{sifra}}/">{{naziv}}</a></td>

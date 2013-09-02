@@ -4,18 +4,18 @@ module.exports = function(grunt) {
     hogan: {
       publish: {
         options: {
-	amdWrapper: true,
+          amdWrapper: true,
           prettify: true,
           defaultName: function(file) {
-            return file.substring(file.lastIndexOf('/')+1, file.lastIndexOf('.'));
+            return file.substring(file.lastIndexOf('/') + 1, file.lastIndexOf('.'));
           }
         },
-        files:{
+        files: {
           "administracija/public/scripts/views/templates/compiled.js": ["administracija/public/scripts/views/templates/*.js"]
         }
       }
     }
-});
+  });
 
   grunt.loadNpmTasks('grunt-contrib-hogan');
 

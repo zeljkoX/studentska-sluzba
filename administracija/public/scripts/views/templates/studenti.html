@@ -9,6 +9,9 @@
     </tr>
   </thead>
   <tbody>
+    {{^studenti}}
+         <h4>Lista Studenata je prazna. Dodajte studenta koristeci opciju "Dodaj Studenta".</h4>
+    {{/studenti}}
     {{#studenti}}
     <tr>
       <td><a href="#" data-lokacija="{{_id}}/">{{imeIprezime}}</a></td>

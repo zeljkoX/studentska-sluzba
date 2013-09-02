@@ -296,7 +296,7 @@
             o = utils.isString(o) ? {
                 url: o
             } : o;
-            requestCache = requestCache || new RequestCache();
+            requestCache = new RequestCache();
             maxPendingRequests = utils.isNumber(o.maxParallelRequests) ? o.maxParallelRequests : maxPendingRequests || 6;
             this.url = o.url;
             this.wildcard = o.wildcard || "%QUERY";

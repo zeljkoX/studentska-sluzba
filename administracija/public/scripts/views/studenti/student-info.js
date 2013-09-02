@@ -20,9 +20,6 @@ define(['backbone', 'text!sabloni/student-info.html', 'studentiV/student-info-ur
 					}, {
 						tekst: 'Semestri',
 						lokacija: this.lokacija() + 'semestri/'
-					}, {
-						tekst: 'Skolarina',
-						lokacija: this.lokacija() + 'skolarina/'
 					}]);
 					this.render();
 				}, this);

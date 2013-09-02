@@ -16,8 +16,8 @@ define(['backbone', 'text!sabloni/dodaj-fakultet.html', 'hogan'], function(Backb
 			return this;
 		},
 		events: {
-			'submit' : 'sacuvaj',
-			'click .odustani': 'odustani'
+			'submit' : 'sacuvaj'
+			//'click .odustani': 'odustani'
 		},
 		sacuvaj: function(e){
 			e.preventDefault();
@@ -38,11 +38,10 @@ define(['backbone', 'text!sabloni/dodaj-fakultet.html', 'hogan'], function(Backb
 						alert('Operacija nije uspjesno zavrsena. Molimo probajte opet.');
 					}});
 		},
-		odustani: function(){
+		/*odustani: function(){
 			e.preventDefault();
 			Backbone.trigger('ruta:lokacija', [Backbone.lokacija(1)]);
-		}
-		
+		}*/
 	});
 	return DodajFakultetView;
 

@@ -1,14 +1,19 @@
 define(['backbone','views/stranica/stranica' ,'text!sabloni/pocetna.html','jquery','typeahead'],
  function(Backbone, StranicaView, Templates) {
 	var IndexView = Backbone.View.extend({
-		el: $('.stranica'),
+		//el: $('.stranica'),
 		template: Templates,
 		render: function() {
+			console.log('render pocetna');
 			var that = this;
 			this.$el.html(this.template);
+			$('.stranica').empty().append(this.el);
+			localStorage.clear();
+			$('.typeahead').typeahead('destroy');
 			$('.typeahead').typeahead({
-				name: 'search-typeahead',
-				prefetch: '/administracija/json/sve.json',
+				name: 'search-typeahead' + Math.floor(Math.random()*1000),
+				remote: '/administracija/json/sve.json',
+				cache: false,
 				template: [
 					'<p class="search-naziv">{{name}}</p>',
 					'<p class="search-lokacija">Lokacija: {{kategorija}}</p>'
@@ -29,7 +34,9 @@ define(['backbone','views/stranica/stranica' ,'text!sabloni/pocetna.html','jquer
 			$('.typeahead').focus();
 			return this;
 		},
-		initialize: function() {},
+		initialize: function() {
+			this.render();
+		},
 		events: {
 			"click .btn-block": "otvori"
 		},

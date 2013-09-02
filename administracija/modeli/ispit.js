@@ -10,10 +10,12 @@ module.exports = function(mongoose) {
 		},
 		godina: String,
 		prijavaOd: {
-			type: Date
+			type: Date,
+			index: true
 		},
 		prijavaDo: {
 			type: Date,
+			index: true
 		},
 		brojTermina: {
 			type: Number,
@@ -26,7 +28,8 @@ module.exports = function(mongoose) {
 		//Rok da li je obrisan ili ne
 		aktivan: {
 			type: String,
-			default: 'da'
+			default: 'da',
+			index: true
 		},
 		//vrijednost da je prijava ispita u toku
 		prijava: {

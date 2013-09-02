@@ -71,7 +71,16 @@ module.exports = function(app, model) {
             res.end(JSON.stringify(doc));
         });
     });
-
+   app.put('/studenti/:id/', function(req, res) {
+        
+        var id = req.body._id;
+        delete req.body._id;
+        console.log(req.body);
+        model.studenti.Student.update({_id: id}, req.body, function(err, doc){
+           if (err) return res.end('500');
+            res.end('200'); 
+        });
+    });
     app.get('/studenti/:id/obrisi/', function(req, res) {
         model.studenti.Student.update({
             _id: req.params.id
@@ -123,8 +132,6 @@ module.exports = function(app, model) {
 
                     }
                 });
-                //console.log('aktivan');
-                //console.log(aktivan);
                 semestri.forEach(function(stavka) {
                     if (stavka._id == aktivan)
                         semestar = stavka;

@@ -1,7 +1,7 @@
 define(['backbone'], function(Backbone) {
 	var NaslovModel = Backbone.Model.extend({
 		defaults: {
-			naslov: 'Pocetni Naslov'
+			naslov: ''
 		},
 		initialize: function() {
 			Backbone.on('naslov', function(options) {

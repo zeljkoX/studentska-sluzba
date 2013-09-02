@@ -25,16 +25,12 @@ define(['backbone', 'views/pocetna', 'routers/studenti', 'routers/fakultet', 'ro
 				'': 'index'
 			},
 			changeView: function(view) {
-				if (null != this.currentView) {
-					this.currentView.undelegateEvents();
-					//this.currentView.remove();
-				}
-				this.currentView = view;
-				//this.currentView.delegateEvents();
-				this.currentView.render();
+				//$('.stranica').html(view.render().el);
+				//view.delegateEvents();
 			},
 			index: function() {
-				this.changeView(new IndexView());
+				//this.changeView(new IndexView());
+				new IndexView();
 			},
 			//Mjenjanje adrese na osnovu djela linka
 			ruta: function(href) {

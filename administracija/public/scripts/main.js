@@ -20,13 +20,13 @@ require.config({
 		'ispitiV': 'views/ispiti/',
 		'ispitiM': 'models/ispiti/',
 		'sabloni': 'views/templates/',
-		'modal' : 'modal',
-		'type':'typeahead'
+		'modal': 'modal',
+		'type': 'typeahead'
 	},
 	backbone: {
 		deps: ['jquery', 'underscore']
 	},
-	type:{
+	type: {
 		deps: ['jquery']
 	}
 });
@@ -36,10 +36,10 @@ require(['routers/main', 'backbone'], function(AppRouter, Backbone) {
 	};
 	Backbone.lokacija = function(korak) {
 		var lokacija = (location.href).replace(/.*administracija\//g, '');
-		if(korak){
-            var  urls = lokacija.split('/');
-            urls.length -= (1 + korak);
-            return urls.join('/') + '/';
+		if (korak) {
+			var urls = lokacija.split('/');
+			urls.length -= (1 + korak);
+			return urls.join('/') + '/';
 		}
 		return lokacija;
 	};

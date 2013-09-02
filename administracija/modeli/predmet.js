@@ -20,7 +20,8 @@ module.exports = function(mongoose) {
 		},
 		aktivan: {
 			type: String,
-			default: 'da'
+			default: 'da',
+			index: true
 		},
 		sifra: {
 			type: String,

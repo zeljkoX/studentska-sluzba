@@ -30,8 +30,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 			return this;
 		},
 		events: {
-			'click table caption a': 'uredi',
-			'click table td a': 'link'
+			'click table caption a': 'uredi'
 		},
 		uredi: function(e) {
 			e.preventDefault();
@@ -39,13 +38,6 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 			Backbone.trigger('ruta:lokacija', [this.lokacija() + index]);
 			console.log(index);
 		},
-		link: function(e) {
-			e.preventDefault();
-			var element = $(e.target).data('lokacija');
-			if (element)
-				Backbone.trigger('ruta:lokacija', [element]);
-		}
-
 	});
 	return StudijskiProgramView;
 

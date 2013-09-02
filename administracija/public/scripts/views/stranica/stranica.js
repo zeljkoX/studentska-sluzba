@@ -10,7 +10,7 @@ define(['backbone', 'templates', 'stranicaV/naslov', 'stranicaV/statistika', 'st
 			console.log('stranica');
 			this.$el.html(this.template.render());
 
-			var naslovModel = new NaslovModel({}),
+			var naslovModel = new NaslovModel({naslov: '-'}),
 				statistikaModel = new StatistikaModel(),
 				dugmeModel = new DugmeModel();
 			    lokacijaModel = new LokacijaModel(),

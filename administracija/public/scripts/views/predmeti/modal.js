@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/modal.html','hogan', 'modal' ], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates' ], function(Backbone, Templates) {
 	var ModalView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['modal'],
 		initialize: function(options) {
 			var that = this;
 			this.element = options.element;
-			this.template = Hogan.compile(this.template);
 			this.render();
 			this.model.on('sync', function(){
 				$('#tabela').dataTable( {

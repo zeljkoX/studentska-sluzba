@@ -1,11 +1,10 @@
-define(['backbone', 'text!sabloni/upis-ocjene.html', 'hogan'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+	function(Backbone, Templates) {
 		var OcjenaView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['upis-ocjene'],
 			initialize: function() {
 				console.log('dodavanje ocjene');
 				this.podaci = '';
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',
 					lokacija: Backbone.lokacija(1),

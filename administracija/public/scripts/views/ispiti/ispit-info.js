@@ -1,11 +1,9 @@
-define(['backbone', 'text!sabloni/ispiti-info.html', 'ispitiV/ispit-info-uredi', 'hogan'],
-	function(Backbone, Templates, TemplateIzmjena, Hogan) {
+define(['backbone', 'templates', 'ispitiV/ispit-info-uredi'],
+	function(Backbone, Templates, TemplateIzmjena) {
 		var IspitInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['ispiti-info'],
 			initialize: function() {
-				console.log('ispiti info');
 				this.listenTo(this.model, 'change', this.render);
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Obrisi Ispit',
 					lokacija: this.lokacija() + 'obrisi/',

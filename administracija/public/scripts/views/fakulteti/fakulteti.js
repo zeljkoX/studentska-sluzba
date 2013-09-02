@@ -1,11 +1,9 @@
-define(['backbone', 'text!sabloni/fakulteti.html', 'views/stranica/stranica', 'hogan'],
-	function(Backbone, Templates, StranicaView, Hogan) {
+define(['backbone', 'templates', 'views/stranica/stranica'],
+	function(Backbone, Templates, StranicaView) {
 		var FakultetiView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['fakulteti'],
 			initialize: function() {
 				this.listenTo(this.model, 'change', this.render);
-				this.template = Hogan.compile(this.template);
-				console.log(this);
 				this.model.on('sync', function() {
 					Backbone.trigger('naslov', ['Fakulteti']);
 					Backbone.trigger('dugme', [{
@@ -25,9 +23,6 @@ define(['backbone', 'text!sabloni/fakulteti.html', 'views/stranica/stranica', 'h
 					}])
 					//this.render();
 				}, this);
-
-
-
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));

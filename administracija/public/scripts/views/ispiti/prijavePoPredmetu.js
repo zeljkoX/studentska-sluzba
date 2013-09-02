@@ -1,40 +1,34 @@
-define(['backbone', 'text!sabloni/prijavePoPredmetu.html','hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var PrijavePoPredmetuView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['prijavePoPredmetu'],
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
-			this.template = Hogan.compile(this.template);
-			Backbone.on('dugme:klik', function(){
-				console.log('dugme klik');
-			});
-			Backbone.trigger('meni',[{tekst: 'Studenti koji su prijavili ispit', lokacija: this.lokacija(), aktivan:'true'}]);
-			this.model.on('sync', function(){
-            	Backbone.trigger('naslov', [this.model.get('naziv')]);
-            	Backbone.trigger('statistika', [{
-						tekst: 'Broj Prijava',
-						podatak: this.model.get('studenti').length
-					}]);
-            },this);
+			Backbone.trigger('meni', [{
+				tekst: 'Studenti koji su prijavili ispit',
+				lokacija: this.lokacija(),
+				aktivan: 'true'
+			}]);
+			this.model.on('sync', function() {
+				Backbone.trigger('naslov', [this.model.get('naziv')]);
+				Backbone.trigger('statistika', [{
+					tekst: 'Broj Prijava',
+					podatak: this.model.get('studenti').length
+				}]);
+			}, this);
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
 			$('.sadrzajPodaci').append(this.el);
 			this.tabela = $(this.el).find('.table').dataTable({
-				/*"aoColumnDefs": [
-                        { "bSearchable": true, "bVisible": false, "aTargets": [ 2 ] },
-                        { "bSearchable": true,"bVisible": false, "aTargets": [ 3 ] }
-                    ],*/
-                    "iDisplayLength": 25,
-                     "bPaginate": false
-
+				"iDisplayLength": 25,
+				"bPaginate": false
 			});
 			$('.lokacija button').hide();
 			return this;
 		},
 		events: {
-			
+
 		}
-		
 	});
 	return PrijavePoPredmetuView;
 

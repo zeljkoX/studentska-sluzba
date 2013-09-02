@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/dodaj-fakultet.html', 'hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var DodajFakultetView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['dodaj-fakultet'],
 		initialize: function() {
-
-			this.template = Hogan.compile(this.template);
+			//this.template = Hogan.compile(this.template);
 			this.listenTo(this.model, 'change', this.render);
 			Backbone.trigger('naslov', ['Dodavanje Fakulteta']);
 			Backbone.trigger('dugme', [{

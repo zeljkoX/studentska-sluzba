@@ -21,7 +21,8 @@ require.config({
 		'ispitiM': 'models/ispiti/',
 		'sabloni': 'views/templates/',
 		'modal': 'modal',
-		'type': 'typeahead'
+		'type': 'typeahead',
+		'templates':'views/templates/templates'
 	},
 	backbone: {
 		deps: ['jquery', 'underscore']

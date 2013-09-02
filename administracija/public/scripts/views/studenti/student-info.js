@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/student-info.html', 'studentiV/student-info-uredi', 'hogan'],
-	function(Backbone, Templates, TemplateIzmjena, Hogan) {
+define(['backbone', 'templates', 'studentiV/student-info-uredi'],
+	function(Backbone, Templates, TemplateIzmjena) {
 		var StudentInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['student-info'],
 			initialize: function() {
 				this.listenTo(this.model, 'change', this.render);
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Obrisi Studenta',
 					lokacija: this.lokacija() + 'obrisi/',

@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/dodaj-predmet.html', 'predmetiM/modal', 'predmetiV/modal', 'hogan'],
-	function(Backbone, Templates, ModalModel, ModalView, Hogan) {
+define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
+	function(Backbone, Templates, ModalModel, ModalView) {
 		var DodajFakultetView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-predmet'],
 			initialize: function() {
 				this.podaci = '';
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'lista', this.azuriraj);
 				Backbone.trigger('naslov', ['Dodavanje Predmeta']);
 				Backbone.trigger('dugme', [{

@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/termini.html', 'hogan', 'bootstrap-timepicker.min', 'bootstrap-datepicker'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates', 'bootstrap-timepicker.min', 'bootstrap-datepicker'],
+	function(Backbone, Templates) {
 		var TerminiView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['termini'],
 			initialize: function() {
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('naslov', ['Termini']);
 				Backbone.trigger('dugme', [{

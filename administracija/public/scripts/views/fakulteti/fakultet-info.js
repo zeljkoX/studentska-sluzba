@@ -1,13 +1,8 @@
-define(['backbone', 'text!sabloni/fakultet-info.html', 'fakultetiV/fakultet-info-uredi', 'hogan'],
-	function(Backbone, Templates, TemplateIzmjena, Hogan) {
+define(['backbone', 'templates', 'fakultetiV/fakultet-info-uredi'],
+	function(Backbone, Templates, TemplateIzmjena) {
 		var FakultetInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['fakultet-info'],
 			initialize: function() {
-				this.template = Hogan.compile(this.template);
-				Backbone.on('dugme:klik', function() {
-					console.log('dugme klik');
-				});
-
 				this.model.on('sync', function() {
 					Backbone.trigger('naslov', [this.model.get('naziv')]);
 					Backbone.trigger('meni', [{

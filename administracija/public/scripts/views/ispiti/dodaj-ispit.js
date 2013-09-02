@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/dodaj-ispit.html', 'models/modal', 'views/modal', 'hogan', 'jquery-ui.min'],
-	function(Backbone, Templates, ModalModel, ModalView, Hogan) {
+define(['backbone', 'templates', 'models/modal', 'views/modal'],
+	function(Backbone, Templates, ModalModel, ModalView) {
 		var DodajIspitView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-ispit'],
 			initialize: function() {
 				this.podaci = '';
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'lista', this.azuriraj);
 					Backbone.trigger('naslov', ['Dodavanje Ispitnog Roka']);
 					Backbone.trigger('dugme', [{

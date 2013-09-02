@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var PredmetiView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['predmeti'],
 		initialize: function() {
 			this.listenTo(this.model, 'lista', this.azuriraj);
-			this.template = Hogan.compile(this.template);
 			this.model.on('sync', function() {
 				Backbone.trigger('naslov', ['Predmeti']);
 				Backbone.trigger('dugme', [{
@@ -49,8 +48,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 		events: {
 			'click table': 'otvori',
 			'change #fakultet': 'sp',
-			//'change #fakultet': 'filter',
-			//'change #studijskiProgram': 'filter',
 			'keyup .filterInput': 'filter'
 		},
 		otvori: function(e) {
@@ -58,7 +55,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 			var element = $(e.target).data('lokacija');
 			if (element)
 				Backbone.trigger('ruta:lokacija', ['predmeti/' + element]);
-
 		},
 		azuriraj: function(options) {
 			this.podaci = options[0];
@@ -81,7 +77,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 				html.appendChild(temp);
 			});
 			return html;
-
 		},
 		kreirajElement2: function(podaci) {
 			var html = document.createDocumentFragment();
@@ -92,7 +87,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 				html.appendChild(temp);
 			});
 			return html;
-
 		},
 		sp: function() {
 			var fak = $(this.el).find('#fakultet').val().toString(),
@@ -117,7 +111,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 			sp.empty().html('<option></option>').removeAttr('disabled')[0].appendChild(html);
 			this.filter();
 		},
-
 		filter: function() {
 			var fakultet = $(this.el).find('#fakultet').val(),
 				sp = $(this.el).find('#studijskiProgram').val(),
@@ -127,10 +120,7 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 			var search = inputF + ' ' + inputSP + ' ' + input;
 			this.tabela.fnFilter(search, null, false, true, false, true);
 			console.log(search);
-
-
 		}
-
 	});
 	return PredmetiView;
 

@@ -85,10 +85,10 @@ border-right: 1px solid #DDDDDD;
     padding:1em;  
     
 }
-.sadrzajPodaci div{
-  -webkit-animation: moveToLeft .2s ease both;
-  -moz-animation: moveToLeft .2s ease both;
-  animation: moveToLeft .2s ease both;
+/*.sadrzajPodaci div{
+  -webkit-animation: moveToLeft .05s ease both;
+  -moz-animation: moveToLeft .05s ease both;
+  animation: moveToLeft .05s ease both;
 
     overflow: hidden;
     backface-visibility: hidden;
@@ -106,7 +106,7 @@ border-right: 1px solid #DDDDDD;
 }
 @keyframes moveToLeft {
   to { transform: translateX(0%); }
-}
+}*/
 .form-horizontal .controls {
     width: 50%;
     float:left;

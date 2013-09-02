@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/prijave.html', 'hogan'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+	function(Backbone, Templates) {
 		var PrijaveView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['prijave'],
 			initialize: function() {
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('naslov', ['Prijave']);
 				Backbone.trigger('dugme', [{

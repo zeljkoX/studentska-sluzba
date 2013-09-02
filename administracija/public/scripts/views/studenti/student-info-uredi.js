@@ -1,11 +1,10 @@
-define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+	function(Backbone, Templates) {
 		var StudentInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-student'],
 			initialize: function() {
 				var that = this;
 				this.on('lista', this.azuriraj);
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',
 					lokacija: Backbone.lokacija(),

@@ -12,22 +12,22 @@ module.exports = function() {
 		sve(lok);
 	};
 
-function sve(lokacija) {
-	var sve = [];
-	var datoteke = fs.readdirSync(lokacija);
-	//console.log(datoteke);
-	datoteke.forEach(function(fajl) {
-		if ((fajl != 'sve.json') && (fajl.search(/~/g) == -1)) {
-			var temp = fs.readFileSync(lokacija + fajl, "utf8");
-			sve = sve.concat(JSON.parse(temp.split(/[\r\n]/)));
-		}
-		fs.writeFileSync(lokacija + 'sve.json', JSON.stringify(sve));
+	function sve(lokacija) {
+		var sve = [];
+		var datoteke = fs.readdirSync(lokacija);
+		//console.log(datoteke);
+		datoteke.forEach(function(fajl) {
+			if ((fajl != 'sve.json') && (fajl.search(/~/g) == -1)) {
+				var temp = fs.readFileSync(lokacija + fajl, "utf8");
+				sve = sve.concat(JSON.parse(temp.split(/[\r\n]/)));
+			}
+			fs.writeFileSync(lokacija + 'sve.json', JSON.stringify(sve));
 
-	});
-	//console.log(sve);
-}
+		});
+		//console.log(sve);
+	}
 
-return {
-	upisiFajl: upisi
-};
+	return {
+		upisiFajl: upisi
+	};
 }();

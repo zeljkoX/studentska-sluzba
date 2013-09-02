@@ -1,12 +1,11 @@
-define(['backbone', 'text!sabloni/dugme.html', 'hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var DugmeView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['dugme'],
 		className: 'inlineDiv',
 		events: {
 			'click' : 'klik'
 		},
 		initialize: function() {
-			this.template = Hogan.compile(this.template);
 			this.render();
 			this.listenTo(this.model, 'change', this.render);
 		},

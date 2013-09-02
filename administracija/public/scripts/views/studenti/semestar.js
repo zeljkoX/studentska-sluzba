@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/student-semestar.html', 'hogan', 'tipsy'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone','templates','tipsy'],
+	function(Backbone, Templates) {
 		var StudentSemestarView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['student-semestar'],
 			initialize: function() {
 				this.podaci = '';
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('naslov', ['Semestri']);
 				Backbone.trigger('dugme', [{

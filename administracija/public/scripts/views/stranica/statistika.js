@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/statistika.html', 'hogan'], function(Backbone, Template, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var StatistikaView = Backbone.View.extend({
-		template: Template,
+		template: Templates['statistika'],
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render)
-			this.template = Hogan.compile(this.template);
 			Backbone.on('statistika', function(options) {
 				this.model.set({
 					vrijednosti: options[0]
@@ -14,7 +13,6 @@ define(['backbone', 'text!sabloni/statistika.html', 'hogan'], function(Backbone,
 			this.$el.html(this.template.render(this.model.toJSON()));
 			return this;
 		}
-
 	});
 	return StatistikaView;
 });

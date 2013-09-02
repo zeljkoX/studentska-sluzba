@@ -1,7 +1,7 @@
-define(['backbone', 'text!sabloni/semestar.html', 'hogan', 'fakultetiM/modal', 'fakultetiV/modal'],
+define(['backbone', 'templates', 'fakultetiM/modal', 'fakultetiV/modal'],
 	function(Backbone, Templates, Hogan, ModalModel, ModalView) {
 		var UrediSemestarView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['semestar'],
 			initialize: function() {
 				Backbone.on('rezultat', function(options) {
 					var p = this.model.get('predmeti');
@@ -13,7 +13,6 @@ define(['backbone', 'text!sabloni/semestar.html', 'hogan', 'fakultetiM/modal', '
 				Backbone.on('render', function(options) {
 					this.render();
 				}, this);
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',

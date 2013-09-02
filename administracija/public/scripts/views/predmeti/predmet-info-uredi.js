@@ -1,11 +1,10 @@
-define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan', 'predmetiM/modal', 'predmetiV/modal'],
-	function(Backbone, Templates, Hogan, ModalModel, ModalView) {
+define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
+	function(Backbone, Templates, ModalModel, ModalView) {
 		var PredmetInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-predmet'],
 			initialize: function() {
 				var that = this;
 				this.on('lista', this.azuriraj);
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',
 					lokacija: Backbone.lokacija(),

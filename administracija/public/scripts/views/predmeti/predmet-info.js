@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/predmet-info.html', 'predmetiV/predmet-info-uredi', 'hogan'], function(Backbone, Templates, TemplateIzmjena, Hogan) {
+define(['backbone', 'templates', 'predmetiV/predmet-info-uredi'],
+ function(Backbone, Templates, TemplateIzmjena) {
 	var PredmetInfoView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['predmet-info'],
 		initialize: function() {
-			console.log('predmet info');
 			this.listenTo(this.model, 'change', this.render);
-			this.template = Hogan.compile(this.template);
 			Backbone.trigger('dugme', [{
 				tekst: 'Obrisi Predmet',
 				lokacija: this.lokacija() + 'obrisi/',

@@ -1,21 +1,16 @@
-define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV/statistika', 'stranicaV/lokacija', 'stranicaV/dugme', 'stranicaV/sadrzaj', 'stranicaM/naslov', 'stranicaM/statistika', 'stranicaM/lokacija', 'stranicaM/dugme', 'stranicaM/sadrzaj'], function(Backbone, Template, NaslovView, StatistikaView, LokacijaView, DugmeView, SadrzajView, NaslovModel, StatistikaModel, LokacijaModel, DugmeModel, SadrzajModel) {
+define(['backbone', 'templates', 'stranicaV/naslov', 'stranicaV/statistika', 'stranicaV/lokacija', 'stranicaV/dugme', 'stranicaV/sadrzaj', 'stranicaM/naslov', 'stranicaM/statistika', 'stranicaM/lokacija', 'stranicaM/dugme', 'stranicaM/sadrzaj'], function(Backbone, Template, NaslovView, StatistikaView, LokacijaView, DugmeView, SadrzajView, NaslovModel, StatistikaModel, LokacijaModel, DugmeModel, SadrzajModel) {
 	var StranicaView = Backbone.View.extend({
 		el: $('.stranica'),
-		template: Template,
+		template: Template['stranica'],
 		views: {},
 		initialize: function() {
 			this.render();
-			//this.views.naslov = NaslovView();
-			//this.statistika = new StatistikaView();
-			//this.lokacija = new LokacijaView();
 		},
 		render: function() {
 			console.log('stranica');
-			this.$el.html(this.template);
+			this.$el.html(this.template.render());
 
-			var naslovModel = new NaslovModel({
-				'naslov': 'RADIIIII'
-			}),
+			var naslovModel = new NaslovModel({}),
 				statistikaModel = new StatistikaModel(),
 				dugmeModel = new DugmeModel();
 			    lokacijaModel = new LokacijaModel(),
@@ -41,9 +36,6 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 			this.$el.find('.statistika').html(this.views.statistika.render().el);
 			this.$el.find('.lokacija').html(this.views.lokacija.render().el);
 			this.$el.find('.tabovi').prepend(this.views.sadrzaj.render().el);
-
-
-
 			//this.iteKomponente();
 			//this.$el.append(this.komponente.naslov.el);
 			return this;
@@ -54,7 +46,6 @@ define(['backbone', 'text!sabloni/stranica.html', 'stranicaV/naslov', 'stranicaV
 				this.$el.find('.naslov').html(komponenta.el);
 			}, this)
 		}
-
 	});
 	return StranicaView;
 });

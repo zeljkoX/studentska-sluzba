@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/dodaj-ispit.html', 'hogan'],
- function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+ function(Backbone, Templates) {
 	var IspitInfoView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['dodaj-ispit'],
 		initialize: function() {
 			var that = this;
-			this.template = Hogan.compile(this.template);
 			Backbone.trigger('dugme', [{
 				tekst: 'Odustani',
 				lokacija: Backbone.lokacija(),

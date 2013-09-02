@@ -1,8 +1,7 @@
-define(['backbone', 'text!sabloni/studijski-program.html', 'hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var StudijskiProgramView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['studijski-program'],
 		initialize: function() {
-			this.template = Hogan.compile(this.template);
 			this.listenTo(this.model, 'change', this.render);
 			this.model.on('sync', function() {
 				Backbone.trigger('naslov', ['Studijski Program: ' + this.model.get('naziv')]);

@@ -1,14 +1,11 @@
-define(['backbone','views/stranica/stranica' ,'text!sabloni/pocetna.html','jquery','typeahead'],
+define(['backbone','views/stranica/stranica' ,'templates','jquery','typeahead'],
  function(Backbone, StranicaView, Templates) {
 	var IndexView = Backbone.View.extend({
-		//el: $('.stranica'),
-		template: Templates,
+		template: Templates['pocetna'],
 		render: function() {
-			console.log('render pocetna');
 			var that = this;
-			this.$el.html(this.template);
+			this.$el.html(this.template.render());
 			$('.stranica').empty().append(this.el);
-			localStorage.clear();
 			$('.typeahead').typeahead('destroy');
 			$('.typeahead').typeahead({
 				name: 'search-typeahead' + Math.floor(Math.random()*1000),

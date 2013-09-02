@@ -1,11 +1,10 @@
-define(['backbone', 'text!sabloni/dodaj-profesor.html','hogan'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+	function(Backbone, Templates) {
 		var DodajProfesorView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-profesor'],
 			initialize: function() {
 				console.log('dodaj prof');
 				this.podaci = '';
-				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'lista', this.azuriraj);
 				Backbone.trigger('naslov', ['Dodavanje Profesora']);
 				Backbone.trigger('dugme', [{

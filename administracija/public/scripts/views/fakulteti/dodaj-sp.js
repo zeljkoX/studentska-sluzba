@@ -1,17 +1,14 @@
-define(['backbone', 'text!sabloni/dodaj-sp.html'], function(Backbone, Templates) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 	var DodajSPView = Backbone.View.extend({
-		template: Templates,
+		template: Templates['dodaj-sp'],
 		initialize: function() {
 			this.render();
-			Backbone.on('dugme:klik', function(){
-				console.log('dugme klik');
-			});
 			Backbone.trigger('naslov', ['Dodavanje Studijskog Programa']);
 			Backbone.trigger('dugme', [{tekst: 'Odustani', lokacija: Backbone.lokacija(1), klasa: 'btn btn-danger', ikona: 'icon-remove-circle icon-white'}]);
 			Backbone.trigger('meni',[{tekst: 'Dodavanje Studijskog Programa', lokacija: this.lokacija(), aktivan:'true'}]);
 		},
 		render: function() {
-			this.$el.html(this.template);
+			this.$el.html(this.template.render());
 			$('.sadrzajPodaci').append(this.el);
 			return this;
 		},

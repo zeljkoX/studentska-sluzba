@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/profesor-info.html', 'profesoriV/profesor-info-uredi', 'hogan'],
-	function(Backbone, Templates, TemplateIzmjena, Hogan) {
+define(['backbone', 'templates', 'profesoriV/profesor-info-uredi'],
+	function(Backbone, Templates, TemplateIzmjena) {
 		var ProfesorInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['profesor-info'],
 			initialize: function() {
 				this.listenTo(this.model, 'change', this.render);
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Obrisi Profesora',
 					lokacija: this.lokacija() + 'obrisi/',

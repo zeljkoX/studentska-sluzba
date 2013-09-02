@@ -1,9 +1,8 @@
-define(['backbone', 'text!sabloni/dodaj-fakultet.html', 'hogan'],
-	function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'],
+	function(Backbone, Templates) {
 		var FakultetInfoView = Backbone.View.extend({
-			template: Templates,
+			template: Templates['dodaj-fakultet'],
 			initialize: function() {
-				this.template = Hogan.compile(this.template);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',
 					lokacija: Backbone.lokacija(),

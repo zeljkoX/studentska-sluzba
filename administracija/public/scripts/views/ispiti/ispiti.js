@@ -1,10 +1,9 @@
-define(['backbone', 'text!sabloni/ispiti.html', 'hogan'], function(Backbone, Templates, Hogan) {
+define(['backbone', 'templates'], function(Backbone, Templates) {
 		var IspitiView = Backbone.View.extend({
-				template: Templates,
+				template: Templates['ispiti'],
 				initialize: function() {
 					this.listenTo(this.model, 'change', this.render);
 					this.listenTo(this.model, 'lista', this.azuriraj);
-					this.template = Hogan.compile(this.template);
 					Backbone.on('dugme:klik', function() {
 						console.log('dugme klik');
 					});

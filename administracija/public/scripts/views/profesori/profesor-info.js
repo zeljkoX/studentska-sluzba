@@ -18,6 +18,7 @@ define(['backbone', 'text!sabloni/profesor-info.html', 'profesoriV/profesor-info
 						lokacija: this.lokacija(),
 						aktivan: true
 					}]);
+					Backbone.trigger('statistika', [{}]);
 					this.render();
 				}, this);
 

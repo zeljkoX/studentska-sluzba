@@ -5,7 +5,12 @@ define(['backbone'], function(Backbone){
     		{ 'tekst': 'Broj Studenata', 'podatak':'1500'},
     		{ 'tekst': 'Broj Studenata', 'podatak':'1500'}
     		]
-    	}
+    	},
+    	initialize: function() {
+            Backbone.on('statistika', function(options) {
+                this.set({vrijednosti: options});
+            },this);
+        }
     }); 
     return StatistikaModel;
 });

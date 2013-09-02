@@ -18,6 +18,7 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'predmetiM/modal', 'predm
 					lokacija: 'dodaj-predmet/',
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{}]);
 				this.render();
 			},
 			render: function() {

@@ -6,7 +6,6 @@ define(['backbone', 'text!sabloni/dodaj-ispit.html', 'models/modal', 'views/moda
 				this.podaci = '';
 				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'lista', this.azuriraj);
-				this.model.on('sync', function() {
 					Backbone.trigger('naslov', ['Dodavanje Ispitnog Roka']);
 					Backbone.trigger('dugme', [{
 						tekst: 'Odustani',
@@ -19,7 +18,7 @@ define(['backbone', 'text!sabloni/dodaj-ispit.html', 'models/modal', 'views/moda
 						lokacija: 'dodaj-ispit/',
 						aktivan: 'true'
 					}]);
-				}, this);
+					Backbone.trigger('statistika', [{}]);
 				this.render();
 			},
 			render: function() {

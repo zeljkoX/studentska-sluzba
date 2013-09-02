@@ -19,6 +19,7 @@ define(['backbone', 'text!sabloni/dodaj-profesor.html','hogan'],
 					lokacija: Backbone.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{}]);
 				this.render();
 			},
 			render: function() {

@@ -21,6 +21,10 @@ define(['backbone', 'text!sabloni/ispiti.html', 'hogan'], function(Backbone, Tem
 							lokacija: this.lokacija(),
 							aktivan: 'true'
 						}]);
+						Backbone.trigger('statistika', [{
+						tekst: 'Broj Ispitnih Rokova',
+						podatak: this.model.get('ispiti').length
+					}]);
 					}, this);
 					//this.render();
 				},
@@ -28,21 +32,13 @@ define(['backbone', 'text!sabloni/ispiti.html', 'hogan'], function(Backbone, Tem
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
 				this.tabela = $(this.el).find('.table').dataTable({
-					/*"aoColumnDefs": [
-                        { "bSearchable": true, "bVisible": false, "aTargets": [ 2 ] },
-                        { "bSearchable": true,"bVisible": false, "aTargets": [ 3 ] }
-                    ],*/
 					"iDisplayLength": 25,
 					"bPaginate": false
-
 				});
-				//this.tabela.fnFilter( 'mikro',null, false, true, false, true );
-				//$(this.el).find('.dataTables_filter').empty().prepend('<div class="filter">Fakultet: <select class="input-mini" id="fakultet"><option></option></select>  SP: <select class="input-mini" id="studijskiProgram" disabled><option></option></select> </div> <div class="trazi" >Trazi:<input class="filterInput input" type="text"></input>');
 				return this;
 			},
 			events: {
-				'click table': 'otvori',
-				'click': 'konzola'
+				'click table': 'otvori'
 			},
 			otvori: function(e) {
 				console.log('ispiti');
@@ -51,10 +47,6 @@ define(['backbone', 'text!sabloni/ispiti.html', 'hogan'], function(Backbone, Tem
 				if (element)
 					Backbone.trigger('ruta:lokacija', ['ispiti/' + element]);
 			},
-			konzola: function(){
-				console.log('klik');
-			}
-
 		});
 	return IspitiView;
 

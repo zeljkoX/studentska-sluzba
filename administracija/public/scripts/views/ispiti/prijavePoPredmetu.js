@@ -10,6 +10,10 @@ define(['backbone', 'text!sabloni/prijavePoPredmetu.html','hogan'], function(Bac
 			Backbone.trigger('meni',[{tekst: 'Studenti koji su prijavili ispit', lokacija: this.lokacija(), aktivan:'true'}]);
 			this.model.on('sync', function(){
             	Backbone.trigger('naslov', [this.model.get('naziv')]);
+            	Backbone.trigger('statistika', [{
+						tekst: 'Broj Prijava',
+						podatak: this.model.get('studenti').length
+					}]);
             },this);
 		},
 		render: function() {

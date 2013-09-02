@@ -17,6 +17,7 @@ define(['backbone', 'text!sabloni/dodaj-ispit.html', 'hogan'],
 				lokacija: this.lokacija(),
 				aktivan: true
 			}]);
+			Backbone.trigger('statistika', [{}]);
 			this.render();
 		},
 		render: function() {

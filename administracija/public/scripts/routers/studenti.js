@@ -1,5 +1,5 @@
-define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-student', 'studentiV/dodaj-student','studentiM/student-info', 'studentiV/student-info','studentiM/semestar', 'studentiV/semestar','studentiM/skolarina', 'studentiV/skolarina','studentiM/upis-ocjene', 'studentiV/upis-ocjene'], 
-    function(Backbone, StudentiModel, StudentiView, DodajStudentModel, DodajStudentView, StudentInfoModel, StudentInfoView, StudentSemestarModel, StudentSemestarView, SkolarinaModel, SkolarinaView, UpisOcjeneModel, UpisOcjeneView) {
+define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-student', 'studentiV/dodaj-student','studentiM/student-info', 'studentiV/student-info','studentiM/semestar', 'studentiV/semestar','studentiM/upis-ocjene', 'studentiV/upis-ocjene'], 
+    function(Backbone, StudentiModel, StudentiView, DodajStudentModel, DodajStudentView, StudentInfoModel, StudentInfoView, StudentSemestarModel, StudentSemestarView, UpisOcjeneModel, UpisOcjeneView) {
     var StudentiRuter = Backbone.Router.extend({
         routes: {
             'studenti/': 'studenti',

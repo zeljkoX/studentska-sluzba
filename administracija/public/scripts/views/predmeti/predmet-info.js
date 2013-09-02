@@ -11,6 +11,7 @@ define(['backbone', 'text!sabloni/predmet-info.html', 'predmetiV/predmet-info-ur
 				klasa: 'btn btn-danger',
 				ikona: 'icon-remove-circle icon-white'
 			}]);
+			Backbone.trigger('statistika', [{}]);
 			this.model.on('sync', function() {
 				Backbone.trigger('naslov', [this.model.get('naziv')]);
 				Backbone.trigger('meni', [{

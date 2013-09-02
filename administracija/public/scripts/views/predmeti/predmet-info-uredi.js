@@ -18,6 +18,7 @@ define(['backbone', 'text!sabloni/dodaj-predmet.html', 'hogan', 'predmetiM/modal
 					lokacija: this.lokacija(),
 					aktivan: true
 				}]);
+				Backbone.trigger('statistika', [{}]);
 
 				$.get('/administracija/fakulteti/lista/', function(data) {
 					data = JSON.parse(data);

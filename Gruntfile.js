@@ -11,7 +11,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          "administracija/public/scripts/views/templates/compiled.js": ["administracija/public/scripts/views/templates/*.js"]
+          "administracija/public/scripts/views/templates/compiled.js": ["administracija/public/scripts/views/templates/*.html"]
         }
       }
     }

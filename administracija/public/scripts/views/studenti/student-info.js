@@ -21,6 +21,7 @@ define(['backbone', 'text!sabloni/student-info.html', 'studentiV/student-info-ur
 						tekst: 'Semestri',
 						lokacija: this.lokacija() + 'semestri/'
 					}]);
+					Backbone.trigger('statistika', [{}]);
 					this.render();
 				}, this);
 

@@ -21,6 +21,10 @@ define(['backbone', 'text!sabloni/studenti.html', 'hogan'], function(Backbone, T
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{
+						tekst: 'Broj Studenata',
+						podatak: this.model.get('studenti').length
+					}]);
 			}, this);
 		},
 		render: function() {

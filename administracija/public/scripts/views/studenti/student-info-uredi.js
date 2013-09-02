@@ -23,6 +23,7 @@ define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika',[{}]);
 				$.get('/administracija/fakulteti/lista/', function(data) {
 					data = JSON.parse(data);
 					that.azuriraj([data]);

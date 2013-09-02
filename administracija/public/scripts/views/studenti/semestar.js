@@ -3,7 +3,6 @@ define(['backbone', 'text!sabloni/student-semestar.html', 'hogan', 'tipsy'],
 		var StudentSemestarView = Backbone.View.extend({
 			template: Templates,
 			initialize: function() {
-				console.log('semestar');
 				this.podaci = '';
 				this.template = Hogan.compile(this.template);
 				this.listenTo(this.model, 'change', this.render);
@@ -19,6 +18,12 @@ define(['backbone', 'text!sabloni/student-semestar.html', 'hogan', 'tipsy'],
 					lokacija: this.lokacija(),
 					aktivan: true
 				}]);
+				this.model.on('sync', function() {
+				Backbone.trigger('statistika', [{
+						tekst: 'Broj Semestra',
+						podatak: this.model.get('semestri').length
+					}]);
+			}, this);
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));

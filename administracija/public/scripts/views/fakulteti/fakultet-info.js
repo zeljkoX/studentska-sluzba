@@ -26,6 +26,10 @@ define(['backbone', 'text!sabloni/fakultet-info.html', 'fakultetiV/fakultet-info
 						klasa: 'btn btn-danger',
 						ikona: 'icon-remove-circle icon-white'
 					}]);
+					Backbone.trigger('statistika', [{
+						tekst: 'Broj Studijskih Programa',
+						podatak: this.model.get('studijskiProgrami').length
+					}]);
 					this.render();
 				}, this);
 			},

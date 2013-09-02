@@ -4,9 +4,6 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 		initialize: function() {
 			this.listenTo(this.model, 'lista', this.azuriraj);
 			this.template = Hogan.compile(this.template);
-			Backbone.on('dugme:klik', function() {
-				console.log('dugme klik');
-			});
 			this.model.on('sync', function() {
 				Backbone.trigger('naslov', ['Predmeti']);
 				Backbone.trigger('dugme', [{
@@ -20,6 +17,10 @@ define(['backbone', 'text!sabloni/predmeti.html', 'hogan'], function(Backbone, T
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{
+						tekst: 'Broj Predmeta',
+						podatak: this.model.get('predmeti').length
+					}]);
 				this.render();
 			}, this);
           

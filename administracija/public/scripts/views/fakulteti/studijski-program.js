@@ -17,6 +17,10 @@ define(['backbone', 'text!sabloni/studijski-program.html', 'hogan'], function(Ba
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{
+						tekst: 'Broj Semestra',
+						podatak: this.model.get('semestri').length
+					}])
 				this.render();
 			}, this);
 			this.render();

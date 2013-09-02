@@ -21,6 +21,10 @@ define(['backbone', 'text!sabloni/profesori.html', 'hogan'], function(Backbone, 
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika', [{
+						tekst: 'Broj Profesora',
+						podatak: this.model.get('profesori').length
+					}]);
 			}, this);
 		},
 		render: function() {

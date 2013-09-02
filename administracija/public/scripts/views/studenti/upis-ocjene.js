@@ -19,6 +19,7 @@ define(['backbone', 'text!sabloni/upis-ocjene.html', 'hogan'],
 				}]);
 				this.model.on('sync', function() {
 					Backbone.trigger('naslov', ['Upis ocjene: ' + this.model.get('naziv')]);
+					Backbone.trigger('statistika', [{}]);
 					this.render();
 				}, this);
 			},

@@ -18,6 +18,7 @@ define(['backbone', 'text!sabloni/dodaj-student.html', 'hogan'],
 					lokacija: 'dodaj-student/',
 					aktivan: 'true'
 				}]);
+				Backbone.trigger('statistika',[{}]);
 				this.render();
 			},
 			render: function() {

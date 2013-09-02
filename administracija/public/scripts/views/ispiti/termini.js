@@ -17,6 +17,12 @@ define(['backbone', 'text!sabloni/termini.html', 'hogan', 'bootstrap-timepicker.
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				this.listenTo(this.model, 'change:aktivno', function(){
+					Backbone.trigger('statistika', [{
+						tekst: 'Ukupno Predmeta',
+						podatak: this.model.get('aktivno').length
+					}]);
+				});
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));

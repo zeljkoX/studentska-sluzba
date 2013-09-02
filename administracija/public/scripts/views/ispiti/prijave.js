@@ -17,6 +17,13 @@ define(['backbone', 'text!sabloni/prijave.html', 'hogan'],
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				this.listenTo(this.model, 'change:aktivno', function(){
+					Backbone.trigger('statistika', [{
+						tekst: 'Ukupno Predmeta',
+						podatak: this.model.get('aktivno').predmeti.length
+					}]);
+				});
+				
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));

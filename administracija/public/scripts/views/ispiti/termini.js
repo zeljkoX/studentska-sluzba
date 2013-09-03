@@ -82,10 +82,11 @@ define(['backbone', 'templates', 'bootstrap-timepicker.min', 'bootstrap-datepick
 				this.model.set({
 					termini: termini
 				});
-
+                $('.sadrzaj').append('<div class="save-icon"></div>');
 				this.model.save({}, {
 					success: function(model, response) {
-						console.log('da');
+						console.log('sacuvano');
+						$('.sadrzaj').append('<div class="save-icon"></div>');
 
 					},
 					error: function() {

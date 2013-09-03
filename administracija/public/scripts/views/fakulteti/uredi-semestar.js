@@ -35,7 +35,8 @@ define(['backbone', 'templates', 'fakultetiM/modal', 'fakultetiV/modal'],
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
-				$('.sadrzajPodaci').append(this.el);
+				$('.sadrzajPodaci').empty().append(this.el);
+				document.querySelector('.ucitavanje').setAttribute('class', '');
 				return this;
 			},
 			events: {

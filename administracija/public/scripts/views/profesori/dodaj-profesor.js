@@ -23,8 +23,8 @@ define(['backbone', 'templates'],
 			},
 			render: function() {
 				this.$el.html(this.template.render());
-				$('.sadrzajPodaci').append(this.el);
-				$('body').removeClass('ucitavanje');
+				$('.sadrzajPodaci').empty().append(this.el);
+				document.querySelector('.ucitavanje').setAttribute('class', '');
 				return this;
 			},
 			events: {

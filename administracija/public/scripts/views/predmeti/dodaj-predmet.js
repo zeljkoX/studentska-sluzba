@@ -22,7 +22,8 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 			},
 			render: function() {
 				this.$el.html(this.template.render());
-				$('.sadrzajPodaci').append(this.el);
+				$('.sadrzajPodaci').empty().append(this.el);
+				document.querySelector('.ucitavanje').setAttribute('class', '');
 				return this;
 			},
 			events: {

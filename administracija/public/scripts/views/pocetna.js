@@ -9,7 +9,7 @@ define(['backbone','views/stranica/stranica' ,'templates','jquery','typeahead'],
 			$('.typeahead').typeahead('destroy');
 			$('.typeahead').typeahead({
 				name: 'search-typeahead' + Math.floor(Math.random()*1000),
-				remote: '/administracija/json/sve.json',
+				prefetch: '/administracija/json/sve.json',
 				cache: false,
 				template: [
 					'<p class="search-naziv">{{name}}</p>',

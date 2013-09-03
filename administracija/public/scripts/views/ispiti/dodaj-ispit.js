@@ -22,9 +22,9 @@ define(['backbone', 'templates', 'models/modal', 'views/modal'],
 			},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
-				$('.sadrzajPodaci').append(this.el);
+				$('.sadrzajPodaci').empty().append(this.el);
 				this.$el.find('.datum').datepicker();
-				$('body').removeClass('ucitavanje');
+				document.querySelector('.ucitavanje').setAttribute('class', '');
 				return this;
 			},
 			events: {

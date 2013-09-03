@@ -29,7 +29,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 				},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
-				$('.sadrzajPodaci').append(this.el);
+				$('.sadrzajPodaci').empty().append(this.el);
 				this.tabela = $(this.el).find('.table').dataTable({
 					"iDisplayLength": 25,
 					"bPaginate": false

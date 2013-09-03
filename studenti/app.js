@@ -128,7 +128,7 @@ app.get('/:id/ispiti/', function(req, res) {
   });
 });
 
-app.post('/:id/ispiti/:rok/', function(req, res) {
+app.post('/:id/ispiti/:rok/', function(req, res, next) {
   var datum = new Date();
   mongoose.models.Ispit.findOne({
     _id: req.params.rok
@@ -138,6 +138,7 @@ app.post('/:id/ispiti/:rok/', function(req, res) {
       _id: req.params.id
     }, function(err, doc) {
       console.log(req.body);
+      if(req.body.predmeti){
       req.body.predmeti.forEach(function(item) {
         console.log(item);
         console.log(ispit);
@@ -151,7 +152,10 @@ app.post('/:id/ispiti/:rok/', function(req, res) {
         }
         ispit.prijave.studenti[doc._id] = req.body.predmeti;
 
-      });
+      });}
+      else {
+        next(new Error('Nema predmeta'));
+      }
       /*ispit.save(function(err){
       if(err) console.log('ERRR');
     });*/
@@ -206,4 +210,7 @@ app.post('/:id/info/', function(req, res) {
     res.end('200');
   });
 
+});
+app.use(function(err, req, res, next) {
+  console.log('greska');
 });

@@ -2,7 +2,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 	var StudentiView = Backbone.View.extend({
 		template: Templates['studenti'],
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
+			//this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'lista', this.azuriraj);
 			Backbone.on('dugme:klik', function() {
 				console.log('dugme klik');
@@ -24,16 +24,17 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 						tekst: 'Broj Studenata',
 						podatak: this.model.get('studenti').length
 					}]);
+				this.render();
 			}, this);
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
-			$('.sadrzajPodaci').append(this.el);
+			$('.sadrzajPodaci').empty().append(this.el);
 			this.tabela = $(this.el).find('.table').dataTable({
 				"iDisplayLength": 25,
 				"bPaginate": false
 			});
-			this.tabela.fnFilter('mikro', null, false, true, false, true);
+			this.tabela.fnFilter('');
 			$(this.el).find('.dataTables_filter').empty().prepend('<div class="filter-mini">Fakultet: <select class="input-mini" id="fakultet"><option></option></select>  SP: <select class="input-mini" id="studijskiProgram" disabled><option></option></select> Godina:<input type="text" id="filterGodina" class="input-small"></div> <div class="trazi" >Trazi:<input class="filterInput input" type="text"></input>');
 			$('body').removeClass('ucitavanje');
 			return this;

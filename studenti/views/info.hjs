@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#"> Slobomir P Univerzitet - IS</a>
+            <a class="brand" > Slobomir P Univerzitet - IS</a>
             <div class="nav-collapse collapse">
               <ul class="nav nav-pills">
                 <li><a href="/studenti/{{_id}}/">Semestri</a></li>
@@ -88,6 +88,12 @@
                 </div>
               </div>
               <div class="control-group">
+                <label class="control-label" for="sifra">Sifra</label>
+                <div class="controls">
+                  <input type="text" id="sifra"  value="{{sifra}}" disabled>
+                </div>
+              </div>
+              <div class="control-group">
                 <label class="control-label" for="index">Index</label>
                 <div class="controls">
                   <input type="text" id="index"  value="{{_id}}" required disabled>
@@ -122,7 +128,7 @@
       <script src="/components/jquery/jquery.min.js"></script>
       <script>
       window.onload = function() {
-  var elementi = [{id: 'mjesto', val:$('#mjesto')},{id: 'ulica', val:$('#ulica')},{id: 'telefon', val:$('#telefon')},{id: 'email', val:$('#email')}];
+  var elementi = [{id: 'mjesto', val:$('#mjesto')},{id: 'ulica', val:$('#ulica')},{id: 'telefon', val:$('#telefon')},{id: 'email', val:$('#email')},{id: 'sifra', val:$('#sifra')}];
   
   $('form button').on('click',function(e){
     e.preventDefault();
@@ -139,7 +145,8 @@
         mjesto: $('#mjesto').val(),
         ulica: $('#ulica').val(),
         telefon:$('#telefon').val(),
-        email:$('#email').val()
+        email:$('#email').val(),
+        sifra: $('#sifra').val()
       };
       $.ajax({
         type: "POST",

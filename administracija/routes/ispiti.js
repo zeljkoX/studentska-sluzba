@@ -1,5 +1,28 @@
 module.exports = function(app, model) {
+	var upis = require('../upis');
+	var arhiva = function() {
+		model.ispiti.Ispit.find({
+			aktivan: 'da'
+		}, {
+			naziv: true,
+			_id: true
+		}, function(err, doc) {
+			var objekat = doc.map(function(item) {
+				return {
+					name: item.naziv + ' - ' + item._id,
+					value: item.naziv + ' - ' + item._id,
+					kategorija: 'Ispiti',
+					lokacija: '/ispiti/' + item._id + '/',
+					tokens: [item.naziv, item._id]
+				}
+			});
 
+			upis.upisiFajl({
+				data: JSON.stringify(objekat),
+				datoteka: 'ispiti.json'
+			});
+		});
+	};
 	app.get('/ispiti/', function(req, res) {
 		model.ispiti.Ispit.find({
 			aktivan: 'da'
@@ -23,66 +46,73 @@ module.exports = function(app, model) {
 	app.post('/ispiti/dodaj-ispit/', function(req, res) {
 		//console.log(model.Ispit);
 		var objekat = {},
-		    objekatPrijave = {};
-        	model.fakultet.Fakultet.find({
-			aktivan: 'da'
-		},{
-			_id: true,
-            naziv: true,
-		},
-		function(err, fak){
-			console.log('---------');
-			console.log(fak);
-			console.log('---------');
-         fak.forEach(function(gg){
-             objekat[gg._id] = [];
-             objekatPrijave[gg._id] = {};
-         });
-         console.log(objekatPrijave);
-		model.predmeti.Predmet.find({
-			aktivan: 'da'
-		}, {
-			naziv: true,
-			sifra: true,
-			fakultet: true,
-			_id: false,
-		}, function(err, doc) {
-			doc.forEach(function(item) {
-				//item.fakultet = item.fakultet._id;
-				item.datum = 'd';
-				item.vrijeme = 'f';
-				item.lokacija = 'f';
-				delete item.casovi;
-				delete item.kadar;
-				objekat[item.fakultet._id].push(item);
-				objekatPrijave[item.fakultet._id][item.sifra] = {naziv : item.naziv};
-				item.fakultet = item.fakultet._id;
-				
-			});
-			   
-			console.log(objekat);
-			  //dodavanje studenti objekta u prijave zarad prijava po studentu
-			var n = {prijave: objekatPrijave, 
-			         studenti: {test : 'test'}}
-			var a = new model.ispiti.Ispit({
-				naziv: req.body.naziv,
-				_id: req.body._id,
-				ispitniOd: req.body.ispitniOd,
-				ispitniDo: req.body.ispitniDo,
-				prijavaOd: req.body.prijavaOd,
-				prijavaDo: req.body.prijavaDo,
-				godina: req.body.godina,
-				termini: objekat,
-				prijave: n
-			});
-			a.save(function(err) {
-				if (err) return res.end('500');
-				res.end('200');
-			});
+			objekatPrijave = {};
+		model.fakultet.Fakultet.find({
+				aktivan: 'da'
+			}, {
+				_id: true,
+				naziv: true,
+			},
+			function(err, fak) {
+				console.log('---------');
+				console.log(fak);
+				console.log('---------');
+				fak.forEach(function(gg) {
+					objekat[gg._id] = [];
+					objekatPrijave[gg._id] = {};
+				});
+				console.log(objekatPrijave);
+				model.predmeti.Predmet.find({
+					aktivan: 'da'
+				}, {
+					naziv: true,
+					sifra: true,
+					fakultet: true,
+					_id: false,
+				}, function(err, doc) {
+					doc.forEach(function(item) {
+						//item.fakultet = item.fakultet._id;
+						item.datum = 'd';
+						item.vrijeme = 'f';
+						item.lokacija = 'f';
+						delete item.casovi;
+						delete item.kadar;
+						objekat[item.fakultet._id].push(item);
+						objekatPrijave[item.fakultet._id][item.sifra] = {
+							naziv: item.naziv
+						};
+						item.fakultet = item.fakultet._id;
+
+					});
+
+					console.log(objekat);
+					//dodavanje studenti objekta u prijave zarad prijava po studentu
+					var n = {
+						prijave: objekatPrijave,
+						studenti: {
+							test: 'test'
+						}
+					}
+					var a = new model.ispiti.Ispit({
+						naziv: req.body.naziv,
+						_id: req.body._id,
+						ispitniOd: req.body.ispitniOd,
+						ispitniDo: req.body.ispitniDo,
+						prijavaOd: req.body.prijavaOd,
+						prijavaDo: req.body.prijavaDo,
+						godina: req.body.godina,
+						termini: objekat,
+						prijave: n
+					});
+					a.save(function(err) {
+						if (err) return res.end('500');
+						res.end('200');
+						arhiva();
+					});
 
 
-		});
-});
+				});
+			});
 	});
 
 
@@ -103,6 +133,7 @@ module.exports = function(app, model) {
 		}, req.body, function(err, doc) {
 			if (err) return res.end('500');
 			res.end('200');
+			arhiva();
 		});
 	});
 
@@ -115,19 +146,20 @@ module.exports = function(app, model) {
 			}
 		}, {}, function(err, doc) {
 			res.end('200');
+			arhiva();
 		});
 	});
 
 	app.get('/ispiti/:id/termini/', function(req, res) {
 
 
-			model.ispiti.Ispit.find({
-				_id: req.params.id
-			}, {
-				termini: true
-			}, function(err, doc) {
-				res.end(JSON.stringify(doc));
-			});
+		model.ispiti.Ispit.find({
+			_id: req.params.id
+		}, {
+			termini: true
+		}, function(err, doc) {
+			res.end(JSON.stringify(doc));
+		});
 
 
 	});
@@ -144,7 +176,7 @@ module.exports = function(app, model) {
 
 	app.get('/ispiti/:id/prijave/:predmet/', function(req, res) {
 		var fakultet = req.params.predmet.split('-')[0],
-		    predmet = req.params.predmet.split('-')[1];
+			predmet = req.params.predmet.split('-')[1];
 		model.ispiti.Ispit.findOne({
 			_id: req.params.id
 		}, {
@@ -155,13 +187,19 @@ module.exports = function(app, model) {
 	});
 
 	app.post('/ispiti/:id/termini/', function(req, res) {
-     
-        model.ispiti.Ispit.update({_id: req.params.id}, {$set : { termini: req.body.termini}}, function(err, doc){
-           if (err) return res.end('500');
-            res.end('200'); 
-        });
-    });
- 
+
+		model.ispiti.Ispit.update({
+			_id: req.params.id
+		}, {
+			$set: {
+				termini: req.body.termini
+			}
+		}, function(err, doc) {
+			if (err) return res.end('500');
+			res.end('200');
+		});
+	});
+
 }
 
 /*app.post('/ispiti/dodaj-ispit/', function(req, res) {

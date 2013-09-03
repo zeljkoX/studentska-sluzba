@@ -1,5 +1,5 @@
 define(['backbone', 'templates'],
-	function(Backbone, Templates, Hogan) {
+	function(Backbone, Templates) {
 		var DodajStudentView = Backbone.View.extend({
 			template: Templates['dodaj-student'],
 			initialize: function() {
@@ -22,8 +22,10 @@ define(['backbone', 'templates'],
 			},
 			render: function() {
 				this.$el.html(this.template.render());
-				$('.sadrzajPodaci').append(this.el);
+				$('.sadrzajPodaci').empty().append(this.el);
+				document.querySelector('.ucitavanje').setAttribute('class', '');
 				$('body').removeClass('ucitavanje');
+				console.log($('body'));
 				return this;
 			},
 			events: {

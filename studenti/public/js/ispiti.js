@@ -58,7 +58,7 @@
 				predmeti: predmeti
 			},
 			success: function(response) {
-				console.log('message');
+				$('sadrzaj').append('<div class="icon-save"></div>');
 			},
 			error: function(request, status, error) {
 				alert('Neuspjelo slanje. Molimo pokusajte opet.');

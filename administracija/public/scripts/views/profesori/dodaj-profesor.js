@@ -24,6 +24,7 @@ define(['backbone', 'templates'],
 			render: function() {
 				this.$el.html(this.template.render());
 				$('.sadrzajPodaci').append(this.el);
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

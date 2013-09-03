@@ -5,7 +5,7 @@ var express = require('express'),
   mongoose = require('mongoose');
 
 
-var baza = 'mongodb://localhost/studentska-sluzba';
+var baza = 'mongodb://admin:admin@mongo.onmodulus.net:27017/epa6Toju';
 //var s = mongoose.model("Student");
 
 var app = module.exports = express();

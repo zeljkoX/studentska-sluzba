@@ -22,11 +22,11 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 					}])
 				this.render();
 			}, this);
-			this.render();
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
 			$('.sadrzajPodaci').append(this.el);
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

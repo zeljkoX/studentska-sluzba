@@ -27,6 +27,7 @@ define(['backbone', 'templates'],
 					Backbone.history.fragment = null;
 					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 				});
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

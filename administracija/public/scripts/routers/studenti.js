@@ -15,6 +15,7 @@ define(['backbone','studentiM/studenti','studentiV/studenti','studentiM/dodaj-st
             
         },
         changeView: function(view) {
+            $('body').addClass('ucitavanje');
             if (null != this.currentView) {
                 this.currentView.undelegateEvents();
                delete this.currentView.model;

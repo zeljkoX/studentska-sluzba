@@ -42,6 +42,7 @@ define(['backbone', 'templates'],
 
 				});
 				$('.lokacija button').hide();
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

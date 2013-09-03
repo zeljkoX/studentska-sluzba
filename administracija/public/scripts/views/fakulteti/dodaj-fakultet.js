@@ -3,7 +3,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 		template: Templates['dodaj-fakultet'],
 		initialize: function() {
 			//this.template = Hogan.compile(this.template);
-			this.listenTo(this.model, 'change', this.render);
+			//this.listenTo(this.model, 'change', this.render);
 			Backbone.trigger('naslov', ['Dodavanje Fakulteta']);
 			Backbone.trigger('dugme', [{
 				tekst: 'Odustani',
@@ -22,6 +22,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
 			$('.sadrzajPodaci').append(this.el);
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

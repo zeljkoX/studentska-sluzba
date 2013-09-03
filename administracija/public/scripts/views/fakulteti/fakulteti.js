@@ -25,8 +25,10 @@ define(['backbone', 'templates', 'views/stranica/stranica'],
 				}, this);
 			},
 			render: function() {
+				console.log('render fak');
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

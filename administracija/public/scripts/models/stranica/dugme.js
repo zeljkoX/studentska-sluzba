@@ -1,12 +1,12 @@
 define(['backbone'], function(Backbone) {
     var DugmeModel = Backbone.Model.extend({
         defaults: {
-            vrijednosti: [{
+           /* vrijednosti: [{
                 tekst: 'Dodaj ',
                 lokacija: '/',
                 klasa: 'btn btn-success',
                 ikona: 'icon-plus-sign icon-white'
-            }]
+            }]*/
         },
         initialize: function() {
             Backbone.on('dugme', function(options) {

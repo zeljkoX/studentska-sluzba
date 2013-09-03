@@ -24,6 +24,7 @@ define(['backbone', 'templates', 'models/modal', 'views/modal'],
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
 				this.$el.find('.datum').datepicker();
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

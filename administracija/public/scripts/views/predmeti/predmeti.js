@@ -43,6 +43,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 			});
 			this.tabela.fnFilter('mikro', null, false, true, false, true);
 			$(this.el).find('.dataTables_filter').empty().prepend('<div class="filter">Fakultet: <select class="input-mini" id="fakultet"><option></option></select>  SP: <select class="input-mini" id="studijskiProgram" disabled><option></option></select> </div> <div class="trazi" >Trazi:<input class="filterInput input" type="text"></input>');
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

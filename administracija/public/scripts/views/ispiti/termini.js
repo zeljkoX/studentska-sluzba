@@ -37,6 +37,7 @@ define(['backbone', 'templates', 'bootstrap-timepicker.min', 'bootstrap-datepick
 					showMeridian: false
 				});
 				$('.lokacija button').hide();
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

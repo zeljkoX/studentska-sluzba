@@ -25,6 +25,7 @@ define(['backbone', 'templates', 'predmetiV/predmet-info-uredi'],
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
 			$('.sadrzajPodaci').append(this.el);
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

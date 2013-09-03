@@ -4,7 +4,11 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 			template: Templates['dodaj-predmet'],
 			initialize: function() {
 				var that = this;
-				this.on('lista', this.azuriraj);
+				this.listenTo(this.model, 'lista', this.azuriraj);
+				this.listenTo(this.model, 'change', this.render);
+				Backbone.on('render', function(options) {
+					this.render();
+				}, this);
 				Backbone.trigger('dugme', [{
 					tekst: 'Odustani',
 					lokacija: Backbone.lokacija(),
@@ -18,6 +22,7 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 					aktivan: true
 				}]);
 				Backbone.trigger('statistika', [{}]);
+				this.render();
 
 				$.get('/administracija/fakulteti/lista/', function(data) {
 					data = JSON.parse(data);
@@ -34,6 +39,7 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 					Backbone.history.fragment = null;
 					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 				});
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {
@@ -154,7 +160,7 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 				$(this.el).append(a.el);
 				Backbone.on('modal', function() {
 					$('#myModal').modal();
-				})
+				});
 				//setTimeout(function(){$('#myModal').modal()}, 200);
 
 

@@ -14,6 +14,7 @@ define(['backbone', 'ispitiM/ispiti', 'ispitiV/ispiti', 'ispitiM/dodaj-ispit', '
             initialize: function() {
             },
             changeView: function(view) {
+                $('body').addClass('ucitavanje');
             if (null != this.currentView) {
                 this.currentView.undelegateEvents();
                delete this.currentView.model;

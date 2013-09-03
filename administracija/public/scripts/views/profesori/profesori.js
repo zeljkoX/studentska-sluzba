@@ -33,8 +33,8 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
                     ],*/
 				"iDisplayLength": 25,
 				"bPaginate": false
-
 			});
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

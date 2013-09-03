@@ -80,12 +80,15 @@ border-right: 1px solid #DDDDDD;
 .tab-content{
   overflow: hidden;
 }
+.tab-pane{
+  min-height: 25em;
+}
 .sadrzajPodaci {
     margin: 2em;  
     padding:1em;  
     
 }
-/*.sadrzajPodaci div{
+.sadrzajPodaci div{
   -webkit-animation: moveToLeft .05s ease both;
   -moz-animation: moveToLeft .05s ease both;
   animation: moveToLeft .05s ease both;
@@ -106,7 +109,7 @@ border-right: 1px solid #DDDDDD;
 }
 @keyframes moveToLeft {
   to { transform: translateX(0%); }
-}*/
+}
 .form-horizontal .controls {
     width: 50%;
     float:left;
@@ -192,12 +195,33 @@ border-right: 1px solid #DDDDDD;
 .breadcrumb li:last-of-type a{
   color: #999999;
 }
+.naslov {
+   min-height: 60px;
+}
+.naslov div{
+  -webkit-animation: scaleUp .1s ease both;
+  -moz-animation: scaleUp .1s ease both;
+  animation: scaleUp .1s ease both;
+}
 .inlineDiv {
   display: inline;
+  -webkit-animation: scaleUp .3s ease both;
+  -moz-animation: scaleUp .3s ease both;
+  animation: scaleUp .3s ease both;
 }
 .inlineDiv button {
   margin-left: 10px;
 }
+@-webkit-keyframes scaleUp {
+  from { opacity: 0; }
+}
+@-moz-keyframes scaleUp {
+  from { opacity: 0;  }
+}
+@keyframes scaleUp {
+  from { opacity: 0; }
+}
+
 #myModal {
   width: 90%; /* desired relative width */
   left: 5%; /* (100%-width)/2 */
@@ -345,7 +369,9 @@ table {
   font-size: 14px;
   font-weight: normal;
 }
-
+.ucitavanje{
+  cursor: wait;
+}
 
 /*!
  * Timepicker Component for Twitter Bootstrap

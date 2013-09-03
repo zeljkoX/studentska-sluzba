@@ -28,6 +28,7 @@ define(['backbone', 'templates', 'studentiV/student-info-uredi'],
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

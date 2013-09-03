@@ -3,25 +3,16 @@ define(['backbone', 'templates','modal' ], function(Backbone, Templates) {
 		template: Templates['modal'],
 		initialize: function(options) {
 			var that = this;
-			this.listenTo(this.model, 'change', this.render);
-			this.render();
+			//this.listenTo(this.model, 'change', this.render);
+			
 			this.model.on('sync', function(){
-				$('#tabela').dataTable( {
-					"bProcessing": true,
-                    "aaData": this.model.get('podaci'),
-                    "aoColumns": [
-            { "mData": "naziv" },
-            { "mData": "sifra" }],
-            "bPaginate": false
-                });
-                $('#tabela thead tr th').each(function(index){
-                	$(this).html(that.model.attributes.kolone[index]);
-                });
-				Backbone.trigger('modal');
+                this.render();
 			},this);
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
+            //this.$el.find('.table').dataTable({"aaSorting": [[ 1, "asc" ]]});
+            console.log(this.el);
 			$('#myModal').on('hidden.bs.modal', function () {
             $(this).remove();
              });

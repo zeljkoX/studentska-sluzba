@@ -32,6 +32,7 @@ define(['backbone', 'templates', 'fakultetiV/fakultet-info-uredi'],
 				console.log('render info');
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').empty().append(this.el);
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

@@ -29,6 +29,7 @@ define(['backbone','views/stranica/stranica' ,'templates','jquery','typeahead'],
 				Backbone.trigger('ruta:lokacija',[datum.lokacija]);
 			});
 			$('.typeahead').focus();
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		initialize: function() {

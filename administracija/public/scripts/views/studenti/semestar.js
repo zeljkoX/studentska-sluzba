@@ -28,6 +28,7 @@ define(['backbone','templates','tipsy'],
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').append(this.el);
 				$('table td a').tipsy({gravity: 'w',html: true } );
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

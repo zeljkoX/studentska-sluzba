@@ -24,6 +24,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 				"bPaginate": false
 			});
 			$('.lokacija button').hide();
+			$('body').removeClass('ucitavanje');
 			return this;
 		},
 		events: {

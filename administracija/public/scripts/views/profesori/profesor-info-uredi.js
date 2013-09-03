@@ -31,10 +31,10 @@ define(['backbone', 'templates'],
 				$('.sadrzajPodaci').append(this.el);
 				this.$el.find('#jmbg').attr('disabled', true);
 				$('.inlineDiv button').click(function(e) {
-					console.log('ddddddddd');
 					Backbone.history.fragment = null;
 					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 				});
+				$('body').removeClass('ucitavanje');
 				return this;
 			},
 			events: {

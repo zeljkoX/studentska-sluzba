@@ -49,12 +49,13 @@ module.exports = function(app, model) {
             telefon: false,
             email: false,
             __v: false,
-            aktivan: false,
+            aktivan: false
         }, {
             sort: {
                 ime: 1,
                 prezime: 1,
-                fakultet: 1
+                fakultet: 1,
+                jmbg: 1
             }
         }, function(err, fak) {
             console.log(JSON.stringify(fak));

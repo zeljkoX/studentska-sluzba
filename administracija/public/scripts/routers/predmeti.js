@@ -11,6 +11,7 @@ define(['backbone', 'predmetiM/predmeti', 'predmetiV/predmeti', 'predmetiM/dodaj
 
             },
             changeView: function(view) {
+                $('body').addClass('ucitavanje');
                 if (null != this.currentView) {
                     this.currentView.undelegateEvents();
                     delete this.currentView.model;

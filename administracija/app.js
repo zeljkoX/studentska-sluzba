@@ -1,7 +1,7 @@
 var express = require('express'),
   path = require('path'),
   mongoose = require('mongoose'),
-  baza = 'mongodb://localhost/studentska-sluzba';
+  baza = 'mongodb://admin:admin@mongo.onmodulus.net:27017/epa6Toju';
 
 var app = module.exports = express();
 

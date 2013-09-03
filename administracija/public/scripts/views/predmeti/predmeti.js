@@ -17,12 +17,11 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 					aktivan: 'true'
 				}]);
 				Backbone.trigger('statistika', [{
-						tekst: 'Broj Predmeta',
-						podatak: this.model.get('predmeti').length
-					}]);
+					tekst: 'Broj Predmeta',
+					podatak: this.model.get('predmeti').length
+				}]);
 				this.render();
 			}, this);
-          
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
@@ -41,7 +40,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 				"bPaginate": false
 
 			});
-			this.tabela.fnFilter('mikro', null, false, true, false, true);
+			this.tabela.fnFilter('');
 			$(this.el).find('.dataTables_filter').empty().prepend('<div class="filter">Fakultet: <select class="input-mini" id="fakultet"><option></option></select>  SP: <select class="input-mini" id="studijskiProgram" disabled><option></option></select> </div> <div class="trazi" >Trazi:<input class="filterInput input" type="text"></input>');
 			$('body').removeClass('ucitavanje');
 			return this;

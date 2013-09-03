@@ -3,7 +3,7 @@ define(['backbone', 'templates', 'studentiV/student-info-uredi'],
 		var StudentInfoView = Backbone.View.extend({
 			template: Templates['student-info'],
 			initialize: function() {
-				this.listenTo(this.model, 'change', this.render);
+				//this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('dugme', [{
 					tekst: 'Obrisi Studenta',
 					lokacija: this.lokacija() + 'obrisi/',

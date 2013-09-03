@@ -19,7 +19,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 		render: function() {
 			this.$el.html(this.template.render());
 			$('.sadrzajPodaci').empty().append(this.el);
-			document.querySelector('.ucitavanje').setAttribute('class', '');
+			setTimeout(function(){document.body.setAttribute('class', '');}, 200);
 			return this;
 		},
 		events: {

@@ -1,10 +1,10 @@
-define(['backbone', 'templates' ], function(Backbone, Templates) {
+define(['backbone', 'templates','modal'], function(Backbone, Templates) {
 	var ModalView = Backbone.View.extend({
 		template: Templates['modal'],
 		initialize: function(options) {
 			var that = this;
+            this.listenTo(this.model, 'change', this.render);
 			this.element = options.element;
-			this.render();
 			this.model.on('sync', function(){
 				$('#tabela').dataTable( {
 					"bProcessing": true,
@@ -20,9 +20,7 @@ define(['backbone', 'templates' ], function(Backbone, Templates) {
                 $('#tabela thead tr th').each(function(index){
                 	$(this).html(a[index]);
                 });
-                 this.render();
                  Backbone.trigger('modal');
-
 			},this);
 			
 			/*Backbone.trigger('naslov', ['Predmeti']);
@@ -31,7 +29,7 @@ define(['backbone', 'templates' ], function(Backbone, Templates) {
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
-            $('.sadrzajPodaci').append(this.el);
+            $('.sadrzaj').append(this.el);
 			$('#myModal').on('hidden.bs.modal', function () {
             $(this).remove();
              });
@@ -49,7 +47,7 @@ define(['backbone', 'templates' ], function(Backbone, Templates) {
         	});
         	this.element.val(objekat.ime + ' '+ objekat.prezime);
         	$('#myModal').modal('hide');
-        	//$('#myModal').remove();
+        	$('#myModal').remove();
 
         },
         selekcija: function(e){

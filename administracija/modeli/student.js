@@ -55,7 +55,8 @@ module.exports = function(mongoose) {
 			type: String
 		},
 		jmbg: {
-			type: String
+			type: String,
+			unique: true
 		},
 		telefon: {
 			type: String

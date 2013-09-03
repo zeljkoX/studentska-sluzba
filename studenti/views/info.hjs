@@ -26,7 +26,7 @@
                 <li class="active"><a href="/studenti/{{_id}}/info/">Licne Informacije</a></li>
               </ul>
               <p class="navbar-text pull-right">
-              <strong><a href="#" class="navbar-link"><i class="icon-user"></i>{{ime}} {{prezime}}</a></strong>
+              <strong><a class="navbar-link"><i class="icon-user"></i>{{ime}} {{prezime}}</a></strong>
               <a href="/logout/" class="navbar-link">Logout</a>
               </p>
               </div><!--/.nav-collapse -->
@@ -125,7 +125,6 @@
           </div>
         </div>
       </div>
-      <script src="/components/jquery/jquery.min.js"></script>
       <script>
       window.onload = function() {
   var elementi = [{id: 'mjesto', val:$('#mjesto')},{id: 'ulica', val:$('#ulica')},{id: 'telefon', val:$('#telefon')},{id: 'email', val:$('#email')},{id: 'sifra', val:$('#sifra')}];
@@ -157,13 +156,13 @@
         },
          error: function (request, status, error) {
         alert('Neuspjelo slanje. Molimo pokusajte opet.');
-    }
+       }
       });
     }
-    
-    
   });
 };
       </script>
+      <script src="/components/jquery/jquery.min.js"></script>
+      <script src="/studenti/js/bootstrap.min.js"></script>
     </body>
   </html>

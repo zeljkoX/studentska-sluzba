@@ -23,7 +23,7 @@
 		});
 	});
 
-	$('button').click(function(e) {
+	$('.well button').click(function(e) {
 		e.preventDefault();
 		var rok = $(this).data('rok');
 		var tabela = $('#' + rok + ' table');
@@ -58,7 +58,7 @@
 				predmeti: predmeti
 			},
 			success: function(response) {
-				$('sadrzaj').append('<div class="icon-save"></div>');
+				$('.sadrzaj').append('<div class="save-icon"></div>');
 			},
 			error: function(request, status, error) {
 				alert('Neuspjelo slanje. Molimo pokusajte opet.');

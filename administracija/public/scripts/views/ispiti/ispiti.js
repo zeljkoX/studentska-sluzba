@@ -2,7 +2,6 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 		var IspitiView = Backbone.View.extend({
 				template: Templates['ispiti'],
 				initialize: function() {
-					this.listenTo(this.model, 'change', this.render);
 					this.listenTo(this.model, 'lista', this.azuriraj);
 					Backbone.on('dugme:klik', function() {
 						console.log('dugme klik');
@@ -24,8 +23,8 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 						tekst: 'Broj Ispitnih Rokova',
 						podatak: this.model.get('ispiti').length
 					}]);
+						this.render();
 					}, this);
-					//this.render();
 				},
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
@@ -34,6 +33,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 					"iDisplayLength": 25,
 					"bPaginate": false
 				});
+				this.tabela.fnFilter('');
 				$('body').removeClass('ucitavanje');
 				return this;
 			},

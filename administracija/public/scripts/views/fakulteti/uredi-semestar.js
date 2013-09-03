@@ -1,8 +1,9 @@
 define(['backbone', 'templates', 'fakultetiM/modal', 'fakultetiV/modal'],
-	function(Backbone, Templates, Hogan, ModalModel, ModalView) {
+	function(Backbone, Templates, ModalModel, ModalView) {
 		var UrediSemestarView = Backbone.View.extend({
 			template: Templates['semestar'],
 			initialize: function() {
+				this.model.attributes.predmeti.length = 0;
 				Backbone.on('rezultat', function(options) {
 					var p = this.model.get('predmeti');
 					p.push(options[0]);
@@ -36,7 +37,8 @@ define(['backbone', 'templates', 'fakultetiM/modal', 'fakultetiV/modal'],
 			render: function() {
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').empty().append(this.el);
-				document.querySelector('.ucitavanje').setAttribute('class', '');
+				this.delegateEvents();
+				setTimeout(function(){document.body.setAttribute('class', '');}, 200);
 				return this;
 			},
 			events: {
@@ -50,15 +52,14 @@ define(['backbone', 'templates', 'fakultetiM/modal', 'fakultetiV/modal'],
 				e.preventDefault();
 				var that = this;
 				console.log('adabir');
-				var element = $(e.currentTarget),
-					a = new ModalView({
+				var element = $(e.currentTarget);
+					new ModalView({
 						element: element,
 						model: new ModalModel({
 							url: '/administracija/predmeti/',
 							naziv: 'Odabir Predmeta'
 						})
 					});
-				$(this.el).append(a.el);
 				Backbone.on('modal', function() {
 					$('#myModal').modal();
 				})

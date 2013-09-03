@@ -2,7 +2,6 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 	var ProfesoriView = Backbone.View.extend({
 		template: Templates['profesori'],
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'lista', this.azuriraj);
 			this.model.on('sync', function() {
 				Backbone.trigger('naslov', ['Profesori']);
@@ -17,10 +16,15 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 					lokacija: this.lokacija(),
 					aktivan: 'true'
 				}]);
+				var stat = 0;
+				if(this.model.get('profesori')){
+                    stat = this.model.get('profesori').length;
+				}
 				Backbone.trigger('statistika', [{
 						tekst: 'Broj Profesora',
-						podatak: this.model.get('profesori').length
+						podatak: stat
 					}]);
+				this.render();
 			}, this);
 		},
 		render: function() {
@@ -34,7 +38,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 				"iDisplayLength": 25,
 				"bPaginate": false
 			});
-			$('body').removeClass('ucitavanje');
+			setTimeout(function(){$(document.body).removeClass('ucitavanje')}, 200);
 			return this;
 		},
 		events: {

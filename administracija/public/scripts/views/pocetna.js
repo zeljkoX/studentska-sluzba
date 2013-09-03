@@ -1,4 +1,4 @@
-define(['backbone','views/stranica/stranica' ,'templates','jquery','typeahead'],
+define(['backbone','views/stranica/stranica' ,'templates','jquery','type'],
  function(Backbone, StranicaView, Templates) {
 	var IndexView = Backbone.View.extend({
 		template: Templates['pocetna'],

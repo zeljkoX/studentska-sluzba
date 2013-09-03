@@ -9,7 +9,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 			'click li': 'mjenjajLokaciju'
 		},
 		render: function() {
-			this.$el.html(this.template.render(this.model.toJSON()));
+			this.$el.empty().append(this.template.render(this.model.toJSON()));
 			this.dugme.delegateEvents();
 			this.$el.find('.breadcrumb-nav').append(this.dugme.el);
 			return this;

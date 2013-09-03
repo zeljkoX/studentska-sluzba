@@ -21,7 +21,7 @@ module.exports = function(app, model) {
 
             upis.upisiFajl({
                 data: JSON.stringify(objekat),
-                datoteka: 'profesori.json'
+                datoteka: 'predmeti.json'
             });
         });
     };

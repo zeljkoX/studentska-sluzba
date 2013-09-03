@@ -23,15 +23,15 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 			render: function() {
 				this.$el.html(this.template.render());
 				$('.sadrzajPodaci').empty().append(this.el);
-				document.querySelector('.ucitavanje').setAttribute('class', '');
+				setTimeout(function(){document.body.setAttribute('class', '');}, 200);
 				return this;
 			},
 			events: {
-				'click .sacuvaj': 'sacuvaj',
+				//'click .sacuvaj': 'sacuvaj',
 				'change #fakultet': 'sp',
 				'click #profesor': 'profesor',
 				'click #asistent': 'asistent',
-				'submit .sacuvaj': 'sacuvaj'
+				'submit': 'sacuvaj'
 			},
 			sacuvaj: function(e) {
 				e.preventDefault();
@@ -113,37 +113,34 @@ define(['backbone', 'templates', 'predmetiM/modal', 'predmetiV/modal'],
 			},
 
 			profesor: function(e) {
-				var element = $(e.currentTarget),
-					a = new ModalView({
+				var element = $(e.currentTarget);
+				 new ModalView({
 						element: element,
 						model: new ModalModel({
 							url: '/administracija/profesori/lista/',
 							naziv: 'Odabir Profesora'
 						})
 					});
-				$(this.el).append(a.el);
 				Backbone.on('modal', function() {
 					$('#myModal').modal();
-				})
+				});
 				//setTimeout(function(){$('#myModal').modal()}, 200);
 
 
 			},
 
 			asistent: function(e) {
-				console.log('asistent');
-				var element = $(e.currentTarget),
-					a = new ModalView({
+				var element = $(e.currentTarget);
+				 new ModalView({
 						element: element,
 						model: new ModalModel({
 							url: '/administracija/profesori/lista/',
-							naziv: 'Odabir Asistenta'
+							naziv: 'Odabir Profesora'
 						})
 					});
-				$(this.el).append(a.el);
 				Backbone.on('modal', function() {
 					$('#myModal').modal();
-				})
+				});
 			}
 
 

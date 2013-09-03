@@ -2,7 +2,6 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 	var StudentiView = Backbone.View.extend({
 		template: Templates['studenti'],
 		initialize: function() {
-			//this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'lista', this.azuriraj);
 			Backbone.on('dugme:klik', function() {
 				console.log('dugme klik');

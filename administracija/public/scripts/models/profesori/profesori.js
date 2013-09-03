@@ -20,7 +20,7 @@ define(['backbone'], function(Backbone) {
 
 		},
 		parse: function(response){
-			if(response.length == 0) return response;
+			if(response.length == 0) return response.profesori = [];
 			response.forEach(function(item){
 				item.imeIprezime = item.ime + ' ' + item.prezime;
 			});

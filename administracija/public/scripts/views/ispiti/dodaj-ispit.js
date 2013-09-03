@@ -24,12 +24,12 @@ define(['backbone', 'templates', 'models/modal', 'views/modal'],
 				this.$el.html(this.template.render(this.model.toJSON()));
 				$('.sadrzajPodaci').empty().append(this.el);
 				this.$el.find('.datum').datepicker();
-				document.querySelector('.ucitavanje').setAttribute('class', '');
+				setTimeout(function(){document.body.setAttribute('class', '');}, 200);
 				return this;
 			},
 			events: {
-				//'click .sacuvaj': 'sacuvaj',
-				'submit': 'sacuvaj',
+				'click .sacuvaj': 'sacuvaj',
+				//'submit': 'sacuvaj',
 				'click .odustani': 'odustani'
 			},
 			sacuvaj: function(e) {

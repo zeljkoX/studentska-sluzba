@@ -4,21 +4,17 @@ var express = require('express'),
   path = require('path'),
   mongoose = require('mongoose');
 
-
+//baza = 'mongodb://localhost/studentska-sluzba';
 var baza = 'mongodb://admin:admin@mongo.onmodulus.net:27017/epa6Toju';
-//var s = mongoose.model("Student");
-
 var app = module.exports = express();
 
-/*app.use(function(req ,res ,next){
-  console.log(req.session.tip);
-  next();
+app.use(function(req ,res ,next){
   if(req.session && req.session.loggedIn && req.session.tip =='student'){
     next();
 }else{
   res.redirect('/');
-  });
-}*/
+  }
+});
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -72,8 +68,14 @@ app.get('/:id/', function(req, res) {
       });
 
       doc.prosjek = doc.prosjek / doc.polozeno;
+      if(isNaN(doc.prosjek)){
+        doc.prosjek = '0.00';
+      }
+      else{
+        doc.prosjek =''+ parseInt(doc.prosjek,10).toFixed(2);
+      }
 
-      res.render('index', doc)
+      res.render('index', doc);
     });
 
   });

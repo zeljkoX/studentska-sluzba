@@ -19,14 +19,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#"> Slobomir P Univerzitet - IS</a>
+            <a class="brand"> Slobomir P Univerzitet - IS</a>
             <div class="nav-collapse collapse">
               <ul class="nav nav-pills">
                 <li><a href="/studenti/{{ispiti.student._id}}/">Semestri</a></li>
                 <li><a href="/studenti/{{ispiti.student._id}}/info/">Licne Informacije</a></li>
               </ul>
               <p class="navbar-text pull-right">
-              <strong><a href="#" class="navbar-link"><i class="icon-user"></i>{{ispiti.student.ime}} {{ispiti.student.prezime}}</a></strong>
+              <strong><a class="navbar-link"><i class="icon-user"></i>{{ispiti.student.ime}} {{ispiti.student.prezime}}</a></strong>
               <a href="/logout/" class="navbar-link">Logout</a>
               </p>
               </div><!--/.nav-collapse -->
@@ -78,6 +78,7 @@
       </div>
       
       <script src="/components/jquery/jquery.min.js"></script>
+      <script src="/studenti/js/bootstrap.min.js"></script>
       <script src="/studenti/js/tipsy.js"></script>
       <script src="/studenti/js/ispiti.js"></script>
     </body>

@@ -34,7 +34,7 @@ define(['backbone', 'templates'],
 					Backbone.history.fragment = null;
 					Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 				});
-				$('body').removeClass('ucitavanje');
+				setTimeout(function(){document.body.setAttribute('class', '');}, 200);
 				return this;
 			},
 			events: {
@@ -71,9 +71,6 @@ define(['backbone', 'templates'],
 						Backbone.trigger('ruta:lokacija', [Backbone.lokacija()]);
 					}
 				});
-
-				//this.model.set(model);
-				//this.model.save();
 			},
 			azuriraj: function(options) {
 				this.podaci = options[0];
@@ -98,7 +95,6 @@ define(['backbone', 'templates'],
 					html.appendChild(temp);
 				});
 				return html;
-
 			},
 		});
 		return ProfesorInfoView;

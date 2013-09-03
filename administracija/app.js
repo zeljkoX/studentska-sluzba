@@ -1,8 +1,8 @@
 var express = require('express'),
   path = require('path'),
-  mongoose = require('mongoose'),
-  baza = 'mongodb://admin:admin@mongo.onmodulus.net:27017/epa6Toju';
-
+  mongoose = require('mongoose');
+  var baza = 'mongodb://admin:admin@mongo.onmodulus.net:27017/epa6Toju';
+  //var baza = 'mongodb://localhost/studentska-sluzba';
 var app = module.exports = express();
 
 var modeli = {
@@ -21,13 +21,13 @@ mongoose.connect(baza, function onMongooseError(err) {
 });
 
 // all environments
-/*app.use(function(req ,res ,next){
+app.use(function(req ,res ,next){
   if(req.session && req.session.loggedIn && req.session.tip =='administrator'){
     next();
 }else{
   res.redirect('/');
 }
-});*/
+});
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/public');
 app.set('view engine', 'hjs');

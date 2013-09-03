@@ -3,6 +3,7 @@
 body {
         padding-top: 60px;
         padding-bottom: 40px;
+        min-height: 100%;
       }
 
 .container {
@@ -73,6 +74,7 @@ border-radius: 5px;
 border-top-right-radius: 0;
 border-right: 1px solid #DDDDDD;
 }
+
 .sadrzaj{
     perspective: 1200px;
     transform-style: preserve-3d;
@@ -225,9 +227,9 @@ border-right: 1px solid #DDDDDD;
 }*/
 .inlineDiv {
   display: inline;
-  -webkit-animation: scaleUp .3s ease both;
+  /*-webkit-animation: scaleUp .3s ease both;
   -moz-animation: scaleUp .3s ease both;
-  animation: scaleUp .3s ease both;
+  animation: scaleUp .3s ease both;*/
 }
 .inlineDiv button {
   margin-left: 10px;

@@ -6,7 +6,7 @@ define(['backbone', 'templates'], function(Backbone, Templates) {
 			'click' : 'klik'
 		},
 		initialize: function() {
-			this.render();
+			//this.render();
 			this.listenTo(this.model, 'change', this.render);
 		},
 		render: function() {

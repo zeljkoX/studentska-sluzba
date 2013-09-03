@@ -25,7 +25,8 @@ module.exports = function(mongoose) {
 			required: true
 		},
 		skracenica: {
-			type: String
+			type: String,
+			unique: true
 		},
 		aktivan: {
 			type: String,

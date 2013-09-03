@@ -6,6 +6,9 @@ define(['backbone'], function(Backbone) {
 		},
 		initialize: function(options){
          this.url = options.url;
+           Backbone.on('att', function() {
+				console.log(this.attributes);
+			}, this);
 		}
 	});
 

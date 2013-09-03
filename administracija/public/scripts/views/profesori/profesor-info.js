@@ -3,7 +3,6 @@ define(['backbone', 'templates', 'profesoriV/profesor-info-uredi'],
 		var ProfesorInfoView = Backbone.View.extend({
 			template: Templates['profesor-info'],
 			initialize: function() {
-				this.listenTo(this.model, 'change', this.render);
 				Backbone.trigger('dugme', [{
 					tekst: 'Obrisi Profesora',
 					lokacija: this.lokacija() + 'obrisi/',

@@ -2,7 +2,7 @@ define(['backbone'], function(Backbone) {
 	var SadrzajModel = Backbone.Model.extend({
 		defaults: {
 			meni: [{
-				'tekst': '',
+				'tekst': '-',
 				'lokacija': '',
 				'aktivan': true
 			}]

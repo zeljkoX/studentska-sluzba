@@ -19,12 +19,10 @@ define(['backbone', 'templates', 'predmetiV/predmet-info-uredi'],
 					aktivan: true
 				}]);
 			}, this);
-			this.render();
-
 		},
 		render: function() {
 			this.$el.html(this.template.render(this.model.toJSON()));
-			$('.sadrzajPodaci').append(this.el);
+			$('.sadrzajPodaci').empty().append(this.el);
 			$('body').removeClass('ucitavanje');
 			return this;
 		},

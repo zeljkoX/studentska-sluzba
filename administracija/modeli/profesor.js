@@ -21,7 +21,8 @@ module.exports = function(mongoose) {
 		},
 		jmbg: {
 			type: String,
-			index: true
+			index: true,
+			unique: true
 		},
 		titula: {
 			type: String
